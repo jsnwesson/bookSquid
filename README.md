@@ -1,2 +1,2 @@
 # Salty-Startup
-Alejandro, Andrew, Hayden, Jacob, Jason, Michael, Patrick
+ - Alejandro, Andrew, Hayden, Jacob, Jason, Michael, Patrick
