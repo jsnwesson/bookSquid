@@ -32,9 +32,11 @@ One terminal for the '**/bookclub-frontend**' directory and one terminal for '**
 2. In both terminals run `npm install`
 
 3. Create .gitignore file (if not already created) in '**/bookclub-frontend**' and paste the following:
-- `/node_modules`
-- `/config.js`
-- `/serviceAccount.json`
+`/node_modules`
+
+`/config.js`
+
+`/serviceAccount.json`
 
 4. Create `.gitignore` file (if not already created) in '**/bookclub-backend**' and paste the following:
 - `/node_modules`
