@@ -44,16 +44,27 @@ One terminal for the '**/bookclub-frontend**' directory and one terminal for '**
 `/node_modules`
 
 `/.pnp`
+
 `.pnp.js`
+
 `/coverage`
+
 `/build`
+
 `.DS_Store`
+
 `.env.local`
+
 `.env.development.local`
+
 `.env.test.local`
+
 `.env.production.local`
+
 `npm-debug.log*`
+
 `yarn-debug.log*`
+
 `yarn-error.log*`
 
 5. Create `config.js` file in '**/bookclub-backend**' and paste the following:
