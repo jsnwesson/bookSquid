@@ -1,22 +1,13 @@
-import React, { useState, useEffect } from 'react';
+// import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { getReadBookList } from '../../services/bookclubServices';
+// import { getReadBookList } from '../../services/bookclubServices';
+// import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-const ListReadBooks = () => {
-  const [books, setBooks] = useState();
+// import CurrentBook from './CurrentBook';
 
-  useEffect(() => {
-    const fetchBooks = async () => {
-      const fetchedBooks = await getReadBookList();
-      setBooks(fetchedBooks)
-    }
-    fetchBooks();
-  }, []);
 
-  if (books === undefined) {
-    return null;
-  }
-
+const ListReadBooks = (props) => {
   return (
     <div>
       <Link to="/add-book">Add Book</Link>
@@ -30,16 +21,18 @@ const ListReadBooks = () => {
           </tr>
         </thead>
         <tbody>
-          {books.map((book) => (
+          {props.books.map((book, i) => (
             <tr key={book.id}>
-              <td>{book.title}</td>
+              <td>
+                <Link onClick={() => { props.setBook(i) }} to={`/book/${i}`}>{book.title}</Link>
+              </td>
               <td>{book.author}</td>
               <td>{book.genre}</td>
             </tr>
           ))}
         </tbody>
       </table>
-    </div>
+    </div >
   )
 };
 export default ListReadBooks;
