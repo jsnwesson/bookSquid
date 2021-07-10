@@ -70,12 +70,13 @@ One terminal for the '**/bookclub-frontend**' directory and one terminal for '**
 5. Create `config.js` file in '**/bookclub-backend**' and paste the following:
 (this is for accessing the mongoDB Atlas cloud database that is already deployed using `mongoose.connect()` already written in '**/bookclub-backend/index/js**')
 
-`const atlasPassword = '[REDACTED]'
+`const atlasPassword = '[REDACTED]'`
 
-module.exports = atlasPassword;`
+`module.exports = atlasPassword;`
 
 6. [OPTIONAL] If you want to connect to this database in  MongoDB Compass insert this into the connection SRV string input:
 (no quotations around this string, just like this... and obviously don't share this string anywhere online or the password)
+
 `mongodb+srv://[REDACTED]:[REDACTED]@bookclub.mgvz6.mongodb.net/test?authSource=admin&replicaSet=atlas-10200k-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true`
 
 7. create `serviceAccount.json` file in '**/bookclub-backend**' and drag and drop this zip file into it:
@@ -89,5 +90,6 @@ module.exports = atlasPassword;`
 One terminal for the '**/bookclub-frontend**' directory and one terminal for '**/bookclub-backend**' directory
 
 In the frontend terminal run `$ npm start`
+
 In the backend terminal run `$ npm run dev`
 
