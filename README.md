@@ -32,53 +32,38 @@ One terminal for the '**/bookclub-frontend**' directory and one terminal for '**
 2. In both terminals run `npm install`
 
 3. Create `.gitignore` file (if not already created) in '**/bookclub-backend**' and paste the following:
-
-`/node_modules`
-
-`/config.js`
-
-`/serviceAccount.json`
-
+```
+/node_modules
+/config.js
+/serviceAccount.json
+```
 4. Create .gitignore file (if not already created) in '**/bookclub-frontend**' and paste the following:
-
-`/node_modules`
-
-`/.pnp`
-
-`.pnp.js`
-
-`/coverage`
-
-`/build`
-
-`.DS_Store`
-
-`.env.local`
-
-`.env.development.local`
-
-`.env.test.local`
-
-`.env.production.local`
-
-`npm-debug.log*`
-
-`yarn-debug.log*`
-
-`yarn-error.log*`
+```
+/node_modules
+/.pnp.pnp.js
+/coverage
+/build
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+```
 
 5. Create `config.js` file in '**/bookclub-backend**' and paste the following:
 (this is for accessing the mongoDB Atlas cloud database that is already deployed using `mongoose.connect()` already written in '**/bookclub-backend/index/js**')
-
-`const atlasPassword = '[REDACTED]'`
-
-`module.exports = atlasPassword;`
-
+```
+const atlasPassword = '[REDACTED]'
+module.exports = atlasPassword;
+```
 6. [OPTIONAL] If you want to connect to this database in  MongoDB Compass insert this into the connection SRV string input:
 (no quotations around this string, just like this... and obviously don't share this string anywhere online or the password)
-
-`mongodb+srv://[REDACTED]:[REDACTED]@bookclub.mgvz6.mongodb.net/test?authSource=admin&replicaSet=atlas-10200k-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true`
-
+```
+mongodb+srv://[REDACTED]:[REDACTED]@bookclub.mgvz6.mongodb.net/test?authSource=admin&replicaSet=atlas-10200k-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true
+```
 7. create `serviceAccount.json` file in '**/bookclub-backend**' and drag and drop this zip file into it:
 (do not save this zip file anywhere online and double check that your serviceAccount.json file is in the `.gitignore file` for '**/bookclub-backend**')
 
