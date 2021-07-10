@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import fire from './fire.js';
+import fire from './fire';
 import Login from './components/sessions/Login';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import ListReadBooks from './components/bookclub/ListReadBooks';
+import AddBook from './components/bookclub/AddBook';
 import './App.css';
 
 function App() {
@@ -30,14 +32,21 @@ function App() {
           : (
             <>
               <span onClick={signOut}>
-                <a href="#">Sign out</a>
+                <a href="signout">Sign out</a>
               </span>
+              <Switch>
+                <Route path="/add-book">
+                  <AddBook />
+                </Route>
+                <Route path="/">
+                  <ListReadBooks />
+                </Route>
+              </Switch>
             </>
           )}
       </Router>
     </div>
   );
 }
-
 
 export default App;

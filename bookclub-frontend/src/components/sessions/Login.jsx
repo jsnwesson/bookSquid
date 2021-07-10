@@ -8,9 +8,9 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     fire.auth().signInWithEmailAndPassword(email, password)
-    .catch((error) => {
-      console.error('Incorrect username or password');
-    });
+      .catch((error) => {
+        console.error('Incorrect username or password');
+      });
     console.log(`submitted email: ${email} password: ${password}`);
   }
 
@@ -25,15 +25,15 @@ const Login = () => {
           placeholder="Email"
         />
         <br />
-          <input
-              type="password"
-              onChange={({ target}) =>
-                setPassword(target.value)}
-              placeholder="Password"
-          />
+        <input
+          type="current-password"
+          onChange={({ target }) =>
+            setPassword(target.value)}
+          placeholder="Password"
+        />
         <br />
         <button type="submit">
-            Sign in
+          Sign in
         </button>
       </form>
     </div>
