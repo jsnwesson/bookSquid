@@ -32,6 +32,7 @@ One terminal for the '**/bookclub-frontend**' directory and one terminal for '**
 2. In both terminals run `npm install`
 
 3. Create .gitignore file (if not already created) in '**/bookclub-frontend**' and paste the following:
+
 `/node_modules`
 
 `/config.js`
@@ -39,19 +40,21 @@ One terminal for the '**/bookclub-frontend**' directory and one terminal for '**
 `/serviceAccount.json`
 
 4. Create `.gitignore` file (if not already created) in '**/bookclub-backend**' and paste the following:
-- `/node_modules`
-- `/.pnp`
-- `.pnp.js`
-- `/coverage`
-- `/build`
-- `.DS_Store`
-- `.env.local`
-- `.env.development.local`
-- `.env.test.local`
-- `.env.production.local`
-- `npm-debug.log*`
-- `yarn-debug.log*`
-- `yarn-error.log*`
+
+`/node_modules`
+
+`/.pnp`
+`.pnp.js`
+`/coverage`
+`/build`
+`.DS_Store`
+`.env.local`
+`.env.development.local`
+`.env.test.local`
+`.env.production.local`
+`npm-debug.log*`
+`yarn-debug.log*`
+`yarn-error.log*`
 
 5. Create `config.js` file in '**/bookclub-backend**' and paste the following:
 (this is for accessing the mongoDB Atlas cloud database that is already deployed using `mongoose.connect()` already written in '**/bookclub-backend/index/js**')
