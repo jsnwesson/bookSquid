@@ -1,4 +1,24 @@
-# Salty Startup Team
+# Welcome to Book Squid!
+
+# Overview
+_A brief description outlining the project_
+
+# Description
+_A more detailed outline of the project. What does it do? Is there a high level list of features? Consider adding pictures or animates of the features and functionality in this section._
+
+# Table of Contents
+_You can link to the different sections below_
+
+# Usage
+_Further details on how the project is meant to be used may be helpful. For a library or framework, this section woul doutline how to use the library within another project (see socket.io). For a service that is meant to be used within a larger project architecture, instructions on how to integrate may be necessary (see node-statsD)
+
+# Roadmap
+_What future enhancements are planned? What is the current status of the project? Is it being actively maintained?_
+
+# License
+_If open source, state how the project is licensed._
+
+# Meet the Salty Startup!
  - [Hayden Engeling - Program Manager](https://github.com/HaydenEngeling)
  - [Jason Wesson - Program Manager](https://github.com/jsnwesson)
 
