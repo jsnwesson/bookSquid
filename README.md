@@ -69,7 +69,9 @@ One terminal for the '**/bookclub-frontend**' directory and one terminal for '**
 
 5. Create `config.js` file in '**/bookclub-backend**' and paste the following:
 (this is for accessing the mongoDB Atlas cloud database that is already deployed using `mongoose.connect()` already written in '**/bookclub-backend/index/js**')
+
 `const atlasPassword = '[REDACTED]'
+
 module.exports = atlasPassword;`
 
 6. [OPTIONAL] If you want to connect to this database in  MongoDB Compass insert this into the connection SRV string input:
