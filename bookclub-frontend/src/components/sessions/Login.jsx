@@ -10,8 +10,12 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     fire.auth().signInWithEmailAndPassword(email, password)
+      .then((userRecord) => {
+        console.log('Successfully logged in user:', userRecord.user.email);
+        console.log('UID for user is: ', userRecord.user.uid);
+      })
       .catch((error) => {
-        console.error('Incorrect username or password');
+        alert('Incorrect username or password');
       });
     console.log(`submitted email: ${email} password: ${password}`);
   }

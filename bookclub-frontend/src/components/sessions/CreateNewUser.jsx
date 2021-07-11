@@ -11,13 +11,13 @@ const CreateNewUser = () => {
     e.preventDefault();
     fire.auth().createUserWithEmailAndPassword(email, password)
       .then((userRecord) => {
-        // See the UserRecord reference doc for the contents of userRecord.
-        console.log('Successfully created new user:', userRecord);
+        console.log('Successfully created new user:', userRecord.user.email);
+        console.log('UID created for new user is: ', userRecord.user.uid);
       })
       .catch((error) => {
-        console.log('Error creating new user:', error);
+        alert(error.message)
       });
-  }
+  };
 
   return (
     <div>
