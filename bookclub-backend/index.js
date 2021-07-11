@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const functions = require('firebase-functions')
 const bookclubRouter = require('./routes/bookclubRoutes');
 const decodeIDToken = require('./authenticateToken');
 const atlasPassword = require('./config');
@@ -31,3 +32,5 @@ app.listen(PORT, () => {
 app.get('/', (req, res) => {
   res.send('Hello World');
 });
+
+exports.api = functions.https.onRequest(app);

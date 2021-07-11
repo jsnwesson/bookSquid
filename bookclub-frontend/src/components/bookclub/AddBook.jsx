@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 import { addToReadBookList } from '../../services/bookclubServices';
 
 const AddBook = () => {
@@ -17,7 +18,11 @@ const AddBook = () => {
 
   return (
     <div>
-      <Link to="/">Home Page</Link>
+      <Link to="/">
+        <Button>
+          Home Page
+        </Button>
+      </Link>
       <h2>Add a book you have read</h2>
       <form onSubmit={handleSubmit}>
         <input
@@ -35,9 +40,9 @@ const AddBook = () => {
           placeholder="Genre"
           onChange={({ target }) => setGenre(target.value)}
         /><br />
-        <button type="submit">
+        <Button type="submit">
           Submit Book
-        </button>
+        </Button>
       </form>
     </div>
   )

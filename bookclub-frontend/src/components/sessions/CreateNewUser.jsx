@@ -3,22 +3,30 @@ import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import fire from '../../fire.js';
 
-const Login = () => {
+const CreateNewUser = () => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fire.auth().signInWithEmailAndPassword(email, password)
+    fire.auth().createUserWithEmailAndPassword(email, password)
+      .then((userRecord) => {
+        // See the UserRecord reference doc for the contents of userRecord.
+        console.log('Successfully created new user:', userRecord);
+      })
       .catch((error) => {
-        console.error('Incorrect username or password');
+        console.log('Error creating new user:', error);
       });
-    console.log(`submitted email: ${email} password: ${password}`);
   }
 
   return (
     <div>
-      <h2>Login</h2>
+      <Link to="/">
+        <Button>
+          Home Page
+        </Button>
+      </Link>
+      <h2>New User</h2>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -28,23 +36,19 @@ const Login = () => {
         />
         <br />
         <input
-          type="current-password"
+          type="password"
           onChange={({ target }) =>
             setPassword(target.value)}
           placeholder="Password"
         />
         <br />
-        <button type="submit">
-          Sign in
-        </button>
-      </form>
-      <Link to="/create-user">
-        <Button>
+        <Button type="submit">
           Create New User
         </Button>
-      </Link>
+      </form>
     </div>
   )
 };
 
-export default Login;
+
+export default CreateNewUser;

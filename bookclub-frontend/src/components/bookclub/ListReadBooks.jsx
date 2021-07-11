@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 import { getReadBookList } from '../../services/bookclubServices';
 
 const ListReadBooks = () => {
@@ -19,7 +20,11 @@ const ListReadBooks = () => {
 
   return (
     <div>
-      <Link to="/add-book">Add Book</Link>
+      <Link to="/add-book">
+        <Button>
+          Add Book
+        </Button>
+      </Link>
       <h2>Books you have already read</h2>
       <table>
         <thead>

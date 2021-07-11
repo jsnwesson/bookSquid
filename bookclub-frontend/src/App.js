@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import fire from './fire';
 import Login from './components/sessions/Login';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 import ListReadBooks from './components/bookclub/ListReadBooks';
 import AddBook from './components/bookclub/AddBook';
+import CreateNewUser from './components/sessions/CreateNewUser';
+
 import './App.css';
 
 function App() {
@@ -23,6 +26,9 @@ function App() {
           ? (
             <>
               <Switch>
+                <Route path="/create-user">
+                  <CreateNewUser />
+                </Route>
                 <Route path="/">
                   <Login />
                 </Route>
@@ -31,9 +37,9 @@ function App() {
           )
           : (
             <>
-              <span onClick={signOut}>
-                <a href="signout">Sign out</a>
-              </span>
+              <Button onClick={signOut}>
+                Sign out
+              </Button>
               <Switch>
                 <Route path="/add-book">
                   <AddBook />
