@@ -21,7 +21,16 @@ const LandingPage = (props) => {
 
   return(
     <div>
-      <Header />
+      <Header
+        isLoggedIn={props.isLoggedIn}
+        setIsLoggedIn={props.setIsLoggedIn}
+        uidCookie={props.uidCookie}
+        setUidCookie={props.setUidCookie}
+        removeUidCookie={props.removeUidCookie}
+        emailCookie={props.emailCookie}
+        setEmailCookie={props.setEmailCookie}
+        removeEmailCookie={props.removeEmailCookie}
+      />
       <Search />
       <Carousel />
     </div>

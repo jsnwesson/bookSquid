@@ -8,10 +8,14 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Login from '../../components/sessions/Login.jsx';
+import SignOut from '../../components/sessions/SignOut.jsx';
 
 
 
-const Header = () => {
+const Header = (props) => {
+
+  console.log(props.isLoggedIn)
 
   const onSignIn = () => {
     return null;
@@ -33,11 +37,17 @@ const Header = () => {
           <Button variant="outline-success">Search</Button>
         </Col>
         <Col>
-          <Button>Sign in</Button>
+        {!props.isLoggedIn
+        ? <Login setIsLoggedIn={props.setIsLoggedIn} setUidCookie={props.setUidCookie} setEmailCookie={props.setEmailCookie} />
+        : <SignOut
+            removeEmailCookie={props.removeEmailCookie}
+            removeUidCookie={props.removeUidCookie}
+            setIsLoggedIn={props.setIsLoggedIn}
+          />
+
+      }
         </Col>
-        <Col>
-          <Button>Register</Button>
-        </Col>
+
 
       </Row>
     </Form>
