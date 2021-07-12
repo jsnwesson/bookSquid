@@ -1,20 +1,25 @@
-# Welcome to Book Squid!
-
-# Overview
-At Book Squid, your bookshelf is no longer made of rich mahogany and filled with many leatherbound books -- it's virtual! Instead of sharing your LinkedIn or Twitter handle, try sharing your Book Squid! 
-
-# Description
-Not only will you be able to look up any book that you have read or are interested in, but you can add those books to your personalized reading lists and share them with the world. You can also write reviews and leave ratings for others to read so that they have a more accurate idea of the book rather than judging a book by its cover. Our front page also shares our users' recommendations and reviews to the books they read, that way readers will always find something to read! 
+<p align="center">
+  <a href="https://github.com/hratx-blue-ocean/Salty-Startup">
+    <img src="https://cdn.discordapp.com/attachments/863092007286603847/863498512263413760/Screen_Shot_2021-07-10_at_3.12.17_PM.png" alt="Logo" width="500">
+  </a>
+  <p align="center">
+    At Book Squid, your bookshelf is no longer made of rich mahogany and filled with many leatherbound books -- it's virtual!
+  </p>
+</p>
 
 # Table of Contents
-1. [Usage](#usage)
-2. [Installation Instructions](#installation)
-3. [Meet the Salty Startup!](#team)
-   1. [Documents](#documents)
-   2. [Engineering Journals](#journals)
-4. [Technologies](#technology)
-5. [Roadmap](#roadmap)
-6. [License](#license)
+1. [Overview](#overview)
+2. [Usage](#usage)
+3. [Installation Instructions](#installation)
+4. [Meet the Salty Startup!](#team)
+   - [Documents](#documents)
+   - [Engineering Journals](#journals)
+5. [Technologies](#technology)
+6. [Roadmap](#roadmap)
+7. [License](#license)
+
+# Overview <a name="overview"></a>
+Not only will you be able to look up any book that you have read or are interested in, but you can add those books to your personalized reading lists and share them with the world. You can also write reviews and leave ratings for others to read so that they have a more accurate idea of the book rather than judging a book by its cover. Our front page also shares our users' recommendations and reviews to the books they read, that way readers will always find something to read! 
 
 # Usage <a name="usage"></a>
 When the user enters the URL, they'll be brought to Book Squid's main landing page:
