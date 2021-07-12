@@ -4,6 +4,7 @@ import Login from './components/sessions/Login';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import ListReadBooks from './components/bookclub/ListReadBooks';
+import { useCookies } from 'react-cookie';
 import AddBook from './components/bookclub/AddBook';
 import CreateNewUser from './components/sessions/CreateNewUser';
 
@@ -11,12 +12,18 @@ import './App.css';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [uidCookie, setUidCookie, removeUidCookie] = useCookies(['UID']);
+  const [emailCookie, setEmailCookie, removeEmailCookie] = useCookies(['email']);
 
   fire.auth().onAuthStateChanged((user) => {
     return user ? setIsLoggedIn(true) : setIsLoggedIn(false);
   });
   const signOut = () => {
     fire.auth().signOut()
+      .then(() => {
+        removeEmailCookie('email');
+        removeUidCookie('UID');
+      })
   };
 
   return (

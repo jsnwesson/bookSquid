@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
+import { useCookies } from 'react-cookie';
 import { getReadBookList } from '../../services/bookclubServices';
 
 const ListReadBooks = () => {
   const [books, setBooks] = useState();
+  const [uidCookie, setUidCookie] = useCookies(['UID']);
+  const [emailCookie, setEmailCookie] = useCookies(['email']);
 
   useEffect(() => {
     const fetchBooks = async () => {
