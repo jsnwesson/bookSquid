@@ -7,9 +7,15 @@ _A brief description outlining the project_
 _A more detailed outline of the project. What does it do? Is there a high level list of features? Consider adding pictures or animates of the features and functionality in this section._
 
 # Table of Contents
-_You can link to the different sections below_
+1. [Usage](#usage)
+2. [Installation Instructions](#installation)
+3. [Meet the Salty Startup!](#team)
+   1. [Documents](#documents)
+   2. [Engineering Journals](#journals)
+4. [Roadmap](#roadmap)
+5. [License](#license)
 
-# Usage
+# Usage <a name="usage"></a>
 When the user enters the URL, they'll be brought to Book Squid's main landing page:
 
 <img src="http://g.recordit.co/TPL5Jd1gI3.gif" alt="landing page" width="450">
@@ -29,38 +35,7 @@ Lastly, when the user clicks on any book features in the results or under a read
 
 <img src="http://g.recordit.co/M7WHtlHQGa.gif" alt="book page" width="450">
 
-# Roadmap
-_What future enhancements are planned? What is the current status of the project? Is it being actively maintained?_
-
-# License
-_If open source, state how the project is licensed._
-
-# Meet the Salty Startup!
- - [Hayden Engeling - Program Manager](https://github.com/HaydenEngeling)
- - [Jason Wesson - Program Manager](https://github.com/jsnwesson)
-
- - [Andrew Chunis - UI Owner](https://github.com/chuniversity)
- - [Alejandro Hernandez - UI Owner](https://github.com/alejleon)
-
- - [Patrick Sohn - Architect](https://github.com/psohn12)
- - [Jacob Ward - Architect](https://github.com/smilinjake)
- - [Michael Williamson - Architect](https://github.com/mikethegrunt)
-
-# Documents
-[Trello](https://trello.com/b/UWWa2Ysg/salty-startup)
-[Stakeholder Meeting - First Meeting with Founder/Owner of Book Squid](https://docs.google.com/document/d/1XVfdVLdqtsF1fd_NCHRFCvf3jmnch034Duqoa-Q03HU/edit)
-
-# Engineering Journals
-- [Chunis]()
-- [Engeling]()
-- [Hernandez]()
-- [Sohn]()
-- [Ward]()
-- [Wesson](https://gist.github.com/jsnwesson/a7fabe9e8f0e665a92be9dc1a7321ba1)
-- [Williamson]()
-
-
-# Installation
+# Installation <a name="installation"></a>
 1. Clone repo down and open two terminals.
 One terminal for the '**/bookclub-frontend**' directory and one terminal for '**/bookclub-backend**' directory.
 
@@ -113,3 +88,32 @@ In the frontend terminal run `$ npm start`
 
 In the backend terminal run `$ npm run dev`
 
+# Meet the Salty Startup! <a name="team"></a>
+ - [Hayden Engeling - Program Manager](https://github.com/HaydenEngeling)
+ - [Jason Wesson - Program Manager](https://github.com/jsnwesson)
+
+ - [Andrew Chunis - UI Owner](https://github.com/chuniversity)
+ - [Alejandro Hernandez - UI Owner](https://github.com/alejleon)
+
+ - [Patrick Sohn - Architect](https://github.com/psohn12)
+ - [Jacob Ward - Architect](https://github.com/smilinjake)
+ - [Michael Williamson - Architect](https://github.com/mikethegrunt)
+
+## Documents <a name="documents"></a>
+[Trello](https://trello.com/b/UWWa2Ysg/salty-startup)
+[Stakeholder Meeting - First Meeting with Founder/Owner of Book Squid](https://docs.google.com/document/d/1XVfdVLdqtsF1fd_NCHRFCvf3jmnch034Duqoa-Q03HU/edit)
+
+## Engineering Journals <a name="journals"></a>
+- [Chunis]()
+- [Engeling]()
+- [Hernandez]()
+- [Sohn]()
+- [Ward]()
+- [Wesson](https://gist.github.com/jsnwesson/a7fabe9e8f0e665a92be9dc1a7321ba1)
+- [Williamson]()
+
+# Roadmap <a name="roadmap"></a>
+_What future enhancements are planned? What is the current status of the project? Is it being actively maintained?_
+
+# License <a name="license"></a>
+_If open source, state how the project is licensed._
