@@ -56,7 +56,8 @@ One terminal for the '**/bookclub-frontend**' directory and one terminal for '**
 4. Create `.gitignore` file (if not already created) in '**/bookclub-backend**' and paste the following:
 ```
 /node_modules
-/.pnp.pnp.js
+/.pnp
+.pnp.js
 /coverage
 /build
 .DS_Store
