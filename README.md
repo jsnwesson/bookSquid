@@ -100,8 +100,8 @@ In the backend terminal run `$ npm run dev`
  - [Michael Williamson - Architect](https://github.com/mikethegrunt)
 
 ## Documents <a name="documents"></a>
-[Trello](https://trello.com/b/UWWa2Ysg/salty-startup)
-[Stakeholder Meeting - First Meeting with Founder/Owner of Book Squid](https://docs.google.com/document/d/1XVfdVLdqtsF1fd_NCHRFCvf3jmnch034Duqoa-Q03HU/edit)
+- [Trello](https://trello.com/b/UWWa2Ysg/salty-startup)
+- [Stakeholder Meeting - First Meeting with Founder/Owner of Book Squid](https://docs.google.com/document/d/1XVfdVLdqtsF1fd_NCHRFCvf3jmnch034Duqoa-Q03HU/edit)
 
 ## Engineering Journals <a name="journals"></a>
 - [Chunis]()
