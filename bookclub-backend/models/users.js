@@ -9,6 +9,8 @@ const usersSchema = new mongoose.Schema({
     listName: [{ type: String }],
   },
   reviews: [{ type: String }],
+  name: String,
+  joinedDate: Date
 })
 
 usersSchema.set('toJSON', {

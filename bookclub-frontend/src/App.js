@@ -18,6 +18,7 @@ function App() {
   fire.auth().onAuthStateChanged((user) => {
     return user ? setIsLoggedIn(true) : setIsLoggedIn(false);
   });
+
   const signOut = () => {
     fire.auth().signOut()
       .then(() => {
