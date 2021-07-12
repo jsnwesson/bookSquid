@@ -67,12 +67,12 @@ const Landing = (props) => {
             </Button>
           </Link>
           <h3>This is where a user that is logged in sees the relevant info for the main home landing page</h3>
-          {/* <div>
+          <div>
             <h1>username(to be replaced later)</h1>
             <h4>[joined], month, day year</h4>
             <h5>[about the user section] they are rich and very particular about the website they use for reading.because they have expensive taste</h5>
           </div>
-          {books ? <ListReadBooks books={books} setBook={setBook} /> : null} */}
+          {books ? <ListReadBooks books={books} setBook={setBook} /> : null}
         </>
       )}
     </div>
