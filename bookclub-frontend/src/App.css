@@ -36,3 +36,21 @@
     transform: rotate(360deg);
   }
 }
+
+.navBar {
+  height: 7vh;
+
+
+}
+
+.brand {
+  /* background-color: bisque;
+  margin: 10px;
+  padding: 10px; */
+}
+
+#landingSearch {
+  height: 45vh;
+  background-color: cornflowerblue;
+  /* border: 2px solid black; */
+}
