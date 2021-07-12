@@ -4,9 +4,9 @@ const booksSchema = new mongoose.Schema({
   gid: { type: String, unique, true }
   img: String,
   title: String,
-  authors: [{ type: String }],
+  authors: [String],
   totalRating: Number,
-  reviews: [{ type: String }],
+  reviews: [String ],
 })
 
 booksSchema.set('toJSON', {
