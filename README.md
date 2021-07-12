@@ -12,8 +12,9 @@ _A more detailed outline of the project. What does it do? Is there a high level 
 3. [Meet the Salty Startup!](#team)
    1. [Documents](#documents)
    2. [Engineering Journals](#journals)
-4. [Roadmap](#roadmap)
-5. [License](#license)
+4. [Technologies](#technology)
+5. [Roadmap](#roadmap)
+6. [License](#license)
 
 # Usage <a name="usage"></a>
 When the user enters the URL, they'll be brought to Book Squid's main landing page:
@@ -111,6 +112,34 @@ In the backend terminal run `$ npm run dev`
 - [Ward]()
 - [Wesson](https://gist.github.com/jsnwesson/a7fabe9e8f0e665a92be9dc1a7321ba1)
 - [Williamson]()
+
+## Technologies <a name="technology"></a>
+<table>
+  <tr>
+    <td>Languages</td>
+    <td><img alt="JavaScript" src="https://img.shields.io/badge/javascript%20-%23323330.svg?&style=for-the-badge&logo=javascript&logoColor=%23F7DF1E"/> <img alt="NodeJS" src="https://img.shields.io/badge/node.js%20-%2343853D.svg?&style=for-the-badge&logo=node.js&logoColor=white"/> <img alt="HTML5" src="https://img.shields.io/badge/html5%20-%23E34F26.svg?&style=for-the-badge&logo=html5&logoColor=white"/> <img alt="CSS3" src="https://img.shields.io/badge/css3%20-%231572B6.svg?&style=for-the-badge&logo=css3&logoColor=white"/></td>
+  </tr>
+  <tr>
+    <td>Frameworks & Libraries</td>
+    <td><img alt="React" src="https://img.shields.io/badge/react%20-%2320232a.svg?&style=for-the-badge&logo=react&logoColor=%2361DAFB"/> <img alt="Express.js" src="https://img.shields.io/badge/express.js%20-%23404d59.svg?&style=for-the-badge"/> <img alt="Bootstrap" src="https://img.shields.io/badge/bootstrap%20-%23563D7C.svg?&style=for-the-badge&logo=bootstrap&logoColor=white"/></td>
+  </tr>
+  <tr>
+    <td>Hosting</td>
+    <td><img alt="AWS" src="https://img.shields.io/badge/AWS%20-%23FF9900.svg?&style=for-the-badge&logo=amazon-aws&logoColor=white"/> </td>
+  </tr>
+  <tr>
+    <td>Authentication</td>
+    <td><img alt="Firebase" src="https://img.shields.io/badge/firebase-%23039BE5.svg?style=for-the-badge&logo=firebase"/> </td>
+  </tr>
+  <tr>
+    <td>Databases</td>
+    <td><img alt="MongoDB" src ="https://img.shields.io/badge/MongoDB-%234ea94b.svg?&style=for-the-badge&logo=mongodb&logoColor=white"/> </td>
+  </tr>
+  <tr>
+    <td>Testing</td>
+    <td><img alt="Jest" src="https://img.shields.io/badge/-jest-%23C21325?&style=for-the-badge&logo=jest&logoColor=white"/></td>
+  </tr>
+</table>
 
 # Roadmap <a name="roadmap"></a>
 _What future enhancements are planned? What is the current status of the project? Is it being actively maintained?_
