@@ -1,6 +1,7 @@
 const bookclubRouter = require('express').Router();
 const ReadBook = require('../models/readBooks');
 
+/// this express action is not going to be used and is for a collection that will be deleted
 bookclubRouter.get('/get-read-book', async (req, res) => {
   const auth = req.currentUser;
   if (auth) {
@@ -10,6 +11,7 @@ bookclubRouter.get('/get-read-book', async (req, res) => {
   return res.status(403).send('Not authorized');
 });
 
+/// this express action is not going to be used and is for a collection that will be deleted
 bookclubRouter.post('/add-read-book', (req, res) => {
   const auth = req.currentUser;
   if (auth) {

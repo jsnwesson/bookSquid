@@ -1,14 +1,12 @@
 const mongoose = require('mongoose');
 
 const booksSchema = new mongoose.Schema({
+  gid: { type: String, unique: true }
+  img: String,
   title: String,
-  author: String,
-  genre: String,
-  /**
-   *
-   * This Schema/Model needs to be deleted soon. ********** <=========/////
-   *  just here for reference
-  */
+  authors: [String],
+  totalRating: Number,
+  reviews: [String ],
 })
 
 booksSchema.set('toJSON', {
@@ -19,4 +17,4 @@ booksSchema.set('toJSON', {
   },
 });
 
-module.exports = mongoose.model('ReadBooks', booksSchema)
+module.exports = mongoose.model('Books', booksSchema)

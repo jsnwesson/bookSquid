@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import { addToReadBookList } from '../../services/bookclubServices';
 
-const AddBook = () => {
+const AddBook = (props) => {
   const [title, setTitle] = useState();
   const [author, setAuthor] = useState();
   const [genre, setGenre] = useState();
+  // const [a, setA] = useState();
+  // const [b, setB] = useState();
 
   const handleSubmit = (e) => {
     e.preventDefault();
