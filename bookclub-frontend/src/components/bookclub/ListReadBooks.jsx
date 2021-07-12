@@ -2,10 +2,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
+// import { useCookies } from 'react-cookie';
 // import { getReadBookList } from '../../services/bookclubServices';
 
-
 const ListReadBooks = (props) => {
+  // const [uidCookie, setUidCookie] = useCookies(['UID']);
+  // const [emailCookie, setEmailCookie] = useCookies(['email']);
+
   return (
     <div>
       <Link to="/add-book">
