@@ -6,8 +6,8 @@ const booksSchema = new mongoose.Schema({
   genre: String,
   /**
    *
-   * what ever else we might need
-   *
+   * This Schema/Model needs to be deleted soon. ********** <=========/////
+   *  just here for reference
   */
 })
 

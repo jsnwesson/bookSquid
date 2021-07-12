@@ -1,21 +1,15 @@
 // import React, { useState, useEffect } from 'react';
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
-// import { useCookies } from 'react-cookie';
 // import { getReadBookList } from '../../services/bookclubServices';
 
 const ListReadBooks = (props) => {
-  // const [uidCookie, setUidCookie] = useCookies(['UID']);
-  // const [emailCookie, setEmailCookie] = useCookies(['email']);
 
   return (
     <div>
-      <Link to="/add-book">
-        <Button>
-          Add Book
-        </Button>
-      </Link>
+      <Button>
+        Add Book
+      </Button>
       <h2>Books you have already read</h2>
       <table>
         <thead>
@@ -28,11 +22,16 @@ const ListReadBooks = (props) => {
         <tbody>
           {props.books.map((book, i) => (
             <tr key={book.id}>
-              <td>
+              {/* <td>
+                this needs to use state instead of a Link from RDR
                 <Link onClick={() => { props.setBook(i) }} to={`/book/${i}`}>{book.title}</Link>
-              </td>
+              </td> */}
+              <td>{book.title}</td>
               <td>{book.author}</td>
               <td>{book.genre}</td>
+              {/* Where these books are getting pulled from in the DB, that collection needs to be deleted. So this
+                format of rendering book list to page needs to be completely different and rendering for a specific
+                user based on the UID cookie or some other way */}
             </tr>
           ))}
         </tbody>

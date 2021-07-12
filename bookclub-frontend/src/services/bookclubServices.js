@@ -16,6 +16,8 @@ const createToken = async () => {
 };
 
 export const addToReadBookList = async (title, author, genre) => {
+  /// these need to be modified to work with new DB schema and changes
+  // just here for reference
   const header = await createToken();
   const payload = {
     title,
@@ -31,6 +33,8 @@ export const addToReadBookList = async (title, author, genre) => {
 };
 
 export const getReadBookList = async () => {
+  /// these need to be modified to work with new DB schema and changes
+  // just here for reference
   const header = await createToken();
   try {
     const res = await axios.get(url + '/get-read-book', header);
