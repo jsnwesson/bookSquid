@@ -1,10 +1,10 @@
 # Welcome to Book Squid!
 
 # Overview
-_A brief description outlining the project_
+At Book Squid, your bookshelf is no longer made of rich mahogany and filled with many leatherbound books -- it's virtual! Instead of sharing your LinkedIn or Twitter handle, try sharing your Book Squid! 
 
 # Description
-_A more detailed outline of the project. What does it do? Is there a high level list of features? Consider adding pictures or animates of the features and functionality in this section._
+Not only will you be able to look up any book that you have read or are interested in, but you can add those books to your personalized reading lists and share them with the world. You can also write reviews and leave ratings for others to read so that they have a more accurate idea of the book rather than judging a book by its cover. Our front page also shares our users' recommendations and reviews to the books they read, that way readers will always find something to read! 
 
 # Table of Contents
 1. [Usage](#usage)
