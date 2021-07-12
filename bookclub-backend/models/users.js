@@ -3,12 +3,12 @@ const mongoose = require('mongoose');
 const usersSchema = new mongoose.Schema({
   UID: String,
   userEmail: String,
-  readBooks: [{ type: String }],
-  favorites: [{ type: String }],
+  readBooks: [String],
+  favorites: [String],
   lists: {
-    listName: [{ type: String }],
+    listName: [String],
   },
-  reviews: [{ type: String }],
+  reviews: [String],
   name: String,
   joinedDate: Date
 })
