@@ -10,7 +10,19 @@ _A more detailed outline of the project. What does it do? Is there a high level 
 _You can link to the different sections below_
 
 # Usage
-_Further details on how the project is meant to be used may be helpful. For a library or framework, this section woul doutline how to use the library within another project (see socket.io). For a service that is meant to be used within a larger project architecture, instructions on how to integrate may be necessary (see node-statsD)_
+_Further details on how the project is meant to be used may be helpful. For a library or framework, this section would outline how to use the library within another project (see socket.io). For a service that is meant to be used within a larger project architecture, instructions on how to integrate may be necessary (see node-statsD)_
+
+When the user enters the URL, they'll be brought to Book Squid's main landing page: 
+![landing page](http://g.recordit.co/TPL5Jd1gI3.gif)
+
+From the main landing page, the user is able to either begin immediately searching for books, click on a book that's being featured, or sign in and access their profile. Let's see what the profile will look like!
+![profile page](http://g.recordit.co/rvFGxdtVlp.gif)
+
+On each page, there will be a search bar that allows the users to see the results of a book title, author, or keyword:
+![search results page](http://g.recordit.co/3hF8KezEKI.gif)
+
+Lastly, when the user clicks on any book features in the results or under a reading list, they'll see the details and reviews of that book: 
+![book details page](http://g.recordit.co/M7WHtlHQGa.gif)
 
 # Roadmap
 _What future enhancements are planned? What is the current status of the project? Is it being actively maintained?_
