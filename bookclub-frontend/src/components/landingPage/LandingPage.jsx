@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import Header from './Header.jsx';
 import Search from './Search.jsx';
-// import Carousel from '/Carousel.jsx';
+import Carousel from './CarouselContainer.jsx';
 
 const LandingPage = (props) => {
 
@@ -23,7 +23,7 @@ const LandingPage = (props) => {
     <div>
       <Header />
       <Search />
-      {/* <Carousel /> */}
+      <Carousel />
     </div>
   )
 

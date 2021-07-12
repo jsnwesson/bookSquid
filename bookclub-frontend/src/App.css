@@ -52,5 +52,13 @@
 #landingSearch {
   height: 45vh;
   background-color: cornflowerblue;
+  /* transform: translateY(-50%); */
+  /* padding: auto; */
+  /* text-align: center; */
   /* border: 2px solid black; */
+}
+
+#carouselContainer {
+  background-color: rgb(214, 189, 126);
+  height: 60vh;
 }

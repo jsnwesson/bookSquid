@@ -13,39 +13,70 @@ import Col from 'react-bootstrap/Col';
 
 const Header = () => {
 
+  const onSignIn = () => {
+    return null;
+  }
+
 
 
   return (
-  <Navbar bg="dark" variant="dark" className='navBar'>
-    <Container fluid>
+<Navbar bg="dark" variant="dark" expand="lg" sticky="top">
+  <Navbar.Brand href="#home">LOGO HERE</Navbar.Brand>
+  <Navbar.Toggle aria-controls="basic-navbar-nav" />
+  <Navbar.Collapse id="basic-navbar-nav">
+    <Form inline>
       <Row>
-        <Col xs={6}>
-          <Navbar.Brand href="#home">LOGO</Navbar.Brand>
-        </Col>
-        {/* <Col>
-          <Nav className="mr-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#features">Features</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
-          </Nav>
-        </Col> */}
         <Col>
-          <Form inline>
-            <Container>
-              <Row>
-                <Col>
-                  <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                </Col>
-                <Col>
-                  <Button variant="outline-info">Search</Button>
-                </Col>
-              </Row>
-            </Container>
-          </Form>
+          <FormControl type="text" placeholder="Search Books, Authors or Genres" className=" mr-sm-2" />
         </Col>
+        <Col>
+          <Button variant="outline-success">Search</Button>
+        </Col>
+        <Col>
+          <Button>Sign in</Button>
+        </Col>
+        <Col>
+          <Button>Register</Button>
+        </Col>
+
       </Row>
-    </Container>
-  </Navbar>
+    </Form>
+  </Navbar.Collapse>
+</Navbar>
+
+
+
+
+
+
+
+
+
+
+
+  // <Navbar bg="dark" variant="dark" className='navBar'>
+  //   <Container fluid>
+  //     <Row className="border">
+  //       <Col xs={6}>
+  //         <Navbar.Brand href="#home">LOGO</Navbar.Brand>
+  //       </Col>
+  //       <Col>
+  //         <Form inline>
+  //           <Container>
+  //             <Row>
+  //               <Col>
+  //                 <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+  //               </Col>
+  //               <Col>
+  //                 <Button variant="outline-info">Search</Button>
+  //               </Col>
+  //             </Row>
+  //           </Container>
+  //         </Form>
+  //       </Col>
+  //     </Row>
+  //   </Container>
+  // </Navbar>
   )
 
 
