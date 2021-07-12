@@ -9,7 +9,8 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fire.auth().signInWithEmailAndPassword(email, password)
+    fire.auth().signInWithEmailAndPassword('saltystartup@mail.com', 'password123')
+      // fire.auth().signInWithEmailAndPassword(email, password)
       .catch((error) => {
         console.error('Incorrect username or password');
       });
