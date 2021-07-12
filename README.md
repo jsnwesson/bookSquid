@@ -3,7 +3,7 @@
     <img src="https://cdn.discordapp.com/attachments/863092007286603847/863498512263413760/Screen_Shot_2021-07-10_at_3.12.17_PM.png" alt="Logo" width="500">
   </a>
   <p align="center">
-    At Book Squid, your bookshelf is no longer made of rich mahogany and filled with many leatherbound books -- it's virtual!
+    At Book Squid, your bookshelf is not only made of rich mahogany and filled with many leatherbound books -- it's virtual!
   </p>
 </p>
 
