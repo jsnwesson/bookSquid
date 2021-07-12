@@ -89,7 +89,7 @@ mongodb+srv://[REDACTED]:[REDACTED]@bookclub.mgvz6.mongodb.net/test?authSource=a
 
 **Do not post this JSON file** from the zip anywhere on the internet or in a file that gets pushed to GitHub
 
-8. After you have this set up you need to have two terminals open 
+8. After you have this set up you need to have two terminals open
 One terminal for the '**/bookclub-frontend**' directory and one terminal for '**/bookclub-backend**' directory
 
 In the frontend terminal run `$ npm start`
