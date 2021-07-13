@@ -1,7 +1,4 @@
 import React, { useState } from 'react';
-import fire from './fire';
-import Login from './components/sessions/Login';
-import Search from './components/bookclub/Search.jsx'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import SearchPage from './pages/search'
