@@ -10,6 +10,7 @@ const createToken = async () => {
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
+      uid: token ? user.uid : ''
     },
   };
   return payloadHeader;
@@ -52,6 +53,23 @@ export const addToFavoriteList = async (uid, gid, list_name) => {
   }
   try {
     const res = await axios.post(url, payload, header)
+    return res.data
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+export const postBookReview = async (body, title, rating, bookId) => {
+  console.log('running service');
+  const header = await createToken();
+  const payload = {
+    body,
+    rating,
+    title,
+    bookId
+  }
+  try {
+    const res = await axios.post(url + '/reviews', payload, header)
     return res.data
   } catch (e) {
     console.error(e);

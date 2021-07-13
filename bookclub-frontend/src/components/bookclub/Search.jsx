@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import SearchResults from './SearchResults.jsx'
 import data from './sampleData.js';
+import {postBookReview} from '../../services/bookclubServices.js';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -22,6 +23,7 @@ const Search = (props) => {
   const [search, setSearch] = useState();
   const classes = useStyles();
 
+  useEffect(()=> {postBookReview('this book sucks lmao', 'title', 4, 'e_9MDwAAQBAJ')}, []);
   return (
     <div>
       <Grid
