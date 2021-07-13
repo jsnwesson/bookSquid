@@ -10,11 +10,7 @@ const createToken = async () => {
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
-<<<<<<< HEAD
       uid: token ? user.uid : ''
-=======
-      uid: user.uid,
->>>>>>> ecf831e97bdeb01838c51aedeec9ae1b7a742cc2
     },
   };
   return payloadHeader;
