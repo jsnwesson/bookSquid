@@ -41,7 +41,6 @@ function SearchPage(props) {
           />
           <h1>MAKE A SEARCH BAR PLEBS</h1>
           <h2>Search Page (logged in)</h2>
-          <Search/>
           <Link to='/'>
             <Button>
               Home
@@ -57,9 +56,7 @@ function SearchPage(props) {
               Book page
             </Button>
           </Link>
-          <h2>
-            search bar results page info here for user that is logged in
-          </h2>
+          <Search/>
         </>
       )}
     </div>
