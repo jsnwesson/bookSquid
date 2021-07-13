@@ -10,49 +10,115 @@ const createToken = async () => {
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
+<<<<<<< HEAD
       uid: token ? user.uid : ''
+=======
+      uid: user.uid,
+>>>>>>> ecf831e97bdeb01838c51aedeec9ae1b7a742cc2
     },
   };
   return payloadHeader;
 };
 
-export const addToReadBookList = async (title, author, genre) => {
-  /// these need to be modified to work with new DB schema and changes
-  // just here for reference
+// export const addToReadBookList = async (title, author, genre) => {
+//   const header = await createToken();
+//   const payload = {
+//     title,
+//     author,
+//     genre,
+//   }
+//   try {
+//     const res = await axios.post(url + '/add-read-book', payload, header);
+//     return res.data;
+//   } catch (e) {
+//     console.error(e);
+//   }
+// };
+
+// export const getAlreadyReadList = async () => {
+//   const header = await createToken();
+//   try {
+//     const res = await axios.get(url + '/get-read-book', header);
+//     return res.data;
+//   } catch (e) {
+//     console.error(e);
+//   }
+// };
+
+// export const addToFavoriteList = async (uid, gid, list_name) => {
+//   const header = await createToken();
+//   const payload = {
+//     gid,
+//     list_name
+//   }
+//   try {
+//     const res = await axios.post(url, payload, header)
+//     return res.data
+//   } catch (e) {
+//     console.error(e);
+//   }
+// };
+
+export const postBookReview = async (body, title, rating, bookId) => {
   const header = await createToken();
   const payload = {
+    body,
+    rating,
     title,
-    author,
-    genre,
+    bookId,
   }
   try {
-    const res = await axios.post(url + '/add-read-book', payload, header);
-    return res.data;
+    const res = await axios.post(url + '/reviews', payload, header)
+    return res.data
   } catch (e) {
     console.error(e);
   }
+  /**
+   * response returns: status code 201
+   */
 };
 
-export const getReadBookList = async () => {
-  /// these need to be modified to work with new DB schema and changes
-  // just here for reference
+export const getBookReviews = async (bookId) => {
   const header = await createToken();
   try {
-    const res = await axios.get(url + '/get-read-book', header);
-    return res.data;
+    const res = await axios.get(url + `/reviews/${bookId}`, header)
+    return res.data
   } catch (e) {
     console.error(e);
   }
+  /** response returns: status code 200
+    *  response.data = {
+    *    name: 'STRING',
+    *    title: 'STRING',
+    *    body: 'STRING',
+    *    rating: NUMBER,
+    *    date: ISO DATE in STRING format,
+    *  }
+    */
 };
 
-export const addToFavoriteList = async (uid, gid, list_name) => {
+export const carouselMetaData = async () => {
   const header = await createToken();
-  const payload = {
-    gid,
-    list_name
-  }
   try {
-    const res = await axios.post(url, payload, header)
+    const res = await axios.post(url + '/carouselMeta', null, header)
+    return res.data
+  } catch (e) {
+    console.error(e);
+  }
+  /** response returns: status code 200
+  *  response.data = {
+  *    authors: [ 'STRING', ... ],
+  *    bookId: 'STRING',
+  *    title: 'STRING',
+  *    image: 'STRING', // this should be the thumbnail image
+  *  }
+  */
+};
+
+export const specificBookData = async (bookId) => {
+  const header = await createToken();
+  try {
+    const res = await axios.post(`${url}/books/${bookId}`, null, header)
     return res.data
   } catch (e) {
     console.error(e);
@@ -75,3 +141,15 @@ export const postBookReview = async (body, title, rating, bookId) => {
     console.error(e);
   }
 };
+  /** response returns: status code 200
+  *  response.data = {
+  *    description: 'STRING',
+  *    publishedDate: 'STRING',
+  *    authors: [ 'STRING', ... ],
+  *    genre: 'STRING',
+  *    title: 'STRING',
+  *    image: 'STRING', // this should be the larger image
+  *  }
+  */
+};
+
