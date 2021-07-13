@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import Login from '../components/sessions/Login';
 import SignOut from '../components/sessions/SignOut';
+import Search from '../components/bookclub/Search.jsx'
+
 
 
 function SearchPage(props) {
@@ -28,7 +30,7 @@ function SearchPage(props) {
               Home page
             </Button>
           </Link>
-          <h3>this should show search results and related material for client that is not logged in</h3>
+          <Search/>
         </>
       ) : (
         <>
@@ -54,9 +56,7 @@ function SearchPage(props) {
               Book page
             </Button>
           </Link>
-          <h2>
-            search bar results page info here for user that is logged in
-          </h2>
+          <Search/>
         </>
       )}
     </div>

@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 const usersSchema = new mongoose.Schema({
-  uid: String,
   userEmail: String,
   lists: {
     alreadyRead: [String],
@@ -12,6 +11,7 @@ const usersSchema = new mongoose.Schema({
   reviews: [String],
   name: String,
   joinedDate: Date
+  uid: String,
 })
 
 usersSchema.set('toJSON', {

@@ -41,9 +41,6 @@ response:
     - first category in this array is the most important, and should be the one displayed if the front end needs it
 }
 
-
-
-
 REVIEWS API
 
 // retrieve all reviews posted on a book OR by a user
