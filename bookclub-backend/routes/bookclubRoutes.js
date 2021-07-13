@@ -20,4 +20,16 @@ bookclubRouter.post('/add-read-book', (req, res) => {
   return res.status(403).send('Not authorized')
 });
 
+// search endpoint that queries google books api
+// will require both a query string and query type in its parameters
+bookclubRouter.post('/search', async (req, res) => {
+  // req.params should look like {query: 'asdf", type: 'author || title || genre'}
+  let url = new URL('https://www.googleapis.com/books/v1/volumes');
+  let params = ((type) => new URLSearchParams({
+    q: req.params.query,
+
+  }))(req.params.type);
+  url.search = params;
+  const results = await fetch('https://www.googleapis.com/books/v1/volumes', )
+});
 module.exports = bookclubRouter;
