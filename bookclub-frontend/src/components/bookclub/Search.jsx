@@ -35,7 +35,6 @@ const Search = (props) => {
         <Grid item xs>
           <Paper className={classes.paper}>
             filter
-
           </Paper>
         </Grid>
         <Grid item xs>

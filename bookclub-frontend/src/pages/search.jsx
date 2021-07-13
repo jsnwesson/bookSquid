@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import Login from '../components/sessions/Login';
 import SignOut from '../components/sessions/SignOut';
+import Search from '../components/bookclub/Search.jsx'
+
 
 
 function SearchPage(props) {
@@ -39,6 +41,7 @@ function SearchPage(props) {
           />
           <h1>MAKE A SEARCH BAR PLEBS</h1>
           <h2>Search Page (logged in)</h2>
+          <Search/>
           <Link to='/'>
             <Button>
               Home
