@@ -131,3 +131,49 @@ export const specificBookData = async (bookId) => {
   */
 };
 
+export const searchByCategory = async (category, searchInput) => {
+  const header = await createToken();
+  const payload = {
+    category,
+    searchInput,
+  }
+  try {
+    const promise1 = axios.get(`${url}/books/search`, payload, header)
+    const promise2 = axios.get(`https://www.googleapis.com/books/v1/volumes?q=${searchInput}&maxResults=20`);
+    Promise.all([promise1, promise2])
+      .then((res) => {
+        return res.data
+      })
+  } catch (e) {
+    console.error(e);
+  }
+
+  /**
+
+  --------------> response returns an array of objects <--------------
+  response returns: status code 200
+
+  if the book title is in our database our book data object will be at index 0 of the response array
+
+  if the book title is found in our DB the zero index in the array will look like this:
+
+      response.data = {
+        img: String,
+        title: String,
+        authors: [String],
+        reviews: [String],
+        totalRating: Number,
+        description: String,
+        publishedDate: String,
+        thumbnail: String,
+        genre: String,
+        bookId: { type: String, unique: true },
+      }
+
+  after the first index in the array, the remaining objects will be in googles response format
+
+  if the book title was not in our databas then all of the objects in the array will be in
+  googles API response format
+
+  */
+};
