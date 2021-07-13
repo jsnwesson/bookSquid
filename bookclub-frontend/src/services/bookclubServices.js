@@ -42,4 +42,18 @@ export const getReadBookList = async () => {
   } catch (e) {
     console.error(e);
   }
-}
+};
+
+export const addToFavoriteList = async (uid, gid, list_name) => {
+  const header = await createToken();
+  const payload = {
+    gid,
+    list_name
+  }
+  try {
+    const res = await axios.post(url, payload, header)
+    return res.data
+  } catch (e) {
+    console.error(e);
+  }
+};
