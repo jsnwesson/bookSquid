@@ -1,10 +1,11 @@
 import React from 'react';
 import Slider from 'react-slick';
 import { Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-const withSlide = (wrappedComponent, selectData) => {
+const withSlide = (wrappedComponent, selectData, setBook) => {
   var settings = {
     infinite: true,
     speed: 500,
@@ -19,7 +20,9 @@ const withSlide = (wrappedComponent, selectData) => {
           return (
             <div>
               <Card style={{ width: '10rem' }}>
-                <Card.Img variant='top' src={book.thumbnail} />
+                <Link onClick={() => { setBook(book) }} to={`/book/${book.gid}`}>
+                  <Card.Img variant='top' src={book.thumbnail} />
+                </Link>
                 <Card.Body>
                   <Card.Title>{book.title}</Card.Title>
                   <Card.Text>{book.author}</Card.Text>
