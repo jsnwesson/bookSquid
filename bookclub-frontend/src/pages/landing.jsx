@@ -9,7 +9,7 @@ import { Button } from 'react-bootstrap';
 
 const Landing = (props) => {
   const [books, setBooks] = useState();
-  const [book, setBook] = useState(0);
+  // const [book, setBook] = useState(0);
 
   fire.auth().onAuthStateChanged((user) => {
     return user ? props.setIsLoggedIn(true) : props.setIsLoggedIn(false);
