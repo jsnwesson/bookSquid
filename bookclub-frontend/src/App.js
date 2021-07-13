@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import fire from './fire';
 import Login from './components/sessions/Login';
+import Search from './components/bookclub/Search.jsx'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import ListReadBooks from './components/bookclub/ListReadBooks';
 import AddBook from './components/bookclub/AddBook';
@@ -45,6 +46,7 @@ function App() {
             </>
           )}
       </Router>
+      <Search/>
     </div>
   );
 }
