@@ -42,8 +42,6 @@ response:
 }
 
 
-
-
 REVIEWS API
 
 // retrieve all reviews posted on a book OR by a user
