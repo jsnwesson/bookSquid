@@ -69,7 +69,6 @@ function App() {
           </Route>
         </Switch>
       </Router>
-      <Search/>
     </div>
   );
 }
