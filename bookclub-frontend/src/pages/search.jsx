@@ -30,7 +30,7 @@ function SearchPage(props) {
               Home page
             </Button>
           </Link>
-          <h3>this should show search results and related material for client that is not logged in</h3>
+          <Search/>
         </>
       ) : (
         <>
