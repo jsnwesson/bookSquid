@@ -53,7 +53,7 @@ const Book = (props) => {
             </Button>
           </Link>
           <h3>Things that should be on the book page should be here for user that is logged in</h3>
-          <BookInfo />
+          <BookInfo book={props.book} />
           <h3>reviews below</h3>
         </>
       )}

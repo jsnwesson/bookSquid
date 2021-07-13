@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import SignOut from '../components/sessions/SignOut';
 import withSlide from '../components/bookclub/BookGallery.jsx';
-import {favorites, previouslyRead} from '../dummyData/booklist.jsx';
+import { favorites, previouslyRead } from '../dummyData/booklist.jsx';
 
 
 const Profile = (props) => {
@@ -46,8 +46,8 @@ const Profile = (props) => {
         </Link>
         <h3>things that go on the profile page should be here and is only for a user that is logged into an account</h3>
       </>
-      {withSlide(faves, faveList)}
-      {withSlide(prevRead, prevList)}
+      {withSlide(faves, faveList, props.setBook)}
+      {withSlide(prevRead, prevList, props.setBook)}
     </div>
   )
 }
