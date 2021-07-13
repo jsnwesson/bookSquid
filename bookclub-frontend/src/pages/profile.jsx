@@ -69,8 +69,6 @@ const Profile = (props) => {
           </Col>
         </Row>
       </Container>
-      {/* {withSlide(faves, faveList, props.setBook)} */}
-      {/* {withSlide(prevRead, prevList, props.setBook)} */}
     </div>
   )
 }
