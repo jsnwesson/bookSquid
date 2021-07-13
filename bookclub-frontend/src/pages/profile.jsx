@@ -52,8 +52,8 @@ const Profile = (props) => {
         </Link>
         <h3>things that go on the profile page should be here and is only for a user that is logged into an account</h3>
       </>
-      <Container>
-        <Row noGutters={true}>
+      <Container fluid="sm">
+        <Row>
           <Col>
             {withSlide(faves, faveList, props.setBook)}
           </Col>
