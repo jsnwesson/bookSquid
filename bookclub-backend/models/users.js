@@ -1,11 +1,13 @@
 const mongoose = require('mongoose');
 
 const usersSchema = new mongoose.Schema({
-  UID: String,
+  uid: String,
   userEmail: String,
   lists: {
-    readBooks: [String],
+    alreadyRead: [String],
     favorites: [String],
+    currentlyReading: [String],
+    goingToRead: [String],
   },
   reviews: [String],
   name: String,
