@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
 
 const reviewsSchema = new mongoose.Schema({
-  reviewId: { type: String, unique: true },
   message: String,
   rating: Number,
   uid: String,
+  reviewId: { type: String, unique: true },
+  date: Date,
 })
 
 reviewsSchema.set('toJSON', {
