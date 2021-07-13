@@ -1,35 +1,39 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import fire from '../fire';
 import Login from '../components/sessions/Login';
-import ListReadBooks from '../components/bookclub/ListReadBooks';
+// import ListReadBooks from '../components/bookclub/ListReadBooks';
 import SignOut from '../components/sessions/SignOut';
 import { Link } from 'react-router-dom';
-import { getReadBookList } from '../services/bookclubServices';
+//import { getReadBookList } from '../services/bookclubServices';
 import { Button } from 'react-bootstrap';
 
 const Landing = (props) => {
-  const [books, setBooks] = useState();
-  const [book, setBook] = useState(0);
+  // const [books, setBooks] = useState();
+  // const [book, setBook] = useState(0);
 
   fire.auth().onAuthStateChanged((user) => {
     return user ? props.setIsLoggedIn(true) : props.setIsLoggedIn(false);
   });
 
-  useEffect(() => {
-    const fetchBooks = async () => {
-      if (props.isLoggedIn) {
-        const fetchedBooks = await getReadBookList();
-        setBooks(fetchedBooks)
-      }
-    }
-    fetchBooks();
-  }, [props.isLoggedIn]);
+  // useEffect(() => {
+  //   const fetchBooks = async () => {
+  //     if (props.isLoggedIn) {
+  //       const fetchedBooks = await getReadBookList();
+  //       setBooks(fetchedBooks)
+  //     }
+  //   }
+  //   fetchBooks();
+  // }, [props.isLoggedIn]);
 
   return (
     <div className="App">
       {!props.isLoggedIn ? (
         <>
-          <Login setIsLoggedIn={props.setIsLoggedIn} setUidCookie={props.setUidCookie} setEmailCookie={props.setEmailCookie} />
+          <Login
+            setIsLoggedIn={props.setIsLoggedIn}
+            setUidCookie={props.setUidCookie}
+            setEmailCookie={props.setEmailCookie}
+          />
           <h1>Home landing page (not logged in)</h1>
           <Link to='/search'>
             <Button>
