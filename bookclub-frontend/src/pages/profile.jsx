@@ -2,8 +2,24 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import SignOut from '../components/sessions/SignOut';
+import withSlide from '../components/bookclub/BookGallery.jsx';
+import {favorites, previouslyRead} from '../dummyData/booklist.jsx';
+
 
 const Profile = (props) => {
+  let prevRead;
+  let faves;
+  const faveList = {
+    title: 'Favorites',
+    className: 'fave',
+    list: favorites, // <-- name of array of book objects
+  };
+  const prevList = {
+    title: 'Previously Read',
+    className: 'prevRead',
+    list: previouslyRead,
+  }
+
   return (
     <div>
       <>
@@ -30,6 +46,8 @@ const Profile = (props) => {
         </Link>
         <h3>things that go on the profile page should be here and is only for a user that is logged into an account</h3>
       </>
+      {withSlide(faves, faveList)}
+      {withSlide(prevRead, prevList)}
     </div>
   )
 }
