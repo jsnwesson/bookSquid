@@ -3,6 +3,7 @@ import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Login from '../components/sessions/Login';
 import SignOut from '../components/sessions/SignOut';
+import BookInfo from '../components/bookclub/BookInfo';
 
 const Book = (props) => {
 
@@ -26,7 +27,7 @@ const Book = (props) => {
               Home page
             </Button>
           </Link>
-          <h3>this should show book info for client that is not logged in)</h3>
+          <h3>this should show book info for client that is not logged in</h3>
         </>
       ) : (
         <>
@@ -52,10 +53,8 @@ const Book = (props) => {
             </Button>
           </Link>
           <h3>Things that should be on the book page should be here for user that is logged in</h3>
-          {/* <h2>title: {props.book.title}</h2>
-      <h4>author: {props.book.author}</h4>
-      <h5>id: {props.book.id}</h5>
-      <h5>[description]: asdfasdfasdfasdfasdfasdfasdfasdf asdf asdf asdf asdf asdf sdf bfabasfb eqrrhbsdavf stdfbv dzfbxcgvc svdfbxc gvc vfxbcv avsfdfc vbdfh c</h5> */}
+          <BookInfo book={props.book} />
+          <h3>reviews below</h3>
         </>
       )}
     </div>

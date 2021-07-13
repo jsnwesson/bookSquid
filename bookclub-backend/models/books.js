@@ -1,12 +1,16 @@
 const mongoose = require('mongoose');
 
 const booksSchema = new mongoose.Schema({
-  gid: { type: String, unique: true }
   img: String,
   title: String,
   authors: [String],
+  reviews: [String],
   totalRating: Number,
-  reviews: [String ],
+  description: String,
+  publishedDate: String,
+  thumbnail: String,
+  genre: String,
+  bookId: { type: String, unique: true },
 })
 
 booksSchema.set('toJSON', {

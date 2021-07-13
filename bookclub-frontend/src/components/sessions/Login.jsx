@@ -8,6 +8,8 @@ function Login(props) {
   const [show, setShow] = useState(false);
   const [newUser, setNewUser] = useState(false);
 
+  // const wrapper = React.createRef()
+
   const handleSubmit = (e) => {
     e.preventDefault();
     fire.auth().signInWithEmailAndPassword(email, password)
@@ -56,7 +58,7 @@ function Login(props) {
   };
 
   return (
-    <>
+    <div>
       <Button variant="primary" onClick={handleShow}>
         Log In
       </Button>
@@ -91,7 +93,7 @@ function Login(props) {
           </Button>
         </Modal.Footer>
       </Modal>
-    </>
+    </div>
   );
 };
 
