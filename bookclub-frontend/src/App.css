@@ -38,20 +38,20 @@
 }
 
 .navBar {
-  height: 7vh;
-
+  height: 10vh;
+  background-color: cornflowerblue;
 
 }
 
-.brand {
-  /* background-color: bisque;
-  margin: 10px;
-  padding: 10px; */
+.logo {
+  height: 10vh;
+  margin: 15px 15px 15px 15px;
+  padding: px
 }
 
 #landingSearch {
   height: 45vh;
-  background-color: cornflowerblue;
+  background-color: rgb(182, 186, 194);
   /* transform: translateY(-50%); */
   /* padding: auto; */
   /* text-align: center; */

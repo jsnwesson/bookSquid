@@ -11,6 +11,14 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [uidCookie, setUidCookie, removeUidCookie] = useCookies(['UID']);
   const [emailCookie, setEmailCookie, removeEmailCookie] = useCookies(['email']);
+  const [searchInput, setSearchInput] = useState('')
+  const [searchCategory, setSearchCategory] = useState('');
+
+  const handleSearchInput = (e) => {
+    setSearchInput(e.target.value)
+  }
+
+
 
   return (
 

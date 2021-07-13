@@ -10,6 +10,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Login from '../../components/sessions/Login.jsx';
 import SignOut from '../../components/sessions/SignOut.jsx';
+import Squid from './assets/Squid-Logo.png';
+import Logo from './assets/bookSquid.svg';
 
 
 
@@ -25,7 +27,9 @@ const Header = (props) => {
 
   return (
 <Navbar bg="dark" variant="dark" expand="lg" sticky="top">
-  <Navbar.Brand href="#home">LOGO HERE</Navbar.Brand>
+
+  <Navbar.Brand href="#home"><img alt='' src={Logo} /></Navbar.Brand>
+
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse id="basic-navbar-nav">
     <Form inline>
@@ -39,16 +43,14 @@ const Header = (props) => {
         <Col>
         {!props.isLoggedIn
         ? <Login setIsLoggedIn={props.setIsLoggedIn} setUidCookie={props.setUidCookie} setEmailCookie={props.setEmailCookie} />
+
         : <SignOut
             removeEmailCookie={props.removeEmailCookie}
             removeUidCookie={props.removeUidCookie}
             setIsLoggedIn={props.setIsLoggedIn}
           />
-
-      }
+        }
         </Col>
-
-
       </Row>
     </Form>
   </Navbar.Collapse>

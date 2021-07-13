@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import Header from './Header.jsx';
+import Header from '../../components/bookclub/Header.jsx';
 import Search from './Search.jsx';
 import Carousel from './CarouselContainer.jsx';
 
