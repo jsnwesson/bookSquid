@@ -37,3 +37,23 @@ const withSlide = (wrappedComponent, selectData, setBook) => {
 }
 
 export default withSlide;
+
+
+/* EXAMPLE FOR WHAT TO PASS IN FOR withSlides()
+let toRead; <--name of your custom component, no need to do anything other than declare it
+
+const faveList = { <-- this is your object of select Data that will customize the gallery component
+  title: 'Favorites', <-- Header title
+  className: 'fave', <-- Class name for any CSS reasons
+  list: favorites, // <-- name of array of book objects to iterate through
+};
+
+
+objects of books will contain the following:
+{
+  authors: [String],
+  bookId: String,
+  title: String,
+  thumbnail: String,
+}
+*/
