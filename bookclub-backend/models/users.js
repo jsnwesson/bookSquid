@@ -4,8 +4,10 @@ const usersSchema = new mongoose.Schema({
   UID: String,
   userEmail: String,
   lists: {
-    readBooks: [String],
+    alreadyRead: [String],
     favorites: [String],
+    currentlyReading: [String],
+    goingToRead: [String],
   },
   reviews: [String],
   name: String,

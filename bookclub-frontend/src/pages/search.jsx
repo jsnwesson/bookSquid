@@ -18,9 +18,9 @@ function SearchPage(props) {
           />
           <h1>MAKE A SEARCH BAR PLEBS</h1>
           <h1>Book page (not logged in)</h1>
-          <Link to='/search'>
+          <Link to='/book/'>
             <Button>
-              Search Page
+              Book Page
             </Button>
           </Link>
           <Link to="/">
