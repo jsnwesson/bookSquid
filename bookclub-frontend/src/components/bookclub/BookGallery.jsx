@@ -20,12 +20,12 @@ const withSlide = (wrappedComponent, selectData, setBook) => {
           return (
             <div>
               <Card style={{ width: '10rem' }}>
-                <Link onClick={() => { setBook(book) }} to={`/book/${book.gid}`}>
+                <Link onClick={() => { setBook(book) }} to={`/book/${book.bookId}`}>
                   <Card.Img variant='top' src={book.thumbnail} />
                 </Link>
                 <Card.Body>
                   <Card.Title>{book.title}</Card.Title>
-                  <Card.Text>{book.author}</Card.Text>
+                  <Card.Text>{book.authors[0]}</Card.Text>
                 </Card.Body>
               </Card>
             </div>
