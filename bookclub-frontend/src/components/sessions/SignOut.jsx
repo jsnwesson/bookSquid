@@ -2,9 +2,7 @@ import React from 'react';
 import fire from '../../fire';
 import { Button } from 'react-bootstrap';
 
-
 const SignOut = (props) => {
-
   const signOut = () => {
     fire.auth().signOut()
       .then(() => {
@@ -20,8 +18,5 @@ const SignOut = (props) => {
       </Button>
     </div>
   );
-
 }
-export default SignOut
-
-// <SignOut removeEmailCookie={removeEmailCookie} removeUidCookie={removeUidCookie} />
+export default SignOut;
