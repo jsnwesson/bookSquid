@@ -31,7 +31,7 @@ const createToken = async () => {
 //   }
 // };
 
-// export const getReadBookList = async () => {
+// export const getAlreadyReadList = async () => {
 //   const header = await createToken();
 //   try {
 //     const res = await axios.get(url + '/get-read-book', header);
@@ -55,11 +55,13 @@ const createToken = async () => {
 //   }
 // };
 
-export const postBookReview = async (message, rating) => {
+export const postBookReview = async (body, title, rating, bookId) => {
   const header = await createToken();
   const payload = {
-    message,
-    rating
+    body,
+    rating,
+    title,
+    bookId,
   }
   try {
     const res = await axios.post(url + '/reviews', payload, header)
@@ -83,9 +85,49 @@ export const getBookReviews = async (bookId) => {
   /** response returns: status code 200
     *  response.data = {
     *    name: 'STRING',
-    *    message: 'STRING',
+    *    title: 'STRING',
+    *    body: 'STRING',
     *    rating: NUMBER,
     *    date: ISO DATE in STRING format,
     *  }
     */
 };
+
+export const carouselMetaData = async () => {
+  const header = await createToken();
+  try {
+    const res = await axios.post(url + '/carouselMeta', null, header)
+    return res.data
+  } catch (e) {
+    console.error(e);
+  }
+  /** response returns: status code 200
+  *  response.data = {
+  *    authors: [ 'STRING', ... ],
+  *    bookId: 'STRING',
+  *    title: 'STRING',
+  *    image: 'STRING', // this should be the thumbnail image
+  *  }
+  */
+};
+
+export const specificBookData = async (bookId) => {
+  const header = await createToken();
+  try {
+    const res = await axios.post(`${url}/books/${bookId}`, null, header)
+    return res.data
+  } catch (e) {
+    console.error(e);
+  }
+  /** response returns: status code 200
+  *  response.data = {
+  *    description: 'STRING',
+  *    publishedDate: 'STRING',
+  *    authors: [ 'STRING', ... ],
+  *    genre: 'STRING',
+  *    title: 'STRING',
+  *    image: 'STRING', // this should be the larger image
+  *  }
+  */
+};
+
