@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const usersSchema = new mongoose.Schema({
-  UID: String,
+  uid: String,
   userEmail: String,
   lists: {
     alreadyRead: [String],
