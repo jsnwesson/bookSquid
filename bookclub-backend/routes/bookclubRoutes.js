@@ -33,7 +33,7 @@ bookclubRouter.get('/books/recommended', async(req, res) => {
 });
 
 bookclubRouter.get('/carouselMeta', async(req, res) => {
-  console.log('get carousels');
+  console.log('get landing page carousels');
   let {uid} = req.headers;
   console.log('uid: ', uid);
   try {
@@ -98,11 +98,11 @@ bookclubRouter.post('/reviews', async (req, res) => {
     let response = await review.save();
     let bookPromise = Books.findOneAndUpdate({bookId}, {$push: {reviews: review.reviewId}});
     let userPromise = Users.findOneAndUpdate({uid}, {$push: {reviews: review.reviewId}});
-    Promise.all([response, bookPromise, userPromise]);
+    Promise.all([response, userPromise, bookPromise]);
     console.log('success');
     res.sendStatus(201);
   } catch (e) {
-    console.log('failure');
+    console.log('error during review insertion');
     console.log(e.message);
     res.sendStatus(400);
   }
@@ -113,14 +113,20 @@ bookclubRouter.get('/reviews/:bookId', async (req, res) => {
   let {bookId} = req.params;
   // run query for reviews whose reviewIds ends in the book array
   let response = await Reviews.find({reviewId : new RegExp(bookId + '$', 'i')});
-  let data = response.map(x => ({
-    // to do: figure out how to convert uid to name inline
-    name: x.uid,
-    title: x.title,
-    body: x.body,
-    rating: x.rating,
-    date: x.date.toISOString()
-  }));
+  let names = await Promise.all(response.map(x => Users.findOne({uid: x.uid}).select('name -_id')));
+  // console.log(response);
+  // console.log(names);
+  let data = response.map((x, idx) => (
+    {
+       // to do: figure out how to convert uid to name inline (done)
+      name: names[idx].name,
+      title: x.title,
+      body: x.body,
+      rating: x.rating,
+      date: x.date.toISOString()
+    }
+  ));
+  console.log(data);
   res.send(data);
 });
 
