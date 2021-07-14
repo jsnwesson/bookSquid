@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import Login from '../components/sessions/Login';
@@ -8,6 +8,8 @@ import Search from '../components/bookclub/Search.jsx'
 
 
 function SearchPage(props) {
+
+
 
   return (
     <div>
@@ -30,7 +32,7 @@ function SearchPage(props) {
               Home page
             </Button>
           </Link>
-          <Search/>
+          <Search />
         </>
       ) : (
         <>
@@ -56,7 +58,7 @@ function SearchPage(props) {
               Book page
             </Button>
           </Link>
-          <Search/>
+          <Search />
         </>
       )}
     </div>
