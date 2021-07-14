@@ -131,25 +131,15 @@ export const specificBookData = async (bookId) => {
   */
 };
 
-export const searchByCategory = async (category, searchInput) => {
-  const header = await createToken();
-  const payload = {
-    category,
-    searchInput,
-  }
+export const searchByCategory = async (searchInput) => {
   try {
-    const promise1 = axios.get(`${url}/books/search`, payload, header)
-    const promise2 = axios.get(`https://www.googleapis.com/books/v1/volumes?q=${searchInput}&maxResults=20`);
-    Promise.all([promise1, promise2])
-      .then((res) => {
-        return res.data
-      })
+    const res = await axios.get(`${url}/books/search`, { searchInput })
+    return res.data
   } catch (e) {
     console.error(e);
   }
 
   /**
-
   --------------> response returns an array of objects <--------------
   response returns: status code 200
 
@@ -172,8 +162,6 @@ export const searchByCategory = async (category, searchInput) => {
 
   after the first index in the array, the remaining objects will be in googles response format
 
-  if the book title was not in our databas then all of the objects in the array will be in
-  googles API response format
-
+  if the book title was not in our databas then all of the objects in the array will be in googles API response format
   */
 };
