@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Container} from 'react-bootstrap';
+import { Button, Container } from 'react-bootstrap';
 import SignOut from '../components/sessions/SignOut';
 import withSlide from '../components/bookclub/BookGallery.jsx';
 import { favorites, previouslyRead, wantToRead } from '../dummyData/booklist.jsx';
@@ -43,11 +43,6 @@ const Profile = (props) => {
         <Link to="/">
           <Button>
             Home Page
-          </Button>
-        </Link>
-        <Link to="/book/">
-          <Button>
-            Book page
           </Button>
         </Link>
         <h3>things that go on the profile page should be here and is only for a user that is logged into an account</h3>

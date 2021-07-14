@@ -116,7 +116,6 @@ export const searchByCategory = async (category, searchInput) => {
   }
 
   /**
-
   --------------> response returns an array of objects <--------------
   response returns: status code 200
 
@@ -139,8 +138,6 @@ export const searchByCategory = async (category, searchInput) => {
 
   after the first index in the array, the remaining objects will be in googles response format
 
-  if the book title was not in our databas then all of the objects in the array will be in
-  googles API response format
-
+  if the book title was not in our databas then all of the objects in the array will be in googles API response format
   */
 };
