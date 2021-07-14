@@ -106,9 +106,10 @@ const Header = (props) => {
 
   }
   const handleSearchSubmit = () => {
-    let results = searchByCategory(null, searchInput)
-    // console.log(results)
-    props.setSearchResults(results)
+    searchByCategory(null, searchInput)
+      .then((results) => {
+        props.setSearchResults(results)
+      })
   }
 
 
@@ -149,7 +150,9 @@ const Header = (props) => {
               </Select>
             </FormControl>
           </div>
-          <Button variant="contained" onClick={handleSearchSubmit}>Search</Button>
+          <Link to={'/search'}>
+            <Button variant="contained" onClick={handleSearchSubmit}>Search</Button>
+          </Link>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             {!props.isLoggedIn
@@ -176,7 +179,7 @@ const Header = (props) => {
           </div>
         </Toolbar>
       </AppBar>
-    </div>
+    </div >
   );
 }
 

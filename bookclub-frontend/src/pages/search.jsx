@@ -9,10 +9,6 @@ import Search from '../components/bookclub/Search.jsx'
 
 function SearchPage(props) {
 
-  const [searchRes, SetSearchRes] = useState(props.searchResults)
-
-  console.log(props.searchResults)
-
 
 
   return (

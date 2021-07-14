@@ -140,11 +140,12 @@ export const searchByCategory = async (category, searchInput) => {
   try {
     // const promise1 = axios.get(`${url}/books/search`, payload, header)
     const promise2 = axios.get(`https://www.googleapis.com/books/v1/volumes?q=${searchInput}&maxResults=20`);
-    Promise.all([promise2])
-      .then((res) => {
-        return res.data
-      })
-  } catch (e) {
+    return Promise.all([promise2])
+    // .then((res) => {
+    //   return res[0].data
+    // })
+  }
+  catch (e) {
     console.error(e);
   }
 
