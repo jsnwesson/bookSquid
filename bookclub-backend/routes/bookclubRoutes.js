@@ -6,15 +6,22 @@ const Users = require('../models/users');
 
 
 // book endpoints
-
+// const getFromGoogleByID = ()
 // helper function for searching google books api with a particular bookId if it doesn't exist in local database and then populating it there
 
 // get book by id (local database lookup)
 bookclubRouter.get('/books/:bookId', async (req, res) => {
   let {bookId} = req.params;
-  let book = await Books.find({bookId});
+  try {
+    let book = await Books.find({bookId});
+    if (book.length === 0) {
+
+    }
+    res.send(book[0]);
+  } catch (e) {
+
+  }
   // helper at line 7 would be inovked here if book is empty
-  res.send(book[0]);
 });
 
 bookclubRouter.get('/books/recommended', async(req, res) => {
@@ -89,8 +96,10 @@ bookclubRouter.post('/reviews', async (req, res) => {
   });
   try {
     let response = await review.save();
+    let bookPromise = Books.findOneAndUpdate({bookId}, {$push: {reviews: review.reviewId}});
+    let userPromise = Users.findOneAndUpdate({uid}, {$push: {reviews: review.reviewId}});
+    Promise.all([response, bookPromise, userPromise]);
     console.log('success');
-
     res.sendStatus(201);
   } catch (e) {
     console.log('failure');

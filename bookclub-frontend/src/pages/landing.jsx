@@ -7,7 +7,6 @@ import { Button } from 'react-bootstrap';
 import LandingPage from './landingComponents/LandingPage.jsx'
 
 const Landing = (props) => {
-  console.log(props)
 
   fire.auth().onAuthStateChanged((user) => {
     return user ? props.setIsLoggedIn(true) : props.setIsLoggedIn(false);
