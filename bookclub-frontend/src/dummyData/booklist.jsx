@@ -49,7 +49,12 @@ var favorites = [
     img: 'http://books.google.com/books/content?id=GNnxzQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
     thumbnail: 'http://books.google.com/books/content?id=GNnxzQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api'
   },
-  // {authors: ['Iain M. Banks'], bookId: '', title: '', publishedDate: '', description: '', genre: '', img: '', thumbnail: ''},
+  {
+    authors: ['Iain M. Banks'],
+    bookId: 'G803AgAAQBAJ',
+    title: 'Excession',
+    thumbnail: 'http://books.google.com/books/content?id=G803AgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'
+  },
 ];
 
 var previouslyRead = [
@@ -83,7 +88,12 @@ var previouslyRead = [
     title: "The Fellowship of the Ring",
     thumbnail: 'http://books.google.com/books/content?id=GNnxzQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api'
   },
-  // {authors: ['Iain M. Banks'], bookId: '', title: '', publishedDate: '', description: '', genre: '', img: '', thumbnail: ''},
+  {
+    authors: ['Iain M. Banks'],
+    bookId: 'G803AgAAQBAJ',
+    title: 'Excession',
+    thumbnail: 'http://books.google.com/books/content?id=G803AgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'
+  },
 ];
 
 var wantToRead = [
@@ -117,7 +127,12 @@ var wantToRead = [
     title: "The Fellowship of the Ring",
     thumbnail: 'http://books.google.com/books/content?id=GNnxzQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api'
   },
-  // {authors: ['Iain M. Banks'], bookId: '', title: '', publishedDate: '', description: '', genre: '', img: '', thumbnail: ''},
+  {
+    authors: ['Iain M. Banks'],
+    bookId: 'G803AgAAQBAJ',
+    title: 'Excession',
+    thumbnail: 'http://books.google.com/books/content?id=G803AgAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'
+  },
 ];
 
 module.exports = {
