@@ -1,14 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
+import { Button, Container, Row, Col} from 'react-bootstrap';
 import SignOut from '../components/sessions/SignOut';
 import withSlide from '../components/bookclub/BookGallery.jsx';
-import { favorites, previouslyRead } from '../dummyData/booklist.jsx';
+import { favorites, previouslyRead, wantToRead } from '../dummyData/booklist.jsx';
 
 
 const Profile = (props) => {
   let prevRead;
   let faves;
+  let toRead;
   const faveList = {
     title: 'Favorites',
     className: 'fave',
@@ -18,6 +19,11 @@ const Profile = (props) => {
     title: 'Previously Read',
     className: 'prevRead',
     list: previouslyRead,
+  }
+  const toReadList = {
+    title: 'Want to Read',
+    className: 'toRead',
+    list: wantToRead,
   }
 
   return (
@@ -46,8 +52,23 @@ const Profile = (props) => {
         </Link>
         <h3>things that go on the profile page should be here and is only for a user that is logged into an account</h3>
       </>
-      {withSlide(faves, faveList, props.setBook)}
-      {withSlide(prevRead, prevList, props.setBook)}
+      <Container fluid='sm'>
+        <Row>
+          <Col>
+            {withSlide(faves, faveList, props.setBook)}
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            {withSlide(prevRead, prevList, props.setBook)}
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            {withSlide(toRead, toReadList, props.setBook)}
+          </Col>
+        </Row>
+      </Container>
     </div>
   )
 }
