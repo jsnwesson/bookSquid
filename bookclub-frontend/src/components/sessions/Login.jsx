@@ -6,6 +6,7 @@ function Login(props) {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [show, setShow] = useState(false);
+  const [userName, setUserName] = useState();
   const [newUser, setNewUser] = useState(false);
 
   // const wrapper = React.createRef()
@@ -62,13 +63,26 @@ function Login(props) {
       <Button variant="primary" onClick={handleShow}>
         Log In
       </Button>
-      <Modal show={show} onHide={handleClose}>
+      <Modal
+        show={show}
+        onHide={handleClose}
+        centered
+      >
         <Modal.Header>
           <Modal.Title>Log into your account</Modal.Title>
           {!newUser ? <Button onClick={setNewUser}>Create New User</Button> : null}
         </Modal.Header>
         <Modal.Body>
           <form>
+            {newUser ?
+              <input
+                type="text"
+                onChange={({ target }) =>
+                  setUserName(target.value)}
+                placeholder="Username"
+              /> : null
+            }
+            <br />
             <input
               type="text"
               onChange={({ target }) =>
