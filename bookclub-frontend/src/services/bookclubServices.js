@@ -131,14 +131,16 @@ export const specificBookData = async (bookId) => {
   */
 };
 
-export const searchByCategory = async (searchInput) => {
+export const searchByCategory = async (category, searchInput) => {
+  const header = await createToken();
+  const payload = { category, searchInput }
   try {
-    const res = await axios.get(`${url}/books/search`, { searchInput })
-    return res.data
+    //const res = await axios.get(`${url}/books/search`, { searchInput })
+    //return res.data
     // } catch (e) {
     // const promise1 = axios.get(`${url}/books/search`, payload, header)
-    // const promise2 = axios.get(`https://www.googleapis.com/books/v1/volumes?q=${searchInput}&maxResults=20`);
-    // return Promise.all([promise2])
+    const promise2 = axios.get(`https://www.googleapis.com/books/v1/volumes?q=${searchInput}&maxResults=20`);
+    return Promise.all([promise2])
     // .then((res) => {
     //   return res[0].data
     // })
