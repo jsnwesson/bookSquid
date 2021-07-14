@@ -26,8 +26,9 @@ bookclubRouter.get('/books/recommended', async(req, res) => {
 });
 
 bookclubRouter.get('/carouselMeta', async(req, res) => {
+  console.log('get carousels');
   let {uid} = req.headers;
-  console.log(uid);
+  console.log('uid: ', uid);
   try {
     let lists = await Users.find({uid}).select('lists -_id');
     if (lists.length === 0) {
@@ -37,7 +38,7 @@ bookclubRouter.get('/carouselMeta', async(req, res) => {
     // need to process inside lists[0] with mongoose methods
     res.send(lists[0]);
   } catch(e) {
-    res.send(400);
+    res.status(400, 'not logged in');
   }
 });
 
@@ -127,4 +128,5 @@ bookclubRouter.get('user/lists/', async(req, res) => {
 bookclubRouter.get('user/profile', async(req, res) => {
 
 });
+
 module.exports = bookclubRouter;
