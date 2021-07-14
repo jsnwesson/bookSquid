@@ -6,6 +6,7 @@ import Book from './pages/book';
 import Landing from './pages/landing';
 import Profile from './pages/profile';
 import './App.css';
+import fire from './fire';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -15,7 +16,9 @@ function App() {
   const [searchResults, setSearchResults] = useState([]);
 
 
-
+  fire.auth().onAuthStateChanged((user) => {
+    return user ? setIsLoggedIn(true) : setIsLoggedIn(false);
+  });
 
   return (
 
