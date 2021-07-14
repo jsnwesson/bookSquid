@@ -75,6 +75,7 @@ function App() {
               setEmailCookie={setEmailCookie}
               removeEmailCookie={removeEmailCookie}
               setSearchResults={setSearchResults}
+              setBook={setBook}
             />
           </Route>
         </Switch>

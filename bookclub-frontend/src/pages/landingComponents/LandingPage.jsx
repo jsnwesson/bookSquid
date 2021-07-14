@@ -33,7 +33,9 @@ const LandingPage = (props) => {
         setSearchResults={props.setSearchResults}
       />
       <Search />
-      <Carousel />
+      <Carousel
+        setBook={props.setBook}
+      />
     </div>
   )
 
