@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import SearchResults from './SearchResults.jsx'
 import data from './sampleData.js';
-import {postBookReview} from '../../services/bookclubServices.js';
+import {postBookReview, searchByCategory, getBookReviews, specificBookData, carouselMetaData} from '../../services/bookclubServices.js';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -23,7 +23,11 @@ const Search = (props) => {
   const [search, setSearch] = useState();
   const classes = useStyles();
 
-  useEffect(()=> {postBookReview('this book sucks lmao', 'title', 4, 'e_9MDwAAQBAJ')}, []);
+  // useEffect(()=> {postBookReview('this book sucks lmao', 'title', 4, 'e_9MDwAAQBAJ3')}, []);
+  // useEffect(() => {searchByCategory('', 'bullshit')}, []);
+  // useEffect(() => {getBookReviews('e_9MDwAAQBAJ')}, []);
+  // useEffect(() => {specificBookData('e_9MDwAAQBAJ')}, []);
+  useEffect(() => {carouselMetaData()}, []);
   return (
     <div>
       <Grid

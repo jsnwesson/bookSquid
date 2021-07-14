@@ -16,45 +16,6 @@ const createToken = async () => {
   return payloadHeader;
 };
 
-// export const addToReadBookList = async (title, author, genre) => {
-//   const header = await createToken();
-//   const payload = {
-//     title,
-//     author,
-//     genre,
-//   }
-//   try {
-//     const res = await axios.post(url + '/add-read-book', payload, header);
-//     return res.data;
-//   } catch (e) {
-//     console.error(e);
-//   }
-// };
-
-// export const getAlreadyReadList = async () => {
-//   const header = await createToken();
-//   try {
-//     const res = await axios.get(url + '/get-read-book', header);
-//     return res.data;
-//   } catch (e) {
-//     console.error(e);
-//   }
-// };
-
-// export const addToFavoriteList = async (uid, gid, list_name) => {
-//   const header = await createToken();
-//   const payload = {
-//     gid,
-//     list_name
-//   }
-//   try {
-//     const res = await axios.post(url, payload, header)
-//     return res.data
-//   } catch (e) {
-//     console.error(e);
-//   }
-// };
-
 export const postBookReview = async (body, title, rating, bookId) => {
   const header = await createToken();
   const payload = {
@@ -76,6 +37,7 @@ export const postBookReview = async (body, title, rating, bookId) => {
 
 export const getBookReviews = async (bookId) => {
   const header = await createToken();
+  console.log(bookId);
   try {
     const res = await axios.get(url + `/reviews/${bookId}`, header)
     return res.data
@@ -96,10 +58,13 @@ export const getBookReviews = async (bookId) => {
 export const carouselMetaData = async () => {
   const header = await createToken();
   try {
-    const res = await axios.post(url + '/carouselMeta', null, header)
+    // if user isn't logged in, can't populate nor display expected data
+    console.log(header);
+    const res = await axios.get(url + '/carouselMeta', header)
     return res.data
   } catch (e) {
     console.error(e);
+
   }
   /** response returns: status code 200
   *  response.data = {
@@ -114,7 +79,7 @@ export const carouselMetaData = async () => {
 export const specificBookData = async (bookId) => {
   const header = await createToken();
   try {
-    const res = await axios.post(`${url}/books/${bookId}`, null, header)
+    const res = await axios.get(`${url}/books/${bookId}`, header)
     return res.data
   } catch (e) {
     console.error(e);
@@ -134,15 +99,14 @@ export const specificBookData = async (bookId) => {
 
 
 export const searchByCategory = async (category, searchInput) => {
-  const header = await createToken();
-  const payload = {
-    category,
-    searchInput,
-  }
+  console.log(searchInput);
+  let config = {searchInput};
+
   try {
-    // const promise1 = axios.get(`${url}/books/search`, payload, header)
-    const promise2 = axios.get(`https://www.googleapis.com/books/v1/volumes?q=${searchInput}&maxResults=20`);
-    return Promise.all([promise2])
+
+    const promise1 = axios.get(`${url}/books/search/${searchInput}`);
+    // const promise2 = axios.get(`https://www.googleapis.com/books/v1/volumes?q=${searchInput}&maxResults=20`);
+    return promise1;
     // .then((res) => {
     //   return res[0].data
     // })

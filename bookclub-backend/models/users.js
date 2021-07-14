@@ -10,7 +10,7 @@ const usersSchema = new mongoose.Schema({
   },
   reviews: [String],
   name: String,
-  joinedDate: Date
+  joinedDate: Date,
   uid: String,
 })
 
@@ -22,4 +22,4 @@ usersSchema.set('toJSON', {
   },
 });
 
-module.exports = mongoose.model('Books', usersSchema)
+module.exports = mongoose.model('Users', usersSchema)
