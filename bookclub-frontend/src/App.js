@@ -16,10 +16,6 @@ function App() {
   const [book, setBook] = useState(0);
   const [searchResults, setSearchResults] = useState([]);
 
-<<<<<<< HEAD
-=======
-
->>>>>>> main
   fire.auth().onAuthStateChanged((user) => {
     return user ? setIsLoggedIn(true) : setIsLoggedIn(false);
   });
