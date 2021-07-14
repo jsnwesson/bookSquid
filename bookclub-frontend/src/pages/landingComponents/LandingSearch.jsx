@@ -4,9 +4,12 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form'
 import FormControl from 'react-bootstrap/FormControl';
+import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
+import { searchByCategory } from '../../services/bookclubServices.js'
 
 
-const Search = (props) => {
+const LandingSearch = (props) => {
 
   const [searchInput, setSearchInput] = useState((''))
   const [Category, setCategory] = useState('')
@@ -20,8 +23,12 @@ const Search = (props) => {
     setCategory(e.target.value);
   }
 
-  //on searchSubmit
-
+  const handleSearchSubmit = () => {
+    searchByCategory(null, searchInput)
+      .then((results) => {
+        props.setSearchResults(results)
+      })
+  }
 
   return (
 
@@ -31,6 +38,9 @@ const Search = (props) => {
         <Col xs={6}>
           <Form >
             <FormControl style={{ padding: "12px", marginBottom: "3vh" }} type="text" placeholder="Search Books, Authors or Genres!" onChange={handleInputChange}></FormControl>
+            <Link to='/search'>
+              <Button>Search Now!</Button>
+            </Link>
           </Form>
         </Col>
       </Row>
@@ -40,4 +50,4 @@ const Search = (props) => {
 
 }
 
-export default Search;
+export default LandingSearch;

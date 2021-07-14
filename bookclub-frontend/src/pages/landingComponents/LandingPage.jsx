@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import Header from '../../components/bookclub/Header.jsx';
-import Search from './Search.jsx';
+import Header from './Header.jsx';
+import LandingSearch from './LandingSearch.jsx';
 import Carousel from './CarouselContainer.jsx';
 
 const LandingPage = (props) => {
@@ -32,7 +31,9 @@ const LandingPage = (props) => {
         removeEmailCookie={props.removeEmailCookie}
         setSearchResults={props.setSearchResults}
       />
-      <Search />
+      <LandingSearch
+        setSearchResults={props.setSearchResults}
+      />
       <Carousel
         setBook={props.setBook}
       />
