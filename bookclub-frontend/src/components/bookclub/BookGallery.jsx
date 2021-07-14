@@ -1,6 +1,6 @@
 import React from 'react';
 import Slider from 'react-slick';
-import { Card, } from 'react-bootstrap';
+import { Card, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import AddOrRemoveBook from './AddOrRemoveBook'
 import 'slick-carousel/slick/slick.css';
@@ -44,28 +44,32 @@ const withSlide = (wrappedComponent, selectData, setBook) => {
   };
   return (
     <div>
-      <h2>{selectData.title}</h2>
-      <Slider className='slider' {...settings}>
-        {selectData.list.map((book) => {
-          return (
-            <div>
-              <Card
-                bg='light'
-                text='dark'
-                style={{ width: '10rem' }}>
-                <Link onClick={() => { setBook(book) }} to={`/book/${book.bookId}`}>
-                  <Card.Img variant='top' src={book.thumbnail} />
-                </Link>
-                <Card.Body>
-                  <Card.Title>{book.title}</Card.Title>
-                  <Card.Text>{book.authors[0]}</Card.Text>
-                  <AddOrRemoveBook bookId={book.bookId} functionality={'both'} />
-                </Card.Body>
-              </Card>
-            </div>
-          )
-        })}
-      </Slider>
+      <Row>
+        <Col>
+          <h2>{selectData.title}</h2>
+          <Slider className='slider' {...settings}>
+            {selectData.list.map((book) => {
+              return (
+                <div>
+                  <Card
+                    bg='light'
+                    text='dark'
+                    style={{ width: '10rem' }}>
+                    <Link onClick={() => { setBook(book) }} to={`/book/${book.bookId}`}>
+                      <Card.Img variant='top' src={book.thumbnail} />
+                    </Link>
+                    <Card.Body>
+                      <Card.Title>{book.title}</Card.Title>
+                      <Card.Text>{book.authors[0]}</Card.Text>
+                      <AddOrRemoveBook bookId={book.bookId} functionality={'both'} />
+                    </Card.Body>
+                  </Card>
+                </div>
+              )
+            })}
+          </Slider>
+        </Col>
+      </Row>
     </div>
   );
 }
