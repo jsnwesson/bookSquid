@@ -14,9 +14,7 @@ function App() {
   const [book, setBook] = useState(0);
   const [searchResults, setSearchResults] = useState([]);
 
-  // useEffect(() => {
-  //   console.log(searchResults)
-  // }, [searchResults])
+
 
 
   return (
