@@ -10,28 +10,35 @@ import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
 import DeleteForeverTwoToneIcon from '@material-ui/icons/DeleteForeverTwoTone';
 
 const AddOrRemoveBook = (props) => {
-  const [changed, setChanged] = useState('')
-  const [listName, setListName] = useState('')
+  const [changed, setChanged] = useState(false)
+  const [listName, setListName] = useState()
 
   /*
   if props.add === false then FUNCTIONALITY=delete
   if props.add === true then FUNCTIONALITY=add
-
+  <AddOrRemoveBook bookId={book.bookId} whatList={selectData.title} functionality={'remove'}>
   bookId --- props.bookId
   */
   const useStyles = makeStyles((theme) => ({
     formControl: {
-      // margin: theme.spacing(1),
-      // minWidth: 120,
+      display: 'flex',
+      justifyContent: 'space-between',
+      width: '100%',
+
+
     },
-    selectEmpty: {
-      // marginTop: theme.spacing(2),
+    remove: {
+      display: 'flex',
+      justifyContent: 'center',
     },
   }));
   const classes = useStyles();
 
   const handleSubmit = (option) => {
-
+    if (option === 3) {
+      setListName(props.listName)
+      alert(`these are your selections... you will be removing book: ${props.bookId} from: ${props.listName} `)
+    }
     if (changed === true && option === 1) {
       // add to a selected list
       alert(`these are your selections... you will be adding book: ${props.bookId} to: ${listName} `)
@@ -49,44 +56,60 @@ const AddOrRemoveBook = (props) => {
     setListName(event.target.value)
   }
   useEffect(() => {
-    setChanged(true)
+    if (listName === undefined) {
+      setChanged(false)
+    } else {
+      setChanged(true)
+    }
+
   }, [listName])
   return (
-    <Grid container item direction='row'>
+    <Grid container item direction='row' className={classes.formControl}>
 
-      <FormControl className={classes.formControl}>
-        <Select
-          value={listName}
-          onChange={handleChange}
-          displayEmpty
-          className={classes.selectEmpty}
-          inputProps={{ 'aria-label': 'Without label' }}
-        >
-          <MenuItem value="" disabled>
-            Lists:
-          </MenuItem>
-          <MenuItem value={'list1'}>list1</MenuItem>
-          <MenuItem value={'list2'}>list2</MenuItem>
-          <MenuItem value={'list3'}>list3</MenuItem>
-          <MenuItem value={'list4'}>list4</MenuItem>
-        </Select>
-        <FormHelperText>Select a list</FormHelperText>
-      </FormControl>
+      {props.functionality === 'remove' ? null :
+        <FormControl >
+          <Select
+            value={listName}
+            onChange={handleChange}
+            displayEmpty
+            inputProps={{ 'aria-label': 'Without label' }}
+          >
+            <MenuItem value="" disabled>
+              Lists:
+            </MenuItem>
+            <MenuItem value={'Favorite'}>Favorite</MenuItem>
+            <MenuItem value={'Currently Reading'}>Currently Reading</MenuItem>
+            <MenuItem value={'Previously Read'}>Previously Read</MenuItem>
+            <MenuItem value={'Want To Read'}>Want To Read</MenuItem>
+          </Select>
+          <FormHelperText>Select a list</FormHelperText>
+        </FormControl>
+      }
 
-
-      <Grid container item direction="row" >
+      {/* <Grid container item direction="row" > */}
+      {props.functionality === 'remove' ?
+        <Grid container item direction='row' className={classes.remove}>
+          <IconButton aria-label="delete button" onClick={() => {
+            handleSubmit(3)
+          }}>
+            <DeleteForeverTwoToneIcon type="submit" />
+          </IconButton>
+        </Grid>
+        :
         <IconButton aria-label="add button" onClick={() => {
           handleSubmit(1)
         }}>
           <LibraryBooksIcon type="submit" />
         </IconButton>
-
+      }
+      {props.functionality === 'both' ?
         <IconButton aria-label="delete button" onClick={() => {
           handleSubmit(2)
         }}>
           <DeleteForeverTwoToneIcon type="submit" />
         </IconButton>
-      </Grid>
+        : null}
+      {/* </Grid> */}
 
     </Grid>
   )

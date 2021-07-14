@@ -10,9 +10,12 @@ const createToken = async () => {
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
-      uid: user.uid,
+      //uid: user.uid,
     },
   };
+  if (user.uid) {
+    payloadHeader.headers.uid = user.uid;
+  }
   return payloadHeader;
 };
 
@@ -132,7 +135,7 @@ export const specificBookData = async (bookId) => {
 };
 
 export const searchByCategory = async (category, searchInput) => {
-  const header = await createToken();
+ // const header = await createToken();
   const payload = { category, searchInput }
   try {
     //const res = await axios.get(`${url}/books/search`, { searchInput })

@@ -7,6 +7,7 @@ import Landing from './pages/landing';
 import Profile from './pages/profile';
 import fire from './fire';
 import './App.css';
+import fire from './fire';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -15,6 +16,10 @@ function App() {
   const [book, setBook] = useState(0);
   const [searchResults, setSearchResults] = useState([]);
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
   fire.auth().onAuthStateChanged((user) => {
     return user ? setIsLoggedIn(true) : setIsLoggedIn(false);
   });
@@ -48,6 +53,7 @@ function App() {
               emailCookie={emailCookie}
               setEmailCookie={setEmailCookie}
               removeEmailCookie={removeEmailCookie}
+              setSearchResults={setSearchResults}
               book={book}
             />
           </Route>
@@ -61,6 +67,7 @@ function App() {
               emailCookie={emailCookie}
               setEmailCookie={setEmailCookie}
               removeEmailCookie={removeEmailCookie}
+              setSearchResults={setSearchResults}
               setBook={setBook}
             />
           </Route>

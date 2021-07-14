@@ -2,7 +2,7 @@ import React from 'react';
 import Slider from 'react-slick';
 import { Card, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import AddOrRemoveBook from './AddOrRemoveBook'
+import AddOrRemoveBook from './AddOrRemoveBook';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './bookclub.css';
@@ -61,7 +61,7 @@ const withSlide = (wrappedComponent, selectData, setBook) => {
                     <Card.Body>
                       <Card.Title>{book.title}</Card.Title>
                       <Card.Text>{book.authors[0]}</Card.Text>
-                      <AddOrRemoveBook bookId={book.bookId} />
+                      <AddOrRemoveBook bookId={book.bookId} listName={selectData.title} functionality={'remove'} />
                     </Card.Body>
                   </Card>
                 </div>
