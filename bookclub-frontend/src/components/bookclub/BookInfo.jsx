@@ -2,6 +2,8 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles';
+import AddOrRemoveBook from './AddOrRemoveBook';
+
 import '@fontsource/roboto';
 
 const BookInfo = (props) => {
@@ -51,7 +53,16 @@ const BookInfo = (props) => {
       // backgroundColor: '#20c997',
       // backgroundColor: 'yellow',
       display: 'flex',
-      justifyContent: 'center'
+      justifyContent: 'center',
+
+    },
+    buttonRow: {
+      // backgroundColor: '#20c997',
+      // backgroundColor: 'yellow',
+      // display: 'flex',
+      // justifyContent: 'center',
+      width: '75%',
+      paddingLeft: '25%'
     },
     titleRow: {
       display: 'flex',
@@ -108,6 +119,9 @@ const BookInfo = (props) => {
             </Grid>
             <Grid direction='row' className={classes.titleContainer}>
               <Typography className={classes.descriptionContainer} variant='subtitle1'>{props.book.description}</Typography>
+            </Grid>
+            <Grid direction="row" className={classes.buttonRow}>
+              <AddOrRemoveBook bookId={props.book.bookId} functionality={'both'} />
             </Grid>
           </Grid>
         </Grid>
