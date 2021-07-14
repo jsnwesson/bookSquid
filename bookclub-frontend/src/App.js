@@ -5,7 +5,6 @@ import SearchPage from './pages/search'
 import Book from './pages/book';
 import Landing from './pages/landing';
 import Profile from './pages/profile';
-import fire from './fire';
 import './App.css';
 import fire from './fire';
 
