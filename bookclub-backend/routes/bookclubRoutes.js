@@ -26,7 +26,7 @@ const Books = require ('../models/books');
 
 // search endpoint that queries google books api
 // will require both a query string and query type in its parameters
-bookclubRouter.post('/search', async (req, res) => {
+bookclubRouter.get('/search', async (req, res) => {
   // req.params should look like {query: 'asdf", type: 'author || title || genre'}
   let url = new URL('https://www.googleapis.com/books/v1/volumes');
   let params = ((type) => new URLSearchParams({
@@ -47,19 +47,23 @@ bookclubRouter.post('/search', async (req, res) => {
 bookclubRouter.post('/reviews', async (req, res) => {
   console.log('reviews post');
   let {bookId, body, title, rating} = req.body;
-  console.log(req.body);
+  let {uid} = req.headers;
   let date = new Date().toISOString();
   let review = new Reviews({
-    body,
-    title,
     rating,
-    date
+    uid,
+    reviewId: `${uid}::${bookId}3`,
+    date,
+    body,
+    title
   });
   try {
-    let res = review.save();
-    console.log('success')
+    let response = await review.save();
+    console.log('success');
+    res.sendStatus(201);
   } catch (e) {
-    console.log('failure')
+    console.log('failure');
+    res.sendStatus(400);
   }
 });
 

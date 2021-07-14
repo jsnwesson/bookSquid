@@ -121,22 +121,6 @@ export const specificBookData = async (bookId) => {
   }
 };
 
-export const postBookReview = async (body, title, rating, bookId) => {
-  console.log('running service');
-  const header = await createToken();
-  const payload = {
-    body,
-    rating,
-    title,
-    bookId
-  }
-  try {
-    const res = await axios.post(url + '/reviews', payload, header)
-    return res.data
-  } catch (e) {
-    console.error(e);
-  }
-};
   /** response returns: status code 200
   *  response.data = {
   *    description: 'STRING',
@@ -147,5 +131,5 @@ export const postBookReview = async (body, title, rating, bookId) => {
   *    image: 'STRING', // this should be the larger image
   *  }
   */
-};
+
 
