@@ -5,6 +5,7 @@ import SearchPage from './pages/search'
 import Book from './pages/book';
 import Landing from './pages/landing';
 import Profile from './pages/profile';
+import fire from './fire';
 import './App.css';
 
 function App() {
@@ -14,8 +15,9 @@ function App() {
   const [book, setBook] = useState(0);
   const [searchResults, setSearchResults] = useState([]);
 
-
-
+  fire.auth().onAuthStateChanged((user) => {
+    return user ? setIsLoggedIn(true) : setIsLoggedIn(false);
+  });
 
   return (
 
