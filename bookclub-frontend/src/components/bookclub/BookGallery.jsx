@@ -61,7 +61,7 @@ const withSlide = (wrappedComponent, selectData, setBook) => {
                     <Card.Body>
                       <Card.Title>{book.title}</Card.Title>
                       <Card.Text>{book.authors[0]}</Card.Text>
-                      <AddOrRemoveBook bookId={book.bookId} functionality={'both'} />
+                      <AddOrRemoveBook bookId={book.bookId} />
                     </Card.Body>
                   </Card>
                 </div>

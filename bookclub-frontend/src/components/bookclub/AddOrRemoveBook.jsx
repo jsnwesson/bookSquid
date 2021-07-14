@@ -14,23 +14,10 @@ const AddOrRemoveBook = (props) => {
   const [listName, setListName] = useState('')
 
   /*
-  QUESTIONS FOR LATER if it is rendered in a list... then.. could we pass it props for the current list and bookId
-  (this would eliminate the need for a selection menu) --exept for when it is rendered within the search page. or on a book page...
-
-  INSTRUCTIONS FOR PROPS FOR EACH PAGE
-    - SEARCH PAGE [bookId, functionality={'remove'}]
-    - BOOK PAGE [bookId, functionality={'both'}]
-    - LANDING PAGE [bookId, functionality={'both'}]
-    - PROFILE PAGE [bookId, functionality={'both'}]
-
-
-
-
   if props.add === false then FUNCTIONALITY=delete
   if props.add === true then FUNCTIONALITY=add
 
   bookId --- props.bookId
-  name of list --- props.listName
   */
   const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -86,27 +73,20 @@ const AddOrRemoveBook = (props) => {
         <FormHelperText>Select a list</FormHelperText>
       </FormControl>
 
-      {props.functionality === 'both' ?
-        <Grid container item direction="row" >
-          <IconButton aria-label="add button" onClick={() => {
-            handleSubmit(1)
-          }}>
-            <LibraryBooksIcon type="submit" />
-          </IconButton>
 
-          <IconButton aria-label="delete button" onClick={() => {
-            handleSubmit(2)
-          }}>
-            <DeleteForeverTwoToneIcon type="submit" />
-          </IconButton>
-        </Grid>
-        :
+      <Grid container item direction="row" >
+        <IconButton aria-label="add button" onClick={() => {
+          handleSubmit(1)
+        }}>
+          <LibraryBooksIcon type="submit" />
+        </IconButton>
+
         <IconButton aria-label="delete button" onClick={() => {
           handleSubmit(2)
         }}>
           <DeleteForeverTwoToneIcon type="submit" />
         </IconButton>
-      }
+      </Grid>
 
     </Grid>
   )
