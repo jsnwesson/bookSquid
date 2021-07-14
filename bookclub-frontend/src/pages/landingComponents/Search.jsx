@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -25,16 +25,16 @@ const Search = (props) => {
 
   return (
 
-      <Container  fluid id="landingSearch">
-        <Row id="landingSearch" className="align-items-center justify-items-center">
-          <Col xs={3}></Col>
-          <Col xs={6}>
-            <Form >
-              <FormControl style={{padding: "12px", marginBottom: "3vh"}} type="text" placeholder="Search Books, Authors or Genres!" onChange={handleInputChange}></FormControl>
-            </Form>
-          </Col>
-        </Row>
-      </Container>
+    <Container fluid id="landingSearch">
+      <Row id="landingSearch" className="align-items-center justify-items-center">
+        <Col xs={3}></Col>
+        <Col xs={6}>
+          <Form >
+            <FormControl style={{ padding: "12px", marginBottom: "3vh" }} type="text" placeholder="Search Books, Authors or Genres!" onChange={handleInputChange}></FormControl>
+          </Form>
+        </Col>
+      </Row>
+    </Container>
 
   )
 
