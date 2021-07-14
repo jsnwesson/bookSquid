@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { alpha, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -16,13 +15,14 @@ import FormControl from '@material-ui/core/FormControl'
 import InputLabel from '@material-ui/core/InputLabel'
 import Login from '../sessions/Login.jsx';
 import SignOut from '../sessions/SignOut.jsx';
-// import Squid from './assets/Squid-Logo.png';
 import Logo from '../../pages/landingComponents/assets/bookSquid.svg';
-import { searchByCategory } from '../../services/bookclubServices.js'
+import { searchByCategory } from '../../services/bookclubServices.js';
+import Grid from '@material-ui/core/Grid';
+// import Squid from './assets/Squid-Logo.png';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
-    flexGrow: 1,
+    flexGrow: 0,
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -71,20 +71,15 @@ const useStyles = makeStyles((theme) => ({
       width: '20ch',
     },
   },
-  sectionDesktop: {
-    display: 'none',
-    [theme.breakpoints.up('md')]: {
-      display: 'flex',
-    },
-  },
   dropdown: {
     width: '5vw',
-
   },
   profileIcon: {
-    height: '10hv',
-    margin: '10px',
-    padding: '10px'
+    fontSize: '50px',
+    margin: '20px'
+  },
+  signOut: {
+    display: 'flex-end'
   }
 }));
 
@@ -96,7 +91,6 @@ const Header = (props) => {
   const [searchCategory, setSearchCategory] = useState('');
 
 
-
   const handleSearchInput = (e) => {
     setSearchInput(e.target.value);
     console.log(searchInput)
@@ -105,11 +99,13 @@ const Header = (props) => {
     setSearchCategory(e.target.value);
 
   }
-  const handleSearchSubmit = () => {
-    searchByCategory(null, searchInput)
-      .then((results) => {
-        props.setSearchResults(results)
-      })
+  const handleSearchSubmit = (e) => {
+    if (searchInput) {
+      searchByCategory(null, searchInput)
+        .then((results) => {
+          props.setSearchResults(results)
+        })
+    }
   }
 
 
@@ -118,65 +114,86 @@ const Header = (props) => {
     <div className={classes.grow}>
       <AppBar position="sticky">
         <Toolbar>
-          <Link to='/'>
-            <ButtonBase >
 
+          <Grid container>
 
-              <Typography className={classes.title} variant="h6" noWrap>
-                <img alt='' src={Logo} className="logo" />
-              </Typography>
-            </ButtonBase>
-          </Link>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              onChange={handleSearchInput}
-              placeholder="Search..."
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
-            <FormControl>
-              <InputLabel>Category</InputLabel>
-              <Select default="title" className={classes.dropdown} value='' variant="filled" label="Category" onChange={handleCategorySelect}>
-                <MenuItem disabled>Category</MenuItem>
-                <MenuItem value='title'>Title</MenuItem>
-                <MenuItem value='author'>Author</MenuItem>
-                <MenuItem value='genre'>Genre</MenuItem>
-              </Select>
-            </FormControl>
-          </div>
-          <Link to={'/search'}>
-            <Button variant="contained" onClick={handleSearchSubmit}>Search</Button>
-          </Link>
-          <div className={classes.grow} />
-          <div className={classes.sectionDesktop}>
-            {!props.isLoggedIn
-              ? <IconButton>
-                <Login
-                  setIsLoggedIn={props.setIsLoggedIn}
-                  setUidCookie={props.setUidCookie}
-                  setEmailCookie={props.setEmailCookie} />
-              </IconButton>
-              : <div>
-                <Link to='/profile'>
-                  <ButtonBase className={classes.profileIcon}>
-                    <AccountCircle size={'large'} />
-                  </ButtonBase>
-                </Link>
-                <SignOut
-                  removeEmailCookie={props.removeEmailCookie}
-                  removeUidCookie={props.removeUidCookie}
-                  setIsLoggedIn={props.setIsLoggedIn}
-                />
+            <Grid item>
+              <Link to='/'>
+                <ButtonBase >
+                  <Typography className={classes.title} variant="h6" noWrap>
+                    <img alt='' src={Logo} className="logo" />
+                  </Typography>
+                </ButtonBase>
+              </Link>
+            </Grid>
+
+            <Grid item>
+              {props.searchIsTrue
+                ? null
+                : <div className={classes.search}>
+                  <div className={classes.searchIcon}>
+                    <SearchIcon />
+                  </div>
+                  <InputBase
+                    onChange={handleSearchInput}
+                    placeholder="Search..."
+                    classes={{
+                      root: classes.inputRoot,
+                      input: classes.inputInput,
+                    }}
+                    inputProps={{ 'aria-label': 'search' }}
+                  />
+                  <FormControl>
+                    <InputLabel>Category</InputLabel>
+                    <Select default="title" className={classes.dropdown} value='' variant="filled" label="Category" onChange={handleCategorySelect}>
+                      <MenuItem disabled>Category</MenuItem>
+                      <MenuItem value='title'>Title</MenuItem>
+                      <MenuItem value='author'>Author</MenuItem>
+                      <MenuItem value='genre'>Genre</MenuItem>
+                    </Select>
+                  </FormControl>
+                  <Link to={'/search'}>
+                    <Button variant="contained" onClick={handleSearchSubmit}>Search</Button>
+                  </Link>
+                </div>
+              }
+            </Grid>
+
+            <Grid item>
+              <div className={classes.grow} />
+              <div className={classes.sectionDesktop}>
+                {!props.isLoggedIn
+                  ? <Login
+                    setIsLoggedIn={props.setIsLoggedIn}
+                    setUidCookie={props.setUidCookie}
+                    setEmailCookie={props.setEmailCookie} />
+
+                  : <div>
+                    <Grid container>
+                      <Grid item>
+                        <Link to='/profile'>
+                          <ButtonBase >
+                            <AccountCircle className={classes.profileIcon} />
+                          </ButtonBase>
+                        </Link>
+                      </Grid>
+
+                      <Grid item className={classes.signOut}>
+                        <SignOut
+                          removeEmailCookie={props.removeEmailCookie}
+                          removeUidCookie={props.removeUidCookie}
+                          setIsLoggedIn={props.setIsLoggedIn}
+                        />
+
+                      </Grid>
+
+                    </Grid>
+                  </div>
+                }
               </div>
+            </Grid>
 
-            }
-          </div>
+          </Grid>
         </Toolbar>
       </AppBar>
     </div >
