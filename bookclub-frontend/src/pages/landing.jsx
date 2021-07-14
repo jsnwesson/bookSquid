@@ -1,30 +1,16 @@
 import React from 'react';
 import fire from '../fire';
 import Login from '../components/sessions/Login';
-// import ListReadBooks from '../components/bookclub/ListReadBooks';
 import SignOut from '../components/sessions/SignOut';
 import { Link } from 'react-router-dom';
-//import { getReadBookList } from '../services/bookclubServices';
 import { Button } from 'react-bootstrap';
 import LandingPage from './landingComponents/LandingPage.jsx'
 
 const Landing = (props) => {
-  // const [books, setBooks] = useState();
-  // const [book, setBook] = useState(0);
 
   fire.auth().onAuthStateChanged((user) => {
     return user ? props.setIsLoggedIn(true) : props.setIsLoggedIn(false);
   });
-
-  // useEffect(() => {
-  //   const fetchBooks = async () => {
-  //     if (props.isLoggedIn) {
-  //       const fetchedBooks = await getReadBookList();
-  //       setBooks(fetchedBooks)
-  //     }
-  //   }
-  //   fetchBooks();
-  // }, [props.isLoggedIn]);
 
   return (
     <div>
