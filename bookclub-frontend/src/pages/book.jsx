@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import Login from '../components/sessions/Login';
 import SignOut from '../components/sessions/SignOut';
 import BookInfo from '../components/bookclub/BookInfo';
+import ReviewButtons from '../components/review/ReviewButtons';
+import Review from '../components/review/Review.jsx';
 
 const Book = (props) => {
 
@@ -55,6 +57,7 @@ const Book = (props) => {
           <h3>Things that should be on the book page should be here for user that is logged in</h3>
           <BookInfo book={props.book} />
           <h3>reviews below</h3>
+          <Review />
         </>
       )}
     </div>
