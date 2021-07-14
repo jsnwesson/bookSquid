@@ -5,15 +5,10 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
-import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import MailIcon from '@material-ui/icons/Mail';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import MoreIcon from '@material-ui/icons/MoreVert';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button'
 import ButtonBase from '@material-ui/core/ButtonBase'
@@ -65,6 +60,7 @@ const useStyles = makeStyles((theme) => ({
   },
   inputRoot: {
     color: 'inherit',
+    fontSize: '16pt'
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
@@ -82,14 +78,14 @@ const useStyles = makeStyles((theme) => ({
       display: 'flex',
     },
   },
-  sectionMobile: {
-    display: 'flex',
-    [theme.breakpoints.up('md')]: {
-      display: 'none',
-    },
-  },
   dropdown: {
-    width: '100px'
+    width: '5vw',
+
+  },
+  profileIcon: {
+    height: '10hv',
+    margin: '10px',
+    padding: '10px'
   }
 }));
 
@@ -102,8 +98,7 @@ const Header = (props) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
-  const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
   const handleSearchInput = (e) => {
     setSearchInput(e.target.value);
     console.log(searchInput)
@@ -116,41 +111,21 @@ const Header = (props) => {
     // searchByCategory(searchCategory, searchInput)
     /////////////////////////////////////////////////////////////
   }
-  const handleProfileMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
 
-  const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
-  };
-
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-    handleMobileMenuClose();
-  };
-
-  const handleMobileMenuOpen = (event) => {
-    setMobileMoreAnchorEl(event.currentTarget);
-  };
 
   useEffect(() => {
     console.log(searchCategory)
   }, [searchCategory])
 
 
-
-  const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
       anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      id={menuId}
       keepMounted
       transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      <MenuItem>Profile</MenuItem>
     </Menu>
   );
 
@@ -192,7 +167,7 @@ const Header = (props) => {
               </Select>
             </FormControl>
           </div>
-          <Button onclick={handleSearchSubmit}>Search</Button>
+          <Button variant="contained" onclick={handleSearchSubmit}>Search</Button>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             {!props.isLoggedIn
@@ -202,10 +177,10 @@ const Header = (props) => {
                   setUidCookie={props.setUidCookie}
                   setEmailCookie={props.setEmailCookie} />
               </IconButton>
-              : <IconButton>
+              : <div>
                 <Link to='/profile'>
-                  <ButtonBase>
-                    <AccountCircle />
+                  <ButtonBase className={classes.profileIcon}>
+                    <AccountCircle size={'large'} />
                   </ButtonBase>
                 </Link>
                 <SignOut
@@ -213,20 +188,9 @@ const Header = (props) => {
                   removeUidCookie={props.removeUidCookie}
                   setIsLoggedIn={props.setIsLoggedIn}
                 />
-              </IconButton>
+              </div>
+
             }
-
-          </div>
-          <div className={classes.sectionMobile}>
-            <IconButton
-              aria-label="show more"
-
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
           </div>
         </Toolbar>
       </AppBar>
