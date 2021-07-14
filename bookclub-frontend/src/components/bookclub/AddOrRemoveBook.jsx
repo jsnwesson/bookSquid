@@ -1,17 +1,9 @@
-import React, { useState } from 'react';
-// import { addToReadBookList } from '../../services/bookclubServices';
-import LibraryBooksIcon from '@material-ui/icons/LibraryBooksIcon';
+import React, { useState, useEffect } from 'react';
+import { makeStyles, IconButton, MenuItem, Grid, FormHelperText, FormControl, Select } from '@material-ui/core';
+import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
 import DeleteForeverTwoToneIcon from '@material-ui/icons/DeleteForeverTwoTone';
-import { IconButton, MenuItem, Grid, FormHelperText, FormControl, Select, makeStyles } from '@material-ui/core';
-// import MenuItem from '@material-ui/core/MenuItem';
-// import Grid from '@material-ui/core/Grid';
-// import FormHelperText from '@material-ui/core/FormHelperText';
-// import FormControl from '@material-ui/core/FormControl';
-// import Select from '@material-ui/core/Select';
-// import { makeStyles } from '@material-ui/core/styles';
-
 const AddOrRemoveBook = (props) => {
-  let clicked;
+  const [changed, setChanged] = useState('')
   const [listName, setListName] = useState('')
 
   /*
@@ -45,24 +37,26 @@ const AddOrRemoveBook = (props) => {
   const classes = useStyles();
 
   const handleSubmit = (option) => {
-    clicked = true;
-    if (clicked === true && option === 1) {
+
+    if (changed === true && option === 1) {
       // add to a selected list
-      alert(`these are your selections...${props.bookId} and ${listName}`)
-    } else if (clicked === true && option === 2) {
+      alert(`these are your selections... you will be adding book: ${props.bookId} to: ${listName} `)
+    } else if (changed === true && option === 2) {
       // remove from selected list
-      alert(`these are your selections...${props.bookId} and ${listName}`)
-    } else if (clicked === false && option === 1) {
+      alert(`these are your selections... you will be removing book: ${props.bookId} from: ${listName} `)
+    } else if (changed === false && option === 1) {
       alert('you have not selected a list to add to')
-    } else if (clicked === false && option === 2) {
+    } else if (changed === false && option === 2) {
       alert('you have not selected a list to add to delete from')
     }
-
-
   };
+
   const handleChange = (event) => {
     setListName(event.target.value)
   }
+  useEffect(() => {
+    setChanged(true)
+  }, [listName])
   return (
     <Grid container item direction='row'>
 

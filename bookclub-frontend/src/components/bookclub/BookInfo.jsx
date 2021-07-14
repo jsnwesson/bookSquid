@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, Typography, makeStyles } from '@material-ui/core'
 import '@fontsource/roboto';
-// import { specificBookData } from '../services/bookclubServices';
+
 const BookInfo = (props) => {
   /*
   console.log(props.book)
