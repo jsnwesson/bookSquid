@@ -46,6 +46,7 @@ function App() {
               emailCookie={emailCookie}
               setEmailCookie={setEmailCookie}
               removeEmailCookie={removeEmailCookie}
+              setSearchResults={setSearchResults}
               book={book}
             />
           </Route>
@@ -59,6 +60,7 @@ function App() {
               emailCookie={emailCookie}
               setEmailCookie={setEmailCookie}
               removeEmailCookie={removeEmailCookie}
+              setSearchResults={setSearchResults}
               setBook={setBook}
             />
           </Route>
