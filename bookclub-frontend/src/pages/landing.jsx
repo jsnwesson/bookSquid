@@ -37,7 +37,7 @@ const Landing = (props) => {
         emailCookie={props.emailCookie}
         setEmailCookie={props.setEmailCookie}
         removeEmailCookie={props.removeEmailCookie}
-
+        setSearchResults={props.setSearchResults}
       />
 
       {/* <div className="App">

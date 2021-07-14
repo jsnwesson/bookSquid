@@ -6,7 +6,6 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Select from '@material-ui/core/Select';
@@ -19,7 +18,7 @@ import Login from '../sessions/Login.jsx';
 import SignOut from '../sessions/SignOut.jsx';
 // import Squid from './assets/Squid-Logo.png';
 import Logo from '../../pages/landingComponents/assets/bookSquid.svg';
-// import searchByCategory from '../../services/bookclubServices.js'
+import { searchByCategory } from '../../services/bookclubServices.js'
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -95,8 +94,7 @@ const Header = (props) => {
   const classes = useStyles();
   const [searchInput, setSearchInput] = useState('')
   const [searchCategory, setSearchCategory] = useState('');
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+
 
 
   const handleSearchInput = (e) => {
@@ -105,29 +103,13 @@ const Header = (props) => {
   }
   const handleCategorySelect = (e) => {
     setSearchCategory(e.target.value);
-    console.log(searchCategory)
+
   }
   const handleSearchSubmit = () => {
-    // searchByCategory(searchCategory, searchInput)
-    /////////////////////////////////////////////////////////////
+    let results = searchByCategory(null, searchInput)
+    // console.log(results)
+    props.setSearchResults(results)
   }
-
-
-  useEffect(() => {
-    console.log(searchCategory)
-  }, [searchCategory])
-
-
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-    >
-      <MenuItem>Profile</MenuItem>
-    </Menu>
-  );
 
 
 
@@ -161,13 +143,13 @@ const Header = (props) => {
               <InputLabel>Category</InputLabel>
               <Select default="title" className={classes.dropdown} value='' variant="filled" label="Category" onChange={handleCategorySelect}>
                 <MenuItem disabled>Category</MenuItem>
-                <MenuItem value="title">Title</MenuItem>
+                <MenuItem value='title'>Title</MenuItem>
                 <MenuItem value='author'>Author</MenuItem>
                 <MenuItem value='genre'>Genre</MenuItem>
               </Select>
             </FormControl>
           </div>
-          <Button variant="contained" onclick={handleSearchSubmit}>Search</Button>
+          <Button variant="contained" onClick={handleSearchSubmit}>Search</Button>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             {!props.isLoggedIn
@@ -194,91 +176,8 @@ const Header = (props) => {
           </div>
         </Toolbar>
       </AppBar>
-
-      {renderMenu}
     </div>
   );
-
-
-
-
-
-
-
-
-  // {/* <Navbar className="navBar" variant="light" expand="lg" sticky="top">
-  //   <Container>
-  //     <Row>
-  //       <Col xs={7}>
-  //         <Navbar.Brand href="#home"><img alt='' src={Logo} className="logo"/></Navbar.Brand>
-  //       </Col>
-  //       <Col>
-
-
-
-  //   <Navbar.Toggle aria-controls="basic-navbar-nav" />
-  //   <Navbar.Collapse id="basic-navbar-nav">
-
-  //     <Form inline>
-  //       <Row>
-  //         <Col>
-  //           <FormControl type="text" placeholder="Search Books, Authors or Genres" className=" mr-sm-2" onChange={handleSearchInput}/>
-  //         </Col>
-
-  //         {/* <Col>
-  //           <NavDropdown variant="secondary" title="Category" id="basic-nav-dropdown" onChange={handleCategorySelect}>
-  //             <NavDropdown.Item value='title'>Title</NavDropdown.Item>
-  //             <NavDropdown.Item value='author'>Author</NavDropdown.Item>
-  //             <NavDropdown.Item value='genre'>Genre</NavDropdown.Item>
-  //           </NavDropdown>
-  //         </Col> *
-
-  //       </Row>
-  //     </Form>
-  //     <Col>
-  //       <Dropdown onSelect={handleCategorySelect}>
-  //       <Dropdown.Toggle variant="success" id="dropdown-basic">
-  //     Dropdown Button
-  //       </Dropdown.Toggle>
-
-  //         <Dropdown.Item>Title</Dropdown.Item>
-  //         <Dropdown.Item value="author">Author</Dropdown.Item>
-  //         <Dropdown.Item value="genre">Genre</Dropdown.Item>
-  //       </Dropdown>
-  //     </Col>
-
-  //     <Col>
-  //           {searchCategory
-  //             ? <Button variant="outline-success" onClick={handleSearchSubmit}>Search</Button>
-  //             : <Button disabled variant="outline-success">Search</Button>
-  //           }
-  //         </Col>
-
-  //     {!props.isLoggedIn
-  //         ? <Login setIsLoggedIn={props.setIsLoggedIn} setUidCookie={props.setUidCookie} setEmailCookie={props.setEmailCookie} />
-  //         : <Container >
-  //             <Row>
-  //               {/* <Col>
-  //                 <div>avatar</div>
-  //               </Col> *
-  //               <Col>
-  //                 <SignOut
-  //                   removeEmailCookie={props.removeEmailCookie}
-  //                   removeUidCookie={props.removeUidCookie}
-  //                   setIsLoggedIn={props.setIsLoggedIn}
-  //                 />
-  //               </Col>
-  //             </Row>
-  //           </Container>
-  //         }
-
-
-  //         </Navbar.Collapse>
-  //       </Col>
-  //     </Row>
-  //   </Container>
-  // </Navbar> */}
-
 }
 
 export default Header;

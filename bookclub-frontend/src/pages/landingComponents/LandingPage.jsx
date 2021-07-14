@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Header from '../../components/bookclub/Header.jsx';
 import Search from './Search.jsx';
@@ -19,7 +19,7 @@ const LandingPage = (props) => {
 
 
 
-  return(
+  return (
     <div>
       <Header
         isLoggedIn={props.isLoggedIn}
@@ -30,6 +30,7 @@ const LandingPage = (props) => {
         emailCookie={props.emailCookie}
         setEmailCookie={props.setEmailCookie}
         removeEmailCookie={props.removeEmailCookie}
+        setSearchResults={props.setSearchResults}
       />
       <Search />
       <Carousel />

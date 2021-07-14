@@ -138,9 +138,9 @@ export const searchByCategory = async (category, searchInput) => {
     searchInput,
   }
   try {
-    const promise1 = axios.get(`${url}/books/search`, payload, header)
+    // const promise1 = axios.get(`${url}/books/search`, payload, header)
     const promise2 = axios.get(`https://www.googleapis.com/books/v1/volumes?q=${searchInput}&maxResults=20`);
-    Promise.all([promise1, promise2])
+    Promise.all([promise2])
       .then((res) => {
         return res.data
       })
