@@ -11,6 +11,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [uidCookie, setUidCookie, removeUidCookie] = useCookies(['UID']);
   const [emailCookie, setEmailCookie, removeEmailCookie] = useCookies(['email']);
+  const [book, setBook] = useState(0);
   const [searchResults, setSearchResults] = useState([]);
 
   // useEffect(() => {
@@ -47,6 +48,7 @@ function App() {
               emailCookie={emailCookie}
               setEmailCookie={setEmailCookie}
               removeEmailCookie={removeEmailCookie}
+              book={book}
             />
           </Route>
           <Route path="/profile">
@@ -59,6 +61,7 @@ function App() {
               emailCookie={emailCookie}
               setEmailCookie={setEmailCookie}
               removeEmailCookie={removeEmailCookie}
+              setBook={setBook}
             />
           </Route>
           <Route path="/">
