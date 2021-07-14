@@ -24,6 +24,7 @@ const Landing = (props) => {
         setEmailCookie={props.setEmailCookie}
         removeEmailCookie={props.removeEmailCookie}
         setSearchResults={props.setSearchResults}
+        setBook={props.setBook}
       />
     </div>);
 }
