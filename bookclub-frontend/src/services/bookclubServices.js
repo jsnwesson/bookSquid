@@ -10,11 +10,7 @@ const createToken = async () => {
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
-<<<<<<< HEAD
       uid: token ? user.uid : ''
-=======
-      //uid: user.uid,
->>>>>>> 8e035f2a817bc440c8decb9beb8e5ab390301600
     },
   };
   if (user.uid) {
