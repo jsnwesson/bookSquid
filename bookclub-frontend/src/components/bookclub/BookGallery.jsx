@@ -1,8 +1,9 @@
 import React from 'react';
 import Slider from 'react-slick';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+// import Row from 'react-bootstrap/Row';
+// import Col from 'react-bootstrap/Col';
 import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid'
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
@@ -20,6 +21,10 @@ const UseStyles = makeStyles (() => ({
   },
   media: {
     height: 300,
+  },
+  content: {
+    display: 'flex',
+    justifyContent: 'center',
   },
 })
 );
@@ -63,39 +68,37 @@ const withSlide = (wrappedComponent, selectData, setBook) => {
   const classes = UseStyles();
   return (
     <div>
-      <Row>
-        <Col>
-          <h2>{selectData.title}</h2>
-          <Slider className='slider' {...settings}>
-            {selectData.list.map((book) => {
-              return (
-                <div key={book.bookId}>
-                  <Card className={classes.root}>
-                    <CardActionArea>
-                      <Link onClick={() => { setBook(book) }} to={`/book/${book.bookId}`}>
-                        <CardMedia
-                          className={classes.media}
-                          image={book.thumbnail}
-                          title={book.title}
-                        />
-                      </Link>
-                      <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
-                          {book.title}
-                        </Typography>
-                        <Typography variant="body2" color="textSecondary" component="p">
-                          {book.authors[0]}
-                        </Typography>
-                      </CardContent>
-                        {(selectData.removeBook) ? <AddOrRemoveBook bookId={book.bookId} listName={selectData.title} functionality={'remove'} />: <></>}
-                    </CardActionArea>
-                  </Card>
-                </div>
-              )
-            })}
-          </Slider>
-        </Col>
-      </Row>
+      <Grid item direction='row'>
+        <h2>{selectData.title}</h2>
+        <Slider className='slider' {...settings}>
+          {selectData.list.map((book) => {
+            return (
+              <div key={book.bookId}>
+                <Card className={classes.root}>
+                  <CardActionArea>
+                    <Link onClick={() => { setBook(book) }} to={`/book/${book.bookId}`}>
+                      <CardMedia
+                        className={classes.media}
+                        image={book.thumbnail}
+                        title={book.title}
+                      />
+                    </Link>
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="h2">
+                        {book.title}
+                      </Typography>
+                      <Typography variant="body2" color="textSecondary" component="p">
+                        {book.authors[0]}
+                      </Typography>
+                    </CardContent>
+                      {(selectData.removeBook) ? <AddOrRemoveBook bookId={book.bookId} listName={selectData.title} functionality={'remove'} />: <></>}
+                  </CardActionArea>
+                </Card>
+              </div>
+            )
+          })}
+        </Slider>
+      </Grid>
     </div>
   );
 }
