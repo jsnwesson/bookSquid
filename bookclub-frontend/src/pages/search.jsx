@@ -29,6 +29,7 @@ function SearchPage(props) {
         setEmailCookie={props.setEmailCookie}
         removeEmailCookie={props.removeEmailCookie}
         setSearchResults={props.setSearchResults}
+
       />
       <Search
         isLoggedIn={props.isLoggedIn}
