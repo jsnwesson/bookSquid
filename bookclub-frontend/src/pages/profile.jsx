@@ -13,21 +13,23 @@ const Profile = (props) => {
     title: 'Favorites',
     className: 'fave',
     list: favorites, // <-- name of array of book objects
+    removeBook: true,
   };
   const prevList = {
     title: 'Previously Read',
     className: 'prevRead',
     list: previouslyRead,
+    removeBook: true,
   }
   const toReadList = {
     title: 'Want to Read',
     className: 'toRead',
     list: wantToRead,
+    removeBook: true,
   }
 
   return (
-    <div>
-      <>
+    <div key={props.emailCookie.UID}>
         <Header
           isLoggedIn={props.isLoggedIn}
           setIsLoggedIn={props.setIsLoggedIn}
@@ -39,7 +41,6 @@ const Profile = (props) => {
           removeEmailCookie={props.removeEmailCookie}
           setSearchResults={props.setSearchResults}
         />
-      </>
       <Container fluid='sm'>
         {withSlide(faves, faveList, props.setBook)}
         {withSlide(prevRead, prevList, props.setBook)}
