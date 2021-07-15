@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import fire from '../../fire.js';
+import { createUser } from '../../services/bookclubServices';
 
 function Login(props) {
   const [email, setEmail] = useState();
@@ -33,7 +34,8 @@ function Login(props) {
         let d = new Date();
         d.setTime(d.getTime() + (60 * 60 * 1000));
         props.setUidCookie('UID', userRecord.user.uid, true, { path: '/', expires: d });
-        props.setEmailCookie('email', userRecord.user.email, true, { path: '/', expires: d })
+        props.setEmailCookie('email', userRecord.user.email, true, { path: '/', expires: d });
+        createUser(userRecord.user.uid, userName, userRecord.user.email, d);
       })
       .catch((error) => {
         console.log(error);
