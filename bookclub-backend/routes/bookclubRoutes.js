@@ -7,6 +7,7 @@ const Books = require('../models/books');
 const Users = require('../models/users');
 
 /////////////////////////////////// book endpoints ///////////////////////////////////////////
+
 // get recently reviewed books
 bookclubRouter.get('/books/recentlyReviewed', async (req, res) => {
   console.log('get recently reviewed books');
