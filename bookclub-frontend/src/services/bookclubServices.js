@@ -39,6 +39,7 @@ export const postBookReview = async (body, title, rating, bookId) => {
 
 export const getBookReviews = async (bookId) => {
   const header = await createToken();
+  console.log(bookId);
   try {
     const res = await axios.get(url + `/reviews/${bookId}`, header)
     return res.data
@@ -63,6 +64,7 @@ export const carouselMetaData = async () => {
     return res.data
   } catch (e) {
     console.error(e);
+
   }
   /** response returns:
 
@@ -102,11 +104,13 @@ export const carouselMetaData = async () => {
 export const specificBookData = async (bookId) => {
   const header = await createToken();
   try {
-    const res = await axios.post(`${url}/books/${bookId}`, null, header)
+    const res = await axios.get(`${url}/books/${bookId}`, header)
     return res.data
   } catch (e) {
     console.error(e);
   }
+};
+
   /** response returns: status code 200
   *  response.data = {
   *    description: 'STRING',
@@ -117,7 +121,7 @@ export const specificBookData = async (bookId) => {
   *    image: 'STRING', // this should be the larger image
   *  }
   */
-};
+
 
 
 export const searchByCategory = async (searchInput) => {
@@ -190,6 +194,17 @@ export const removeFromList = async (listName, bookId) => {
   }
 };
 
+
+export const getUserData = async () => {
+  const header = await createToken();
+  try {
+    const res = await axios.get(`${url}/user/profile`, header);
+    console.log(res.data);
+  } catch (e) {
+    console.error(e);
+  }
+}
+
 export const addBookToMongo = async (book) => {
   const header = await createToken();
   try {
@@ -198,5 +213,4 @@ export const addBookToMongo = async (book) => {
   } catch (e) {
     console.error(e);
   }
-};
-
+}
