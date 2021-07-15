@@ -178,3 +178,18 @@ export const searchByCategory = async (searchInput) => {
   if the book title was not in our databas then all of the objects in the array will be in googles API response format
   */
 };
+
+export const createUser = async (uid, name, email, date) => {
+  const payload = {
+    uid,
+    name,
+    email,
+    date: date.toISOString(),
+  }
+  try {
+    const res = await axios.post(url + '/user/create', payload)
+    return res.data
+  } catch (e) {
+    console.error(e);
+  }
+};
