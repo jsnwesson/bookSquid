@@ -99,7 +99,6 @@ export const specificBookData = async (bookId) => {
 export const searchByCategory = async (searchInput) => {
   try {
     const res = await axios.get(`${url}/books/search/${searchInput}`)
-    // console.log(res.data)
     return res.data
   }
   catch (e) {

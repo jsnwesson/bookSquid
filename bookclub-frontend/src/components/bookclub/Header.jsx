@@ -14,11 +14,7 @@ import Login from '../sessions/Login.jsx';
 import SignOut from '../sessions/SignOut.jsx';
 import Logo from '../../pages/landingComponents/assets/bookSquid.svg';
 import { searchByCategory } from '../../services/bookclubServices.js';
-// import MenuItem from '@material-ui/core/MenuItem';
-// import Select from '@material-ui/core/Select';
-// import FormControl from '@material-ui/core/FormControl'
-// import InputLabel from '@material-ui/core/InputLabel'
-// import Squid from './assets/Squid-Logo.png';
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -103,8 +99,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#004D86'
   },
   loginSignOut: {
-    // color: '#FEE4EA',
-    // border: '2px solid red'
+
   },
   logo: {
     height: '10vh',
@@ -115,25 +110,19 @@ const useStyles = makeStyles((theme) => ({
 
 const Header = (props) => {
   const classes = useStyles();
-  const [searchInput, setSearchInput] = useState("");
-  const [searchCategory, setSearchCategory] = useState("");
+  const [searchInput, setSearchInput] = useState();
 
   const handleSearchInput = (e) => {
     setSearchInput(e.target.value);
-    console.log(searchInput);
   };
-  const handleCategorySelect = (e) => {
-    setSearchCategory(e.target.value);
 
 
-  }
   const handleSearchSubmit = () => {
     searchByCategory(searchInput).then((results) => {
-      console.log('hello')
-      console.log(results)
-      // props.setSearchResults(results);
+      props.setSearchResults(results);
     });
   };
+
 
   return (
     <div className={classes.grow}>
@@ -173,15 +162,6 @@ const Header = (props) => {
                       }}
                       inputProps={{ 'aria-label': 'search' }}
                     />
-                    {/* <FormControl>
-                      <InputLabel>Category</InputLabel>
-                      <Select default="title" className={classes.dropdown} value='' variant="filled" label="Category" onChange={handleCategorySelect}>
-                        <MenuItem disabled>Category</MenuItem>
-                        <MenuItem value='title'>Title</MenuItem>
-                        <MenuItem value='author'>Author</MenuItem>
-                        <MenuItem value='genre'>Genre</MenuItem>
-                      </Select>
-                    </FormControl> */}
                   </Grid>
                   <Grid>
                     {searchInput

@@ -29,27 +29,19 @@ const useStyles = makeStyles((theme) => ({
 const LandingSearch = (props) => {
 
   const [searchInput, setSearchInput] = useState((''))
-  // const [Category, setCategory] = useState('')
-
   const classes = useStyles()
 
   const handleInputChange = (e) => {
     setSearchInput(e.target.value)
-    console.log(searchInput);
   }
-
-  // const handleCategorySelect = (e) => {
-  //   setCategory(e.target.value);
-  // }
 
   const handleSearchSubmit = () => {
-    if (searchInput) {
-      searchByCategory(searchInput)
-        .then((results) => {
-          props.setSearchResults(results)
-        })
-    }
-  }
+    searchByCategory(searchInput).then((results) => {
+      props.setSearchResults(results);
+    });
+  };
+
+
 
   return (
 
