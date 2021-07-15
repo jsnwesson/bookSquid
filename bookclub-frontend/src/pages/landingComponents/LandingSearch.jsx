@@ -24,8 +24,7 @@ const LandingSearch = (props) => {
   //   setCategory(e.target.value);
   // }
 
-  const handleSearchSubmit = (e) => {
-    e.preventDefault()
+  const handleSearchSubmit = () => {
     if (searchInput) {
       searchByCategory(null, searchInput)
         .then((results) => {
@@ -38,7 +37,9 @@ const LandingSearch = (props) => {
 
     <Container fluid id="landingSearch" style={{ backgroundImage: 'src()' }}>
       <Row id="landingSearch" className="align-items-center justify-items-center">
-        <Col xs={3}></Col>
+        <Col xs={3}>
+          {/* <img alt='' src={searchBackdrop} /> */}
+        </Col>
         <Col xs={6}>
           <Form >
             <FormControl

@@ -1,11 +1,6 @@
 import React from 'react';
-import fire from '../fire';
-import Login from '../components/sessions/Login';
-import SignOut from '../components/sessions/SignOut';
-import { Link } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
 import LandingPage from './landingComponents/LandingPage.jsx'
-import makeStyles from '@material-ui/core/styles/makeStyles'
+
 
 const Landing = (props) => {
 

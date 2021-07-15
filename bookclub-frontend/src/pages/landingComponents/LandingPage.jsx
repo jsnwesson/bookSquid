@@ -1,16 +1,23 @@
 import React, { useState, useEffect } from 'react';
+import { makeStyles } from '@material-ui/core/styles'
 import Header from '../../components/bookclub/Header.jsx';
 import LandingSearch from './LandingSearch.jsx';
 import Carousel from './Carousel.jsx';
 
+const useStyles = makeStyles((theme) => ({
+  container: {
+    marginTop: '5%'
+  }
+}))
+
+
 const LandingPage = (props) => {
 
-
-
+  const classes = useStyles();
 
 
   return (
-    <div>
+    <div className={classes.container}>
       <Header
         isLoggedIn={props.isLoggedIn}
         setIsLoggedIn={props.setIsLoggedIn}

@@ -75,11 +75,29 @@ const useStyles = makeStyles((theme) => ({
     width: '5vw',
   },
   profileIcon: {
-    fontSize: '50px',
-    margin: '20px'
+    fontSize: '35px',
+    margin: '20px',
+    color: 'white'
   },
-  signOut: {
-    display: 'flex-end'
+  buttons: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+  mainContent: {
+    display: 'flex',
+    justifyContent: 'space-between'
+  },
+  searchItems: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingTop: '1.5%'
+  },
+  searchButton: {
+    height: '100%'
+  },
+  appBar: {
+    height: '10%',
+    // boxShadow:
   }
 }));
 
@@ -112,10 +130,10 @@ const Header = (props) => {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="sticky">
+      <AppBar className={classes.appBar} >
         <Toolbar>
 
-          <Grid container>
+          <Grid container className={classes.mainContent}>
 
             <Grid item>
               <Link to='/'>
@@ -127,39 +145,48 @@ const Header = (props) => {
               </Link>
             </Grid>
 
-            <Grid item>
+
+            <Grid item className={classes.searchItems}>
               {props.searchIsTrue
-                ? null
-                : <div className={classes.search}>
-                  <div className={classes.searchIcon}>
-                    <SearchIcon />
-                  </div>
-                  <InputBase
-                    onChange={handleSearchInput}
-                    placeholder="Search..."
-                    classes={{
-                      root: classes.inputRoot,
-                      input: classes.inputInput,
-                    }}
-                    inputProps={{ 'aria-label': 'search' }}
-                  />
-                  <FormControl>
-                    <InputLabel>Category</InputLabel>
-                    <Select default="title" className={classes.dropdown} value='' variant="filled" label="Category" onChange={handleCategorySelect}>
-                      <MenuItem disabled>Category</MenuItem>
-                      <MenuItem value='title'>Title</MenuItem>
-                      <MenuItem value='author'>Author</MenuItem>
-                      <MenuItem value='genre'>Genre</MenuItem>
-                    </Select>
-                  </FormControl>
-                  <Link to={'/search'}>
-                    <Button variant="contained" onClick={handleSearchSubmit}>Search</Button>
-                  </Link>
-                </div>
+                ?
+                null
+                :
+
+                <Grid container item >
+
+                  <Grid item className={classes.search}>
+                    <div className={classes.searchIcon}>
+                      <SearchIcon />
+                    </div>
+                    <InputBase
+                      onChange={handleSearchInput}
+                      placeholder="Search..."
+                      classes={{
+                        root: classes.inputRoot,
+                        input: classes.inputInput,
+                      }}
+                      inputProps={{ 'aria-label': 'search' }}
+                    />
+                    {/* <FormControl>
+                      <InputLabel>Category</InputLabel>
+                      <Select default="title" className={classes.dropdown} value='' variant="filled" label="Category" onChange={handleCategorySelect}>
+                        <MenuItem disabled>Category</MenuItem>
+                        <MenuItem value='title'>Title</MenuItem>
+                        <MenuItem value='author'>Author</MenuItem>
+                        <MenuItem value='genre'>Genre</MenuItem>
+                      </Select>
+                    </FormControl> */}
+                  </Grid>
+                  <Grid>
+                    <Link to={'/search'}>
+                      <Button className={classes.searchButton} variant="contained" onClick={handleSearchSubmit}>Search</Button>
+                    </Link>
+                  </Grid>
+                </Grid>
               }
             </Grid>
 
-            <Grid item>
+            <Grid>
               <div className={classes.grow} />
               <div className={classes.sectionDesktop}>
                 {!props.isLoggedIn
@@ -169,7 +196,7 @@ const Header = (props) => {
                     setEmailCookie={props.setEmailCookie} />
 
                   : <div>
-                    <Grid container>
+                    <Grid className={classes.buttons} container item direction='row'>
                       <Grid item>
                         <Link to='/profile'>
                           <ButtonBase >
@@ -184,7 +211,6 @@ const Header = (props) => {
                           removeUidCookie={props.removeUidCookie}
                           setIsLoggedIn={props.setIsLoggedIn}
                         />
-
                       </Grid>
 
                     </Grid>
