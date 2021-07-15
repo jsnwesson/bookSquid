@@ -44,7 +44,7 @@ const LandingSearch = (props) => {
 
   const handleSearchSubmit = () => {
     if (searchInput) {
-      searchByCategory(null, searchInput)
+      searchByCategory(searchInput)
         .then((results) => {
           props.setSearchResults(results)
         })

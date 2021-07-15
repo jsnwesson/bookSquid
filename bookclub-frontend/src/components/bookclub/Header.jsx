@@ -127,14 +127,13 @@ const Header = (props) => {
 
 
   }
-  const handleSearchSubmit = (e) => {
-    if (searchInput) {
-      searchByCategory(null, searchInput)
-        .then((results) => {
-          props.setSearchResults(results)
-        })
-    }
-  }
+  const handleSearchSubmit = () => {
+    searchByCategory(searchInput).then((results) => {
+      console.log('hello')
+      console.log(results)
+      // props.setSearchResults(results);
+    });
+  };
 
   return (
     <div className={classes.grow}>
