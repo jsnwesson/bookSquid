@@ -118,7 +118,6 @@ bookclubRouter.get('/reviews/:bookId', async (req, res) => {
   res.send({ data });
 });
 
-
 /////////////////////////////////////// user endpoints //////////////////////////////////////////
 
 // create user endpoint
@@ -137,7 +136,6 @@ bookclubRouter.post('user/create', async (req, res) => {
 bookclubRouter.get('user/lists/', async (req, res) => {
 
 });
-
 
 // profile data of currently logged in user
 bookclubRouter.get('user/profile', async (req, res) => {
