@@ -2,16 +2,27 @@ import React from 'react';
 import Slider from 'react-slick';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Card from 'react-bootstrap/Card';
-import Figure from 'react-bootstrap/Figure';
-import FigureCaption from 'react-bootstrap/FigureCaption';
-import FigureImage from 'react-bootstrap/FigureImage';
-import Media from 'react-bootstrap/Media';
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 import AddOrRemoveBook from './AddOrRemoveBook';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './bookclub.css';
+
+const UseStyles = makeStyles (() => ({
+  root: {
+    maxWidth: 200,
+  },
+  media: {
+    height: 300,
+  },
+})
+);
 
 const withSlide = (wrappedComponent, selectData, setBook) => {
   var settings = {
@@ -48,6 +59,12 @@ const withSlide = (wrappedComponent, selectData, setBook) => {
       }
     ]
   };
+// =================== MATERIAL UI //
+
+
+const classes = UseStyles();
+
+// ============== //
   return (
     <div>
       <Row>
@@ -57,51 +74,26 @@ const withSlide = (wrappedComponent, selectData, setBook) => {
             {selectData.list.map((book) => {
               return (
                 <div>
-                  {/* <Media
-                    style={{
-                      outline: '1em'
-                    }}
-                    >
+                  <Card className={classes.root}>
+                    <CardActionArea>
                       <Link onClick={() => { setBook(book) }} to={`/book/${book.bookId}`}>
-                        <img
-                          alt="Sample"
-                          height={100}
-                          // width={100}
-                          className="mr-3"
-                          src={book.thumbnail}
+                        <CardMedia
+                          className={classes.media}
+                          image={book.thumbnail}
+                          title={book.title}
                         />
                       </Link>
-                      <Media.Body>
-                        <h5>{book.title}</h5>
-                        <p>{book.authors[0]}</p>
-                      </Media.Body>
-                      {(selectData.removeBook) ? <AddOrRemoveBook bookId={book.bookId} listName={selectData.title} functionality={'remove'} />: <></>}
-                    </Media> */}
-                  {/* <Card
-                    bg='light'
-                    text='dark'
-                    style={{ width: '10rem' }}>
-                    <Link onClick={() => { setBook(book) }} to={`/book/${book.bookId}`}>
-                      <Card.Img variant='top' src={book.thumbnail} />
-                    </Link>
-                    <Card.Body>
-                      <Card.Title>{book.title}</Card.Title>
-                      <Card.Text>{book.authors[0]}</Card.Text>
-                      {(selectData.removeBook) ? <AddOrRemoveBook bookId={book.bookId} listName={selectData.title} functionality={'remove'} />: <></>}
-                    </Card.Body>
-                  </Card> */}
-                  <Figure
-                    style={{ width: '8rem',  }}
-                    >
-                    <Link onClick={() => { setBook(book) }} to={`/book/${book.bookId}`}>
-                      <FigureImage style={{
-                      height: 200,
-                    }} src={book.thumbnail} />
-                    </Link>
-                      <FigureCaption>{book.title}</FigureCaption>
-                      <FigureCaption>{book.authors[0]}</FigureCaption>
-                      {(selectData.removeBook) ? <AddOrRemoveBook bookId={book.bookId} listName={selectData.title} functionality={'remove'} />: <></>}
-                  </Figure>
+                      <CardContent>
+                        <Typography gutterBottom variant="h5" component="h2">
+                          {book.title}
+                        </Typography>
+                        <Typography variant="body2" color="textSecondary" component="p">
+                          {book.authors[0]}
+                        </Typography>
+                      </CardContent>
+                        {(selectData.removeBook) ? <AddOrRemoveBook bookId={book.bookId} listName={selectData.title} functionality={'remove'} />: <></>}
+                    </CardActionArea>
+                  </Card>
                 </div>
               )
             })}
