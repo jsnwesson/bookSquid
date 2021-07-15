@@ -1,12 +1,7 @@
-import React, { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import React from "react";
 import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
-import ButtonBase from "@material-ui/core/ButtonBase";
-import Divider from "@material-ui/core/Divider";
-import Typography from "@material-ui/core/Typography";
 import SearchResults from "./SearchResults.jsx";
-import data from "./sampleData.js";
+
 
 // const useStyles = makeStyles((theme) => ({
 //   root: {

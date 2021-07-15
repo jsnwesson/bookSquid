@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
@@ -41,13 +41,13 @@ const SearchResults = (props) => {
           <Grid item>
             <Link
               onClick={() => {props.setBook(item);}}
-              to={`/book/${item.accessInfo.id}`}
+              to={`/book/${item.id}`}
             >
               <ButtonBase className={classes.image}>
                 <img
                   className={classes.image}
                   alt="bookSearch"
-                  src={item.volumeInfo.imageLinks.thumbnail}
+                  src={item.image}
                 />
               </ButtonBase>
             </Link>
@@ -56,13 +56,13 @@ const SearchResults = (props) => {
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
                 <Typography gutterBottom variant="subtitle1" align="left">
-                  {item.volumeInfo.title}
+                  {item.title}
                 </Typography>
                 <Typography variant="body2" gutterBottom align="left">
                   By:
                 </Typography>
                 <Typography variant="body2" color="textSecondary" align="left">
-                  {item.volumeInfo.authors}
+                  {item.authors}
                 </Typography>
               </Grid>
               <Grid item>
@@ -76,7 +76,7 @@ const SearchResults = (props) => {
             <Grid item>
               <Rating
                 name="simple-controlled"
-                value={item.volumeInfo.averageRating}
+                value={item.totalRating}
                 precision={0.25}
                 size="medium"
                 mt="20"
