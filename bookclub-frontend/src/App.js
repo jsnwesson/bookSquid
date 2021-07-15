@@ -37,6 +37,7 @@ function App() {
               removeEmailCookie={removeEmailCookie}
               searchResults={searchResults}
               setSearchResults={setSearchResults}
+              setBook={setBook}
             />
           </Route>
           <Route path="/book/">
