@@ -1,8 +1,23 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles'
 import fire from '../../fire';
 import { Button } from 'react-bootstrap';
 
+
+const useStyles = makeStyles((theme) => ({
+  buttons: {
+    color: '#004D86',
+    backgroundColor: '#fee4ea'
+  }
+}))
+
+
+
+
+
 const SignOut = (props) => {
+  const classes = useStyles()
+
   const signOut = () => {
     fire.auth().signOut()
       .then(() => {
@@ -13,7 +28,7 @@ const SignOut = (props) => {
 
   return (
     <div>
-      <Button onClick={signOut}>
+      <Button className={classes.buttons} onClick={signOut}>
         Sign out
       </Button>
     </div>

@@ -4,15 +4,15 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
-import MenuItem from '@material-ui/core/MenuItem';
+// import MenuItem from '@material-ui/core/MenuItem';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import Select from '@material-ui/core/Select';
+// import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button'
 import ButtonBase from '@material-ui/core/ButtonBase'
 import { Link } from 'react-router-dom';
-import FormControl from '@material-ui/core/FormControl'
-import InputLabel from '@material-ui/core/InputLabel'
+// import FormControl from '@material-ui/core/FormControl'
+// import InputLabel from '@material-ui/core/InputLabel'
 import Login from '../sessions/Login.jsx';
 import SignOut from '../sessions/SignOut.jsx';
 import Logo from '../../pages/landingComponents/assets/bookSquid.svg';
@@ -22,6 +22,7 @@ import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
+    position: 'absolute',
     flexGrow: 0,
   },
   menuButton: {
@@ -59,7 +60,8 @@ const useStyles = makeStyles((theme) => ({
   },
   inputRoot: {
     color: 'inherit',
-    fontSize: '16pt'
+    fontSize: '16pt',
+    width: '40vw'
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
@@ -77,7 +79,7 @@ const useStyles = makeStyles((theme) => ({
   profileIcon: {
     fontSize: '35px',
     margin: '20px',
-    color: 'white'
+    color: '#fee4ea'
   },
   buttons: {
     display: 'flex',
@@ -85,19 +87,27 @@ const useStyles = makeStyles((theme) => ({
   },
   mainContent: {
     display: 'flex',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    alignItems: 'center'
   },
   searchItems: {
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: '1.5%'
   },
   searchButton: {
-    height: '100%'
+    height: '100%',
+    backgroundColor: '#FEE4EA'
   },
   appBar: {
-    height: '10%',
-    // boxShadow:
+    backgroundColor: '#004D86'
+  },
+  loginSignOut: {
+    // color: '#FEE4EA',
+    // border: '2px solid red'
+  },
+  logo: {
+    height: '10vh',
+    margin: '15px 15px 15px 15px'
   }
 }));
 
@@ -139,7 +149,7 @@ const Header = (props) => {
               <Link to='/'>
                 <ButtonBase >
                   <Typography className={classes.title} variant="h6" noWrap>
-                    <img alt='' src={Logo} className="logo" />
+                    <img alt='' src={Logo} className={classes.logo} />
                   </Typography>
                 </ButtonBase>
               </Link>
@@ -151,7 +161,6 @@ const Header = (props) => {
                 ?
                 null
                 :
-
                 <Grid container item >
 
                   <Grid item className={classes.search}>
@@ -178,9 +187,12 @@ const Header = (props) => {
                     </FormControl> */}
                   </Grid>
                   <Grid>
-                    <Link to={'/search'}>
-                      <Button className={classes.searchButton} variant="contained" onClick={handleSearchSubmit}>Search</Button>
-                    </Link>
+                    {searchInput
+                      ? < Link to={'/search'}>
+                        <Button className={classes.searchButton} variant="contained" onClick={handleSearchSubmit}>Search</Button>
+                      </Link>
+                      : <Button disabled className={classes.searchButton} variant="contained" onClick={handleSearchSubmit}>Search</Button>
+                    }
                   </Grid>
                 </Grid>
               }
@@ -191,6 +203,7 @@ const Header = (props) => {
               <div className={classes.sectionDesktop}>
                 {!props.isLoggedIn
                   ? <Login
+                    className={classes.loginSignOut}
                     setIsLoggedIn={props.setIsLoggedIn}
                     setUidCookie={props.setUidCookie}
                     setEmailCookie={props.setEmailCookie} />
@@ -205,8 +218,9 @@ const Header = (props) => {
                         </Link>
                       </Grid>
 
-                      <Grid item className={classes.signOut}>
+                      <Grid item>
                         <SignOut
+                          className={classes.loginSignOut}
                           removeEmailCookie={props.removeEmailCookie}
                           removeUidCookie={props.removeUidCookie}
                           setIsLoggedIn={props.setIsLoggedIn}

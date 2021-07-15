@@ -135,7 +135,7 @@ export const specificBookData = async (bookId) => {
 };
 
 export const searchByCategory = async (category, searchInput) => {
- // const header = await createToken();
+  // const header = await createToken();
   const payload = { category, searchInput }
   try {
     //const res = await axios.get(`${url}/books/search`, { searchInput })

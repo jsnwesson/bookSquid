@@ -30,17 +30,17 @@ const Carousel = (props) => {
   let faves;
   let toRead;
   const faveList = {
-    title: 'Favorites',
+    title: 'Recently Reviewed',
     className: 'fave',
     list: favorites, // <-- name of array of book objects
   };
   const prevList = {
-    title: 'Previously Read',
+    title: 'Recommended',
     className: 'prevRead',
     list: previouslyRead,
   }
   const toReadList = {
-    title: 'Want to Read',
+    title: 'Latest Read',
     className: 'toRead',
     list: wantToRead,
   }

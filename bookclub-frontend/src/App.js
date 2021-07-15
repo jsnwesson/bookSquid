@@ -22,7 +22,9 @@ function App() {
 
   return (
 
-    <div className="App">
+    <div className="App" >
+      <h1 style={{ fontSize: '11vh' }}>secrit message</h1>
+
       <Router>
         <Switch>
           <Route path="/search">

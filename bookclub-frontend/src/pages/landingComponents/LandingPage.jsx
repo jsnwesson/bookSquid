@@ -6,7 +6,7 @@ import Carousel from './Carousel.jsx';
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    marginTop: '5%'
+    marginTop: '7%'
   }
 }))
 
@@ -17,7 +17,7 @@ const LandingPage = (props) => {
 
 
   return (
-    <div className={classes.container}>
+    <div >
       <Header
         isLoggedIn={props.isLoggedIn}
         setIsLoggedIn={props.setIsLoggedIn}

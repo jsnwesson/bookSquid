@@ -1,6 +1,19 @@
 import React, { useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles'
 import { Button, Modal } from 'react-bootstrap';
 import fire from '../../fire.js';
+
+const useStyles = makeStyles((theme) => ({
+  buttons: {
+    color: '#004D86',
+    backgroundColor: '#fee4ea'
+  },
+  buttonsForm: {
+
+  }
+}))
+
+
 
 function Login(props) {
   const [email, setEmail] = useState();
@@ -8,6 +21,8 @@ function Login(props) {
   const [show, setShow] = useState(false);
   const [userName, setUserName] = useState();
   const [newUser, setNewUser] = useState(false);
+
+  const classes = useStyles()
 
   // const wrapper = React.createRef()
 
@@ -60,7 +75,7 @@ function Login(props) {
 
   return (
     <div>
-      <Button variant="primary" onClick={handleShow}>
+      <Button className={classes.buttons} onClick={handleShow}>
         Log In
       </Button>
       <Modal
@@ -91,7 +106,7 @@ function Login(props) {
             />
             <br />
             <input
-              type="current-password"
+              type="password"
               onChange={({ target }) =>
                 setPassword(target.value)}
               placeholder="Password"
