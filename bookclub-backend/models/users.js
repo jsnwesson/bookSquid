@@ -21,9 +21,5 @@ usersSchema.set('toJSON', {
   },
 });
 
-<<<<<<< HEAD
-module.exports = mongoose.model('Users', usersSchema)
-=======
 const usersModel = mongoose.model('Users', usersSchema)
 module.exports = usersModel;
->>>>>>> 07ac08e52a57b223e7e40305c5c25fc748a2eb50

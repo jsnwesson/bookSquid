@@ -1,13 +1,4 @@
-<<<<<<< HEAD
-import React, {useState} from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import ButtonBase from '@material-ui/core/ButtonBase';
-import {postBookReview} from '../../services/bookclubServices.js';
-=======
-import React, { useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
@@ -17,7 +8,6 @@ import AddOrRemoveBook from "./AddOrRemoveBook";
 import Rating from "@material-ui/lab/Rating";
 import { Link } from "react-router-dom";
 
->>>>>>> 38a12009e91598c91194f65fd694ab59c8fc919e
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,

@@ -146,7 +146,21 @@ bookclubRouter.put('/user/list/', async (req, res) => {
 });
 
 // profile data of currently logged in user
-bookclubRouter.get('user/profile', async (req, res) => {
+bookclubRouter.get('/user/profile', async (req, res) => {
+  console.log('user profile get');
+  let { uid } = req.headers;
+  try {
+    let userData = await Users.findOne({uid}, { _id: 0, uid: 0, reviews: 0}).lean();
+    for (let list in userData.lists) {
+      let bookData = await Books.find({ bookId: { $in: userData.lists[list] } }, { _id: 0, reviews: 0, totalRating: 0 });
+        userData.lists[list] = bookData;
+    }
+    // console.log(userData);
+    res.send(userData);
+  } catch (e) {
+    console.log(e.message);
+    res.send(400);
+  }
 
 });
 

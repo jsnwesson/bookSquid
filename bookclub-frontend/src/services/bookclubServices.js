@@ -183,3 +183,15 @@ export const removeFromList = async (listName, bookId) => {
     console.error(e);
   }
 };
+
+export const getUserData = async () => {
+  const header = await createToken();
+  try {
+    const res = await axios.get(`${url}/user/profile`, header);
+    console.log(res.data);
+    return res.data;
+  } catch (e) {
+    console.error(e);
+  }
+
+}
