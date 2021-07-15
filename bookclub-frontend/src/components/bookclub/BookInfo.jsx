@@ -90,7 +90,7 @@ const BookInfo = (props) => {
     }
   }));
   const classes = useStyles();
-  const image = props.book.image || props.book.img;
+  const image = props.book.image === '' ? props.book.thumbnail : props.book.image;
   let authors = '';
   props.book.authors.forEach((author, i) => {
     if (i !== (props.book.authors.length - 1)) {
