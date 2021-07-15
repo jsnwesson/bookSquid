@@ -24,8 +24,6 @@ const AddOrRemoveBook = (props) => {
       display: 'flex',
       justifyContent: 'space-between',
       width: '100%',
-
-
     },
     remove: {
       display: 'flex',
