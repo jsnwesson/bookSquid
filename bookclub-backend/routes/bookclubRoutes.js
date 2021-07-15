@@ -30,13 +30,13 @@ bookclubRouter.get('/books/recommended', async (req, res) => {
 bookclubRouter.get('/carouselMeta', async (req, res) => {
   console.log('get carousels');
   let { uid } = req.headers;
-  console.log('uid: ', uid);
+  // console.log('uid: ', uid);
   try {
     let lists = await Users.find({ uid }).select('lists -_id');
     if (lists.length === 0) {
       throw Error;
     }
-    console.log(lists[0]);
+    // console.log(lists[0]);
     // need to process inside lists[0] with mongoose methods
     res.send(lists[0]);
   } catch (e) {
@@ -54,20 +54,21 @@ bookclubRouter.get('/books/search/:q', async (req, res) => {
   });
   url.search = params;
   let googleResults = await axios.get(url.toString());
-  let mongoResults = await Books.find({ $text: { $search: req.params.q } })
+  let mongoResults = await Books.find({ $text: { $search: req.params.q } });
   let processed = googleResults.data.items.map(entry => {
     let { id } = entry;
-    let { title, authors, averageRating, ratingsCount, imageLinks, description, publishedDate, categories } = entry.volumeInfo;
+    let { title, authors, averageRating, imageLinks, description, publishedDate, categories } = entry.volumeInfo;
     return {
-      id,
-      title,
       authors,
-      averageRating: averageRating || 0,
-      ratingsCount: ratingsCount || 0,
-      image: imageLinks ? imageLinks.thumbnail : '',
+      reviews: [],
+      title,
+      totalRating: averageRating || 0,
       description,
       publishedDate,
+      thumbnail: imageLinks ? imageLinks.smallThumbnail : '',
       genre: categories ? categories[0] : '',
+      bookId: id,
+      image: imageLinks ? imageLinks.thumbnail : '',
     };
   });
   res.send(mongoResults.concat(processed));
