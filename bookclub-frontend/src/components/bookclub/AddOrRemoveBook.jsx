@@ -6,9 +6,9 @@ import Grid from '@material-ui/core/Grid';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
-import DeleteForeverTwoToneIcon from '@material-ui/icons/DeleteForeverTwoTone';
+import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 
 const AddOrRemoveBook = (props) => {
   const [changed, setChanged] = useState(false)
@@ -107,14 +107,14 @@ const AddOrRemoveBook = (props) => {
         <IconButton aria-label="add button" onClick={() => {
           handleSubmit(1)
         }}>
-          <LibraryBooksIcon type="submit" />
+          <PlaylistAddIcon type="submit" />
         </IconButton>
       }
       {props.functionality === 'both' ?
         <IconButton aria-label="delete button" onClick={() => {
           handleSubmit(2)
         }}>
-          <DeleteForeverTwoToneIcon type="submit" />
+          <DeleteOutlineIcon type="submit" />
         </IconButton>
         : null}
       {/* </Grid> */}
