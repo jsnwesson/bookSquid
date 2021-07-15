@@ -4,21 +4,22 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
-// import MenuItem from '@material-ui/core/MenuItem';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-// import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button'
 import ButtonBase from '@material-ui/core/ButtonBase'
+import Grid from '@material-ui/core/Grid';
 import { Link } from 'react-router-dom';
-// import FormControl from '@material-ui/core/FormControl'
-// import InputLabel from '@material-ui/core/InputLabel'
 import Login from '../sessions/Login.jsx';
 import SignOut from '../sessions/SignOut.jsx';
 import Logo from '../../pages/landingComponents/assets/bookSquid.svg';
 import { searchByCategory } from '../../services/bookclubServices.js';
-import Grid from '@material-ui/core/Grid';
+// import MenuItem from '@material-ui/core/MenuItem';
+// import Select from '@material-ui/core/Select';
+// import FormControl from '@material-ui/core/FormControl'
+// import InputLabel from '@material-ui/core/InputLabel'
 // import Squid from './assets/Squid-Logo.png';
+
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -29,34 +30,34 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
   title: {
-    display: 'none',
-    [theme.breakpoints.up('sm')]: {
-      display: 'block',
+    display: "none",
+    [theme.breakpoints.up("sm")]: {
+      display: "block",
     },
   },
   search: {
-    position: 'relative',
+    position: "relative",
     borderRadius: theme.shape.borderRadius,
     backgroundColor: alpha(theme.palette.common.white, 0.15),
-    '&:hover': {
+    "&:hover": {
       backgroundColor: alpha(theme.palette.common.white, 0.25),
     },
     marginRight: theme.spacing(2),
     marginLeft: 0,
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
+    width: "100%",
+    [theme.breakpoints.up("sm")]: {
       marginLeft: theme.spacing(3),
-      width: 'auto',
+      width: "auto",
     },
   },
   searchIcon: {
     padding: theme.spacing(0, 2),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+    height: "100%",
+    position: "absolute",
+    pointerEvents: "none",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
   inputRoot: {
     color: 'inherit',
@@ -67,10 +68,10 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('xs')]: {
-      width: '20ch',
+    transition: theme.transitions.create("width"),
+    width: "100%",
+    [theme.breakpoints.up("xs")]: {
+      width: "20ch",
     },
   },
   dropdown: {
@@ -109,22 +110,21 @@ const useStyles = makeStyles((theme) => ({
     height: '10vh',
     margin: '15px 15px 15px 15px'
   }
+
 }));
 
-
 const Header = (props) => {
-
   const classes = useStyles();
-  const [searchInput, setSearchInput] = useState('')
-  const [searchCategory, setSearchCategory] = useState('');
-
+  const [searchInput, setSearchInput] = useState("");
+  const [searchCategory, setSearchCategory] = useState("");
 
   const handleSearchInput = (e) => {
     setSearchInput(e.target.value);
-    console.log(searchInput)
-  }
+    console.log(searchInput);
+  };
   const handleCategorySelect = (e) => {
     setSearchCategory(e.target.value);
+
 
   }
   const handleSearchSubmit = (e) => {
@@ -135,8 +135,6 @@ const Header = (props) => {
         })
     }
   }
-
-
 
   return (
     <div className={classes.grow}>
@@ -234,10 +232,11 @@ const Header = (props) => {
             </Grid>
 
           </Grid>
+
         </Toolbar>
       </AppBar>
     </div >
   );
-}
+};
 
 export default Header;

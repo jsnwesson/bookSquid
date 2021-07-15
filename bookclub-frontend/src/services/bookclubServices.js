@@ -19,45 +19,6 @@ const createToken = async () => {
   return payloadHeader;
 };
 
-// export const addToReadBookList = async (title, author, genre) => {
-//   const header = await createToken();
-//   const payload = {
-//     title,
-//     author,
-//     genre,
-//   }
-//   try {
-//     const res = await axios.post(url + '/add-read-book', payload, header);
-//     return res.data;
-//   } catch (e) {
-//     console.error(e);
-//   }
-// };
-
-// export const getAlreadyReadList = async () => {
-//   const header = await createToken();
-//   try {
-//     const res = await axios.get(url + '/get-read-book', header);
-//     return res.data;
-//   } catch (e) {
-//     console.error(e);
-//   }
-// };
-
-// export const addToFavoriteList = async (uid, gid, list_name) => {
-//   const header = await createToken();
-//   const payload = {
-//     gid,
-//     list_name
-//   }
-//   try {
-//     const res = await axios.post(url, payload, header)
-//     return res.data
-//   } catch (e) {
-//     console.error(e);
-//   }
-// };
-
 export const postBookReview = async (body, title, rating, bookId) => {
   const header = await createToken();
   const payload = {
@@ -134,19 +95,11 @@ export const specificBookData = async (bookId) => {
   */
 };
 
-export const searchByCategory = async (category, searchInput) => {
-  // const header = await createToken();
-  const payload = { category, searchInput }
+
+export const searchByCategory = async (searchInput) => {
   try {
-    //const res = await axios.get(`${url}/books/search`, { searchInput })
-    //return res.data
-    // } catch (e) {
-    // const promise1 = axios.get(`${url}/books/search`, payload, header)
-    const promise2 = axios.get(`https://www.googleapis.com/books/v1/volumes?q=${searchInput}&maxResults=20`);
-    return Promise.all([promise2])
-    // .then((res) => {
-    //   return res[0].data
-    // })
+    const res = await axios.get(`${url}/books/search/${searchInput}`)
+    return res.data
   }
   catch (e) {
     console.error(e);
@@ -154,27 +107,41 @@ export const searchByCategory = async (category, searchInput) => {
 
   /**
   --------------> response returns an array of objects <--------------
-  response returns: status code 200
+  response returns:
 
-  if the book title is in our database our book data object will be at index 0 of the response array
+    status code 200
 
-  if the book title is found in our DB the zero index in the array will look like this:
-
-      response.data = {
-        img: String,
-        title: String,
+    response.data = [
+      {
         authors: [String],
         reviews: [String],
+        img: String,
+        title: String,
         totalRating: Number,
         description: String,
         publishedDate: String,
         thumbnail: String,
         genre: String,
         bookId: { type: String, unique: true },
+      },{
+        ...
       }
+    ]
 
-  after the first index in the array, the remaining objects will be in googles response format
-
-  if the book title was not in our databas then all of the objects in the array will be in googles API response format
   */
+};
+
+export const createUser = async (uid, name, email, date) => {
+  const payload = {
+    uid,
+    name,
+    email,
+    date: date.toISOString(),
+  }
+  try {
+    const res = await axios.post(url + '/user/create', payload)
+    return res.data
+  } catch (e) {
+    console.error(e);
+  }
 };

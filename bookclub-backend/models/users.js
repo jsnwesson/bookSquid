@@ -10,16 +10,16 @@ const usersSchema = new mongoose.Schema({
   },
   reviews: [String],
   name: String,
-  joinedDate: Date
+  joinedDate: Date,
   uid: String,
 })
 
 usersSchema.set('toJSON', {
   transform: (doc, returnedObject) => {
-    returnedObject.id = returnedObject._id.toString();
     delete returnedObject._id;
     delete returnedObject.__v;
   },
 });
 
-module.exports = mongoose.model('Books', usersSchema)
+const usersModel = mongoose.model('Users', usersSchema)
+module.exports = usersModel;

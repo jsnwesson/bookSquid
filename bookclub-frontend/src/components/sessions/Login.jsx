@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles'
 import { Button, Modal } from 'react-bootstrap';
 import fire from '../../fire.js';
+import { createUser } from '../../services/bookclubServices';
 
 const useStyles = makeStyles((theme) => ({
   buttons: {
@@ -48,7 +49,8 @@ function Login(props) {
         let d = new Date();
         d.setTime(d.getTime() + (60 * 60 * 1000));
         props.setUidCookie('UID', userRecord.user.uid, true, { path: '/', expires: d });
-        props.setEmailCookie('email', userRecord.user.email, true, { path: '/', expires: d })
+        props.setEmailCookie('email', userRecord.user.email, true, { path: '/', expires: d });
+        createUser(userRecord.user.uid, userName, userRecord.user.email, d);
       })
       .catch((error) => {
         console.log(error);
