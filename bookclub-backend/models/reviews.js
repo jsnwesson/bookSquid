@@ -17,4 +17,5 @@ reviewsSchema.set('toJSON', {
   },
 });
 
-module.exports = mongoose.model('Reviews', reviewsSchema)
+const reviewsModel = mongoose.model('Reviews', reviewsSchema);
+module.exports = reviewsModel;
