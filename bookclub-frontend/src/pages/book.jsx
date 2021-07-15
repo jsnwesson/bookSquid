@@ -13,10 +13,6 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const Book = (props) => {
   const useStyles = makeStyles((theme) => ({
-    main: {
-      // backgroundColor: '#bcdae4'
-      backgroundColor: '#F7F1C3'
-    },
     content: {
       display: 'flex',
       justifyContent: 'center',
@@ -31,7 +27,7 @@ const Book = (props) => {
   }));
   const classes = useStyles();
   return (
-    <div className={classes.main}>
+    <div >
       <Header
         isLoggedIn={props.isLoggedIn}
         setIsLoggedIn={props.setIsLoggedIn}
