@@ -29,8 +29,7 @@ const Profile = (props) => {
   }
 
   return (
-    <div>
-      <>
+    <div key={props.emailCookie.UID}>
         <Header
           isLoggedIn={props.isLoggedIn}
           setIsLoggedIn={props.setIsLoggedIn}
@@ -42,7 +41,6 @@ const Profile = (props) => {
           removeEmailCookie={props.removeEmailCookie}
           setSearchResults={props.setSearchResults}
         />
-      </>
       <Container fluid='sm'>
         {withSlide(faves, faveList, props.setBook)}
         {withSlide(prevRead, prevList, props.setBook)}

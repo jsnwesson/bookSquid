@@ -59,12 +59,8 @@ const withSlide = (wrappedComponent, selectData, setBook) => {
       }
     ]
   };
-// =================== MATERIAL UI //
 
-
-const classes = UseStyles();
-
-// ============== //
+  const classes = UseStyles();
   return (
     <div>
       <Row>
@@ -73,7 +69,7 @@ const classes = UseStyles();
           <Slider className='slider' {...settings}>
             {selectData.list.map((book) => {
               return (
-                <div>
+                <div key={book.bookId}>
                   <Card className={classes.root}>
                     <CardActionArea>
                       <Link onClick={() => { setBook(book) }} to={`/book/${book.bookId}`}>
