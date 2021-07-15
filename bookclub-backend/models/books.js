@@ -21,4 +21,5 @@ booksSchema.set('toJSON', {
   },
 });
 
-module.exports = mongoose.model('Books', booksSchema)
+const booksModel = mongoose.model('Books', booksSchema)
+module.exports = booksModel;
