@@ -160,3 +160,13 @@ export const createUser = async (uid, name, email, date) => {
     console.error(e);
   }
 };
+
+export const addToList = async (listName) => {
+  const header = await createToken();
+  try {
+    const res = await axios.post (url + 'user/list', {listName}, header);
+    return res.data;
+  } catch (e) {
+    console.error(e);
+  }
+};
