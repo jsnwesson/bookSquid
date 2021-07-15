@@ -1,6 +1,12 @@
 import React from 'react';
 import Slider from 'react-slick';
-import { Card, Row, Col } from 'react-bootstrap';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Card from 'react-bootstrap/Card';
+import Figure from 'react-bootstrap/Figure';
+import FigureCaption from 'react-bootstrap/FigureCaption';
+import FigureImage from 'react-bootstrap/FigureImage';
+import Media from 'react-bootstrap/Media';
 import { Link } from 'react-router-dom';
 import AddOrRemoveBook from './AddOrRemoveBook';
 import 'slick-carousel/slick/slick.css';
@@ -13,7 +19,7 @@ const withSlide = (wrappedComponent, selectData, setBook) => {
     centerMode: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: 3,
     slidesToScroll: 1,
     responsive: [
       {
@@ -51,7 +57,27 @@ const withSlide = (wrappedComponent, selectData, setBook) => {
             {selectData.list.map((book) => {
               return (
                 <div>
-                  <Card
+                  {/* <Media
+                    style={{
+                      outline: '1em'
+                    }}
+                    >
+                      <Link onClick={() => { setBook(book) }} to={`/book/${book.bookId}`}>
+                        <img
+                          alt="Sample"
+                          height={100}
+                          // width={100}
+                          className="mr-3"
+                          src={book.thumbnail}
+                        />
+                      </Link>
+                      <Media.Body>
+                        <h5>{book.title}</h5>
+                        <p>{book.authors[0]}</p>
+                      </Media.Body>
+                      {(selectData.removeBook) ? <AddOrRemoveBook bookId={book.bookId} listName={selectData.title} functionality={'remove'} />: <></>}
+                    </Media> */}
+                  {/* <Card
                     bg='light'
                     text='dark'
                     style={{ width: '10rem' }}>
@@ -63,7 +89,19 @@ const withSlide = (wrappedComponent, selectData, setBook) => {
                       <Card.Text>{book.authors[0]}</Card.Text>
                       {(selectData.removeBook) ? <AddOrRemoveBook bookId={book.bookId} listName={selectData.title} functionality={'remove'} />: <></>}
                     </Card.Body>
-                  </Card>
+                  </Card> */}
+                  <Figure
+                    style={{ width: '8rem',  }}
+                    >
+                    <Link onClick={() => { setBook(book) }} to={`/book/${book.bookId}`}>
+                      <FigureImage style={{
+                      height: 200,
+                    }} src={book.thumbnail} />
+                    </Link>
+                      <FigureCaption>{book.title}</FigureCaption>
+                      <FigureCaption>{book.authors[0]}</FigureCaption>
+                      {(selectData.removeBook) ? <AddOrRemoveBook bookId={book.bookId} listName={selectData.title} functionality={'remove'} />: <></>}
+                  </Figure>
                 </div>
               )
             })}
