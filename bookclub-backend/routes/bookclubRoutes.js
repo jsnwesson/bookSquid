@@ -8,30 +8,22 @@ const Users = require('../models/users');
 
 /////////////////////////////////// book endpoints ///////////////////////////////////////////
 
-<<<<<<< HEAD
-////////////////// get book by id
-=======
-/// get recently reviewed books
+/////////////// get recently reviewed books
 bookclubRouter.get('/books/recentlyReviewed', async (req, res) => {
-  console.log('get recently reviewed books');
-  let {uid} = req.headers;
-  // if uid of currently logged in user exists, gets books recently reviewed. otherwise, gets books most recently reviewed by any user
-  let queryObj = uid ? {uid} : {}
+  let { uid } = req.headers;
+  let queryObj = uid ? { uid } : {};
   try {
-    let response = await Reviews.find(queryObj, {_id: 0, reviewId: 1}).sort('-date').lean();
-    console.log(response);
+    let response = await Reviews.find(queryObj, { _id: 0, reviewId: 1 }).sort('-date').lean();
     let bookIDs = response.map(x => x.reviewId.split('::')[1]);
     let uniques = [...new Set(bookIDs)];
-    let bookData = await Books.find({bookId: {$in: uniques}}, {_id: 0}).lean();
-    res.send(bookData);
+    let bookData = await Books.find({ bookId: { $in: uniques } }, { _id: 0 }).lean();
+    res.send(bookData).status(200);
   } catch (e) {
-    console.error(e.message);
     res.sendStatus(400);
-  }
+  };
 });
 
-// get recommended books
->>>>>>> main
+/////////////// get recommended books
 bookclubRouter.get('/books/recommended', async (req, res) => {
   try {
     let response = await Users.find({}, { _id: 0 }).select('lists.favorites').lean();
@@ -44,7 +36,7 @@ bookclubRouter.get('/books/recommended', async (req, res) => {
   };
 });
 
-// get book by id
+/////////////// get book by id
 bookclubRouter.get('/books/:bookId', async (req, res) => {
   let { bookId } = req.params;
   try {
@@ -89,14 +81,14 @@ bookclubRouter.post('/books/add', async (req, res) => {
 });
 
 /////////////// get all book data from all lists of a specific user
-bookclubRouter.get('/carouselMeta', async (req, res) => {
-  let { uid } = req.headers;
+bookclubRouter.get('/books/carouselMeta', async (req, res) => {
+  const { uid } = req.headers;
   try {
-    let listData = await Users.find({ uid }, { lists: 1, _id: 0 }).lean();
+    const listData = await Users.find({ uid }, { lists: 1, _id: 0 }).lean();
     const lists = listData[0].lists;
     let results = {};
     for (var list in lists) {
-      let bookData = await Books.find({ bookId: { $in: lists[list] } }, { _id: 0 }).lean();
+      const bookData = await Books.find({ bookId: { $in: lists[list] } }, { _id: 0 }).lean();
       results[list] = bookData;
     };
     res.send(results).status(200);
@@ -105,7 +97,7 @@ bookclubRouter.get('/carouselMeta', async (req, res) => {
   };
 });
 
-//////////////////// get search results from our book collection by authors and titles, and googles api for 20 relevant books
+/////////////// get search results from our book collection by authors and titles, and googles api for 20 relevant books
 bookclubRouter.get('/books/search/:q', async (req, res) => {
   let url = new URL('https://www.googleapis.com/books/v1/volumes');
   let params = new URLSearchParams({
@@ -143,7 +135,7 @@ bookclubRouter.get('/books/search/:q', async (req, res) => {
 
 /////////////////////////////////// review endpoints ////////////////////////////////////
 
-//////////////// post book review to a specific book
+/////////////// post book review to a specific book
 bookclubRouter.post('/reviews', async (req, res) => {
   let { bookId, body, title, rating } = req.body;
   let { uid } = req.headers;

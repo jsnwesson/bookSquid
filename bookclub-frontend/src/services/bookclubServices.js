@@ -27,7 +27,7 @@ export const postBookReview = async (body, title, rating, bookId) => {
     bookId,
   };
   try {
-    const res = await axios.post(url + '/reviews', payload, header);
+    const res = await axios.post(`${url}/reviews`, payload, header);
     return res.data;
   } catch (e) {
     console.error(e);
@@ -36,7 +36,7 @@ export const postBookReview = async (body, title, rating, bookId) => {
 
 export const getBookReviews = async (bookId) => {
   try {
-    const res = await axios.get(url + `/reviews/${bookId}`);
+    const res = await axios.get(`${url}/reviews/${bookId}`);
     return res.data;
   } catch (e) {
     console.error(e);
@@ -46,7 +46,7 @@ export const getBookReviews = async (bookId) => {
 export const carouselMetaData = async () => {
   const header = await createToken();
   try {
-    const res = await axios.post(url + '/carouselMeta', {}, header);
+    const res = await axios.get(`${url}/books/carouselMeta`, header);
     return res.data;
   } catch (e) {
     console.error(e);
@@ -81,7 +81,7 @@ export const createUser = async (uid, name, email, date) => {
     date: date.toISOString(),
   };
   try {
-    const res = await axios.post(url + '/user/create', payload);
+    const res = await axios.post(`${url}/user/create`, payload);
     return res.data;
   } catch (e) {
     console.error(e);
@@ -91,7 +91,7 @@ export const createUser = async (uid, name, email, date) => {
 export const addToList = async (listName, bookId) => {
   const header = await createToken();
   try {
-    const res = await axios.post(url + '/user/list', { listName, bookId }, header);
+    const res = await axios.post(`${url}/user/list`, { listName, bookId }, header);
     return res.data;
   } catch (e) {
     console.error(e);
@@ -101,7 +101,7 @@ export const addToList = async (listName, bookId) => {
 export const removeFromList = async (listName, bookId) => {
   const header = await createToken();
   try {
-    const res = await axios.put(url + '/user/list', { listName, bookId }, header);
+    const res = await axios.put(`${url}/user/list`, { listName, bookId }, header);
     return res.data;
   } catch (e) {
     console.error(e);
@@ -112,7 +112,7 @@ export const getUserData = async () => {
   const header = await createToken();
   try {
     const res = await axios.get(`${url}/user/profile`, header);
-    console.log(res.data);
+    return res.data;
   } catch (e) {
     console.error(e);
   };
@@ -120,7 +120,7 @@ export const getUserData = async () => {
 
 export const addBookToMongo = async (book) => {
   try {
-    const res = await axios.post(url + '/books/add', { book });
+    const res = await axios.post(`${url}/books/add`, { book });
     return res.data;
   } catch (e) {
     console.error(e);
