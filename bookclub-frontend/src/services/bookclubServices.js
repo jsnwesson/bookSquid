@@ -65,13 +65,26 @@ export const carouselMetaData = async () => {
   } catch (e) {
     console.error(e);
   }
-  /** response returns: status code 200
-  *  response.data = {
-  *    authors: [ 'STRING', ... ],
-  *    bookId: 'STRING',
-  *    title: 'STRING',
-  *    image: 'STRING', // this should be the thumbnail image
-  *  }
+  /** response returns:
+
+   status code 200
+
+    response.data = [
+      {
+        authors: [String],
+        reviews: [String],
+        img: String,
+        title: String,
+        totalRating: Number,
+        description: String,
+        publishedDate: String,
+        thumbnail: String,
+        genre: String,
+        bookId: { type: String, unique: true },
+      },{
+        ...
+      }
+    ]
   */
 };
 
@@ -140,6 +153,26 @@ export const createUser = async (uid, name, email, date) => {
   try {
     const res = await axios.post(url + '/user/create', payload)
     return res.data
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+export const addToList = async (listName, bookId) => {
+  const header = await createToken();
+  try {
+    const res = await axios.post(url + '/user/list', { listName, bookId }, header);
+    return res.data;
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+export const removeFromList = async (listName, bookId) => {
+  const header = await createToken();
+  try {
+    const res = await axios.put(url + '/user/list', { listName, bookId }, header);
+    return res.data;
   } catch (e) {
     console.error(e);
   }
