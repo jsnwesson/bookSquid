@@ -10,10 +10,9 @@ const createToken = async () => {
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
-      // uid: user.uid
     },
   };
-  if (user.uid) {
+  if (user.uid !== null) {
     payloadHeader.headers.uid = user.uid;
   }
   return payloadHeader;
@@ -61,9 +60,7 @@ export const getBookReviews = async (bookId) => {
 export const carouselMetaData = async () => {
   const header = await createToken();
   try {
-    // if user isn't logged in, can't populate nor display expected data
-    console.log(header);
-    const res = await axios.get(url + '/carouselMeta', header)
+    const res = await axios.post(url + '/carouselMeta', {}, header)
     return res.data
   } catch (e) {
     console.error(e);
@@ -71,24 +68,36 @@ export const carouselMetaData = async () => {
   }
   /** response returns:
 
-   status code 200
+  status code 200
 
-    response.data = [
-      {
-        authors: [String],
-        reviews: [String],
-        img: String,
-        title: String,
-        totalRating: Number,
-        description: String,
-        publishedDate: String,
-        thumbnail: String,
-        genre: String,
-        bookId: { type: String, unique: true },
-      },{
+  response.data =
+    {
+      alreadyRead: [
+        {
+          authors: [String],
+          reviews: [String],
+          image: String,
+          title: String,
+          totalRating: Number,
+          description: String,
+          publishedDate: String,
+          thumbnail: String,
+          genre: String,
+          bookId: { type: String, unique: true },
+        },{
+          ...
+        }
+      ],
+      favorites: [
         ...
-      }
-    ]
+      ],
+      currentlyReading: [
+        ...
+      ],
+      goingToRead: [
+        ...
+      ]
+    }
   */
 };
 
@@ -112,6 +121,7 @@ export const specificBookData = async (bookId) => {
   *    image: 'STRING', // this should be the larger image
   *  }
   */
+
 
 
 export const searchByCategory = async (searchInput) => {
@@ -184,11 +194,21 @@ export const removeFromList = async (listName, bookId) => {
   }
 };
 
+
 export const getUserData = async () => {
   const header = await createToken();
   try {
     const res = await axios.get(`${url}/user/profile`, header);
     console.log(res.data);
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+export const addBookToMongo = async (book) => {
+  const header = await createToken();
+  try {
+    const res = await axios.post(url + '/books/add', { book }, header);
     return res.data;
   } catch (e) {
     console.error(e);

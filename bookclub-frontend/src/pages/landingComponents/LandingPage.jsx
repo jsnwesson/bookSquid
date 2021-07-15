@@ -1,26 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
 import Header from '../../components/bookclub/Header.jsx';
-import Search from './Search.jsx';
-import Carousel from './CarouselContainer.jsx';
+import LandingSearch from './LandingSearch.jsx';
+import Carousel from './Carousel.jsx';
+
+
+
 
 const LandingPage = (props) => {
 
-  const [recommendations, setRecommendations] = useState([]);
-
-
-
-  useEffect(() => {
-    // axios.get('URL') //TODO AXIOS REQUEST//////////////////////////////////////
-    // .then((list) => {
-    //   setRecommendations(list)
-    // })
-  })
 
 
 
   return (
-    <div>
+    <div >
       <Header
         isLoggedIn={props.isLoggedIn}
         setIsLoggedIn={props.setIsLoggedIn}
@@ -31,14 +23,16 @@ const LandingPage = (props) => {
         setEmailCookie={props.setEmailCookie}
         removeEmailCookie={props.removeEmailCookie}
         setSearchResults={props.setSearchResults}
+        searchIsTrue={true}
       />
-      <Search />
+      <LandingSearch
+        setSearchResults={props.setSearchResults}
+      />
       <Carousel
         setBook={props.setBook}
       />
     </div>
   )
-
 }
 
 export default LandingPage;
