@@ -115,21 +115,21 @@ const useStyles = makeStyles((theme) => ({
 
 const Header = (props) => {
   const classes = useStyles();
-  const [searchInput, setSearchInput] = useState("");
+  const [searchInput, setSearchInput] = useState();
   const [searchCategory, setSearchCategory] = useState("");
 
   const handleSearchInput = (e) => {
     setSearchInput(e.target.value);
     console.log(searchInput);
   };
-  const handleCategorySelect = (e) => {
-    setSearchCategory(e.target.value);
+  // const handleCategorySelect = (e) => {
+  //   setSearchCategory(e.target.value);
 
 
-  }
+  // }
   const handleSearchSubmit = (e) => {
     if (searchInput) {
-      searchByCategory(null, searchInput)
+      searchByCategory(searchInput)
         .then((results) => {
           props.setSearchResults(results)
         })
