@@ -23,9 +23,9 @@ const Search = (props) => {
   const [search, setSearch] = useState();
   const classes = useStyles();
 
-  useEffect(()=> {postBookReview('this book sucks lmao', 'title', 4, 'e_9MDwAAQBAJ323')}, []);
+  // useEffect(()=> {postBookReview('this book sucks lmao', 'title', 4, 'e_9MDwAAQBAJ')}, []);
   // useEffect(() => {searchByCategory('', 'bullshit')}, []);
-  // useEffect(() => {getBookReviews('e_9MDwAAQBAJ')}, []);
+  useEffect(() => {getBookReviews('e_9MDwAAQBAJ')}, []);
   // useEffect(() => {specificBookData('e_9MDwAAQBAJ')}, []);
   // useEffect(() => {carouselMetaData()}, []);
   return (

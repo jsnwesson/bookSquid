@@ -101,17 +101,19 @@ export const specificBookData = async (bookId) => {
   */
 
 
-export const searchByCategory = async (category, searchInput) => {
-  console.log(searchInput);
-  let config = {searchInput};
+export const searchByCategory = async (searchInput) => {
+  // const header = await createToken();
   try {
-
-    const promise1 = axios.get(`${url}/books/search/${searchInput}`);
+    const res = await axios.get(`${url}/books/search/${searchInput}`)
+    //return res.data
+    // } catch (e) {
+    // const promise1 = axios.get(`${url}/books/search`, payload, header)
     // const promise2 = axios.get(`https://www.googleapis.com/books/v1/volumes?q=${searchInput}&maxResults=20`);
-    return promise1;
+    // return Promise.all([promise2])
     // .then((res) => {
     //   return res[0].data
     // })
+    return res.data
   }
   catch (e) {
     console.error(e);
@@ -142,4 +144,19 @@ export const searchByCategory = async (category, searchInput) => {
 
   if the book title was not in our databas then all of the objects in the array will be in googles API response format
   */
+};
+
+export const createUser = async (uid, name, email, date) => {
+  const payload = {
+    uid,
+    name,
+    email,
+    date: date.toISOString(),
+  }
+  try {
+    const res = await axios.post(url + '/user/create', payload)
+    return res.data
+  } catch (e) {
+    console.error(e);
+  }
 };
