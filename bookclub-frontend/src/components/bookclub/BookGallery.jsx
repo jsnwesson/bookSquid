@@ -14,6 +14,8 @@ import AddOrRemoveBook from './AddOrRemoveBook';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './bookclub.css';
+import '@fontsource/roboto';
+
 
 const UseStyles = makeStyles (() => ({
   root: {
