@@ -90,7 +90,7 @@ const BookInfo = (props) => {
     }
   }));
   const classes = useStyles();
-  const image = props.book.img;
+  const image = props.book.image || props.book.img;
   let authors = '';
   props.book.authors.forEach((author, i) => {
     if (i !== (props.book.authors.length - 1)) {
@@ -99,6 +99,7 @@ const BookInfo = (props) => {
       authors += author;
     }
   })
+  // console.log('image......', props)
   return (
     <Grid container item className={classes.mainContainer} >
       <Grid container item className={classes.parentContainer}>
