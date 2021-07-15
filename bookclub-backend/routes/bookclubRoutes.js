@@ -10,21 +10,34 @@ const Users = require('../models/users');
 /////////////////////////////////// book endpoints ///////////////////////////////////////////
 
 // get book by id
+bookclubRouter.get('/books/recommended', async (req, res) => {
+  console.log('get recommended books');
+  // get every book id that's in someone's favorites list
+  // OR get top 5 total rating books. another idea
+  try {
+    let response = await Users.find({}, {_id: 0}).select('lists.favorites').lean();
+    let allFavoriteIds = response.map(x => x.lists.favorites).flat();
+    let uniques = [...new Set(allFavoriteIds)];
+    // find every user's favorite list and extract distinct ids
+    let bookData = await Books.find({bookId: {$in: uniques}}, {_id: 0}).lean();
+    // console.log(bookData);
+    // return that
+    res.send(bookData);
+  } catch (e) {
+    console.error(e.message);
+    res.sendStatus(400);
+  }
+});
+
 bookclubRouter.get('/books/:bookId', async (req, res) => {
   let { bookId } = req.params;
   let book = await Books.find({ bookId });
   res.send(book[0]);
 });
 
-bookclubRouter.get('/books/recommended', async (req, res) => {
-  // get every book id that's in someone's favorites list
-  // find every user's favorite list and extract distinct ids
-  // run query for minimum amount of data needed for carousel display (?)
-  // process them into objects with [author(s)], title, id, and thumbnail url
-  // return that
-});
 
 bookclubRouter.get('/carouselMeta', async (req, res) => {
+  console.log('carouselMeta');
   let { uid } = req.headers;
   try {
     let lists = await Users.find({ uid }).select('lists -_id');
@@ -161,7 +174,6 @@ bookclubRouter.get('/user/profile', async (req, res) => {
     console.log(e.message);
     res.send(400);
   }
-
 });
 
 module.exports = bookclubRouter;

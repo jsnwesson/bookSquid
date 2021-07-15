@@ -193,5 +193,4 @@ export const getUserData = async () => {
   } catch (e) {
     console.error(e);
   }
-
 }
