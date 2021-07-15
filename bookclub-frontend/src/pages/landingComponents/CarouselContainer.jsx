@@ -7,31 +7,34 @@ import { favorites, previouslyRead, wantToRead } from '../../dummyData/booklist.
 
 const CarouselContainer = (props) => {
 
-  let prevRead;
-  let faves;
-  let toRead;
-  const faveList = {
-    title: 'Favorites',
-    className: 'fave',
+  let clubRecs;
+  let recentlyRev;
+  let recentlyRead;
+  const recList = {
+    title: 'Recommendations from Book Squid',
+    className: 'recSquid',
     list: favorites, // <-- name of array of book objects
+    removeBook: false,
   };
-  const prevList = {
-    title: 'Previously Read',
-    className: 'prevRead',
+  const recRevList = {
+    title: 'Recently Reviewed',
+    className: 'recentlyRev',
     list: previouslyRead,
+    removeBook: false,
   }
-  const toReadList = {
-    title: 'Want to Read',
-    className: 'toRead',
+  const recReadList = {
+    title: 'Recently Read',
+    className: 'recentlyRead',
     list: wantToRead,
+    removeBook: false,
   }
 
 
   return (
     <Container fluid='sm' >
-      {withSlide(faves, faveList, props.setBook)}
-      {withSlide(prevRead, prevList, props.setBook)}
-      {withSlide(toRead, toReadList, props.setBook)}
+      {withSlide(clubRecs, recList, props.setBook)}
+      {withSlide(recentlyRev, recRevList, props.setBook)}
+      {withSlide(recentlyRead, recReadList, props.setBook)}
     </Container>
   )
 

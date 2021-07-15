@@ -1,11 +1,35 @@
 import React from 'react';
 import Slider from 'react-slick';
-import { Card, Row, Col } from 'react-bootstrap';
+// import Row from 'react-bootstrap/Row';
+// import Col from 'react-bootstrap/Col';
+import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid'
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 import AddOrRemoveBook from './AddOrRemoveBook';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './bookclub.css';
+import '@fontsource/roboto';
+
+
+const UseStyles = makeStyles (() => ({
+  root: {
+    maxWidth: 200,
+  },
+  media: {
+    height: 300,
+  },
+  content: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
+})
+);
 
 const withSlide = (wrappedComponent, selectData, setBook) => {
   var settings = {
@@ -13,7 +37,7 @@ const withSlide = (wrappedComponent, selectData, setBook) => {
     centerMode: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: 3,
     slidesToScroll: 1,
     responsive: [
       {
@@ -42,34 +66,41 @@ const withSlide = (wrappedComponent, selectData, setBook) => {
       }
     ]
   };
+
+  const classes = UseStyles();
   return (
     <div>
-      <Row>
-        <Col>
-          <h2>{selectData.title}</h2>
-          <Slider className='slider' {...settings}>
-            {selectData.list.map((book) => {
-              return (
-                <div>
-                  <Card
-                    bg='light'
-                    text='dark'
-                    style={{ width: '10rem' }}>
+      <Grid item direction='row'>
+        <h2>{selectData.title}</h2>
+        <Slider className='slider' {...settings}>
+          {selectData.list.map((book) => {
+            return (
+              <div key={book.bookId}>
+                <Card className={classes.root}>
+                  <CardActionArea>
                     <Link onClick={() => { setBook(book) }} to={`/book/${book.bookId}`}>
-                      <Card.Img variant='top' src={book.thumbnail} />
+                      <CardMedia
+                        className={classes.media}
+                        image={book.thumbnail}
+                        title={book.title}
+                      />
                     </Link>
-                    <Card.Body>
-                      <Card.Title>{book.title}</Card.Title>
-                      <Card.Text>{book.authors[0]}</Card.Text>
-                      <AddOrRemoveBook bookId={book.bookId} listName={selectData.title} functionality={'remove'} />
-                    </Card.Body>
-                  </Card>
-                </div>
-              )
-            })}
-          </Slider>
-        </Col>
-      </Row>
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="h2">
+                        {book.title}
+                      </Typography>
+                      <Typography variant="body2" color="textSecondary" component="p">
+                        {book.authors[0]}
+                      </Typography>
+                    </CardContent>
+                      {(selectData.removeBook) ? <AddOrRemoveBook bookId={book.bookId} listName={selectData.title} functionality={'remove'} />: <></>}
+                  </CardActionArea>
+                </Card>
+              </div>
+            )
+          })}
+        </Slider>
+      </Grid>
     </div>
   );
 }
