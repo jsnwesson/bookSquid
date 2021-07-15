@@ -6,10 +6,32 @@ const Reviews = require('../models/reviews');
 const Books = require('../models/books');
 const Users = require('../models/users');
 
-
 /////////////////////////////////// book endpoints ///////////////////////////////////////////
 
+<<<<<<< HEAD
 ////////////////// get book by id
+=======
+/// get recently reviewed books
+bookclubRouter.get('/books/recentlyReviewed', async (req, res) => {
+  console.log('get recently reviewed books');
+  let {uid} = req.headers;
+  // if uid of currently logged in user exists, gets books recently reviewed. otherwise, gets books most recently reviewed by any user
+  let queryObj = uid ? {uid} : {}
+  try {
+    let response = await Reviews.find(queryObj, {_id: 0, reviewId: 1}).sort('-date').lean();
+    console.log(response);
+    let bookIDs = response.map(x => x.reviewId.split('::')[1]);
+    let uniques = [...new Set(bookIDs)];
+    let bookData = await Books.find({bookId: {$in: uniques}}, {_id: 0}).lean();
+    res.send(bookData);
+  } catch (e) {
+    console.error(e.message);
+    res.sendStatus(400);
+  }
+});
+
+// get recommended books
+>>>>>>> main
 bookclubRouter.get('/books/recommended', async (req, res) => {
   try {
     let response = await Users.find({}, { _id: 0 }).select('lists.favorites').lean();
@@ -22,6 +44,7 @@ bookclubRouter.get('/books/recommended', async (req, res) => {
   };
 });
 
+// get book by id
 bookclubRouter.get('/books/:bookId', async (req, res) => {
   let { bookId } = req.params;
   try {

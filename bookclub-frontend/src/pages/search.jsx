@@ -1,10 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Link } from "react-router-dom";
-import { Button } from "react-bootstrap";
-import Login from "../components/sessions/Login";
 import Header from "../components/bookclub/Header.jsx";
-import SignOut from "../components/sessions/SignOut";
 import Search from "../components/bookclub/Search.jsx";
 
 const useStyles = makeStyles((theme) => ({

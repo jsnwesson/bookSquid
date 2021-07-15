@@ -1,11 +1,19 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import withSlide from '../components/bookclub/BookGallery.jsx';
 import Header from '../components/bookclub/Header.jsx';
+import User from '../components/bookclub/UserInfo.jsx';
+import withSlide from '../components/bookclub/BookGallery.jsx';
 import { favorites, previouslyRead, wantToRead } from '../dummyData/booklist.jsx';
 
+const useStyles = makeStyles (() => ({
+  root: {
+    minWidth: 200,
+  },
+}));
 
 const Profile = (props) => {
+  const classes = useStyles();
   let prevRead;
   let faves;
   let toRead;
@@ -30,18 +38,21 @@ const Profile = (props) => {
 
   return (
     <div key={props.emailCookie.UID}>
-        <Header
-          isLoggedIn={props.isLoggedIn}
-          setIsLoggedIn={props.setIsLoggedIn}
-          uidCookie={props.uidCookie}
-          setUidCookie={props.setUidCookie}
-          removeUidCookie={props.removeUidCookie}
-          emailCookie={props.emailCookie}
-          setEmailCookie={props.setEmailCookie}
-          removeEmailCookie={props.removeEmailCookie}
-          setSearchResults={props.setSearchResults}
-        />
+      <Header
+        isLoggedIn={props.isLoggedIn}
+        setIsLoggedIn={props.setIsLoggedIn}
+        uidCookie={props.uidCookie}
+        setUidCookie={props.setUidCookie}
+        removeUidCookie={props.removeUidCookie}
+        emailCookie={props.emailCookie}
+        setEmailCookie={props.setEmailCookie}
+        removeEmailCookie={props.removeEmailCookie}
+        setSearchResults={props.setSearchResults}
+      />
       <Container maxWidth='md'>
+        <User />
+      </Container>
+      <Container fixed={true} className={classes.root} maxWidth='md'>
         {withSlide(faves, faveList, props.setBook)}
         {withSlide(prevRead, prevList, props.setBook)}
         {withSlide(toRead, toReadList, props.setBook)}
