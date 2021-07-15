@@ -38,28 +38,7 @@
   }
 }
 
-.navBar {
-  height: 10vh;
-  background-color: cornflowerblue;
 
-}
 
-.logo {
-  height: 10vh;
-  margin: 15px 15px 15px 15px;
-  padding: px
-}
 
-#landingSearch {
-  height: 45vh;
-  background-color: rgb(182, 186, 194);
-  /* transform: translateY(-50%); */
-  /* padding: auto; */
-  /* text-align: center; */
-  /* border: 2px solid black; */
-}
 
-#carouselContainer {
-  background-color: rgb(214, 189, 126);
-  height: 60vh;
-}
