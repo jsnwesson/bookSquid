@@ -1,11 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Container from 'react-bootstrap/Container'
 import withSlide from '../../components/bookclub/BookGallery.jsx'
 import { favorites, previouslyRead, wantToRead } from '../../dummyData/booklist.jsx';
 
 
 
-const CarouselContainer = (props) => {
+const Carousel = (props) => {
+
+  const [recommendations, setRecommendations] = useState([]);
+  const [latestReviews, setLatestReviews] = useState([]);
+  const [latestread, setLatestRead] = useState([]);
+
+
+  const getRecommendations = () => {
+
+  }
+
+  const getLatestReviews = () => {
+
+  }
+
+  const getLatestRead = () => {
+
+  }
+
+
+
 
   let clubRecs;
   let recentlyRev;
@@ -16,12 +36,14 @@ const CarouselContainer = (props) => {
     list: favorites, // <-- name of array of book objects
     removeBook: false,
   };
+
   const recRevList = {
     title: 'Recently Reviewed',
     className: 'recentlyRev',
     list: previouslyRead,
     removeBook: false,
   }
+
   const recReadList = {
     title: 'Recently Read',
     className: 'recentlyRead',
@@ -40,4 +62,4 @@ const CarouselContainer = (props) => {
 
 }
 
-export default CarouselContainer;
+export default Carousel;
