@@ -9,13 +9,44 @@ const Users = require('../models/users');
 
 /////////////////////////////////// book endpoints ///////////////////////////////////////////
 
-// get book by id
+////////////// get book by id
 bookclubRouter.get('/books/:bookId', async (req, res) => {
   let { bookId } = req.params;
   let book = await Books.find({ bookId });
   res.send(book[0]);
 });
 
+/////////////// add book to our mongo DB
+bookclubRouter.post('/books/add', async (req, res) => {
+  const {
+    authors,
+    reviews,
+    title,
+    totalRating,
+    description,
+    publishedDate,
+    thumbnail,
+    genre,
+    bookId,
+    image
+  } = req.body;
+
+  let createBook = await Books.create({
+    authors,
+    reviews,
+    title,
+    totalRating,
+    description,
+    publishedDate,
+    thumbnail,
+    genre,
+    bookId,
+    image
+  });
+  res.sendStatus(201);
+});
+
+/////////////// get recommended books from all users???????????? from all favorites lists
 bookclubRouter.get('/books/recommended', async (req, res) => {
   // get every book id that's in someone's favorites list
   // find every user's favorite list and extract distinct ids
@@ -24,22 +55,24 @@ bookclubRouter.get('/books/recommended', async (req, res) => {
   // return that
 });
 
+/////////////// get all book data from all lists of a specific user
 bookclubRouter.get('/carouselMeta', async (req, res) => {
   let { uid } = req.headers;
   try {
-    let lists = await Users.find({ uid }).select('lists -_id');
-    if (lists.length === 0) {
-      throw Error;
+    let listData = await Users.find({ uid }, { lists: 1, _id: 0 }).lean();
+    const lists = listData[0].lists;
+    let results = {}
+    for (var list in lists) {
+      let bookData = await Books.find({ bookId: { $in: lists[list] } }, { _id: 0 })
+      results[list] = bookData
     }
-    // console.log(lists[0]);
-    // need to process inside lists[0] with mongoose methods
-    res.send(lists[0]);
+    res.send(results).status(200);
   } catch (e) {
     res.status(400);
   }
 });
 
-// search endpoint that queries google books api
+//////////////////// get search results from our book collection by authors and titles, and googles api for 20 relevant books
 bookclubRouter.get('/books/search/:q', async (req, res) => {
   let url = new URL('https://www.googleapis.com/books/v1/volumes');
   let params = new URLSearchParams({
@@ -72,7 +105,7 @@ bookclubRouter.get('/books/search/:q', async (req, res) => {
 
 /////////////////////////////////// review endpoints ////////////////////////////////////
 
-// post book review
+//////////////// post book review to a specific book
 bookclubRouter.post('/reviews', async (req, res) => {
   let { bookId, body, title, rating } = req.body;
   let { uid } = req.headers;
@@ -96,7 +129,7 @@ bookclubRouter.post('/reviews', async (req, res) => {
   }
 });
 
-// get all book reviews
+/////////////// get all book reviews for specific book
 bookclubRouter.get('/reviews/:bookId', async (req, res) => {
   let { bookId } = req.params;
   let reviews = await Reviews.find({ reviewId: { $in: (await Books.find({ bookId }, { reviews: 1, _id: 0 }))[0].reviews } }, { _id: 0 });
@@ -116,7 +149,7 @@ bookclubRouter.get('/reviews/:bookId', async (req, res) => {
 
 /////////////////////////////////////// user endpoints //////////////////////////////////////////
 
-// create user endpoint
+/////////////// create a user in our DB
 bookclubRouter.post('/user/create', async (req, res) => {
   let { uid, name, email, date } = req.body;
   let newUser = await Users.create({
@@ -128,7 +161,7 @@ bookclubRouter.post('/user/create', async (req, res) => {
   res.sendStatus(201);
 })
 
-// list data, would probably correspond best with carousel metadata
+/////////////// add a specific book to a specific users specific list
 bookclubRouter.post('/user/list/', async (req, res) => {
   let { listName, bookId } = req.body;
   let { uid } = req.headers;
@@ -137,6 +170,7 @@ bookclubRouter.post('/user/list/', async (req, res) => {
   res.sendStatus(201);
 });
 
+/////////////// remove a specific book from a specific users specific list
 bookclubRouter.put('/user/list/', async (req, res) => {
   let { listName, bookId } = req.body;
   let { uid } = req.headers;
@@ -145,7 +179,7 @@ bookclubRouter.put('/user/list/', async (req, res) => {
   res.sendStatus(201);
 });
 
-// profile data of currently logged in user
+/////////////// profile data of currently logged in user
 bookclubRouter.get('user/profile', async (req, res) => {
 
 });

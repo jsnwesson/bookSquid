@@ -10,10 +10,9 @@ const createToken = async () => {
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
-      //uid: user.uid,
     },
   };
-  if (user.uid) {
+  if (user.uid !== null) {
     payloadHeader.headers.uid = user.uid;
   }
   return payloadHeader;
@@ -60,31 +59,43 @@ export const getBookReviews = async (bookId) => {
 export const carouselMetaData = async () => {
   const header = await createToken();
   try {
-    const res = await axios.post(url + '/carouselMeta', null, header)
+    const res = await axios.post(url + '/carouselMeta', {}, header)
     return res.data
   } catch (e) {
     console.error(e);
   }
   /** response returns:
 
-   status code 200
+  status code 200
 
-    response.data = [
-      {
-        authors: [String],
-        reviews: [String],
-        img: String,
-        title: String,
-        totalRating: Number,
-        description: String,
-        publishedDate: String,
-        thumbnail: String,
-        genre: String,
-        bookId: { type: String, unique: true },
-      },{
+  response.data =
+    {
+      alreadyRead: [
+        {
+          authors: [String],
+          reviews: [String],
+          image: String,
+          title: String,
+          totalRating: Number,
+          description: String,
+          publishedDate: String,
+          thumbnail: String,
+          genre: String,
+          bookId: { type: String, unique: true },
+        },{
+          ...
+        }
+      ],
+      favorites: [
         ...
-      }
-    ]
+      ],
+      currentlyReading: [
+        ...
+      ],
+      goingToRead: [
+        ...
+      ]
+    }
   */
 };
 
@@ -177,3 +188,14 @@ export const removeFromList = async (listName, bookId) => {
     console.error(e);
   }
 };
+
+export const addBookToMongo = async (book) => {
+  const header = await createToken();
+  try {
+    const res = await axios.post(url + '/books/add', { book }, header);
+    return res.data;
+  } catch (e) {
+    console.error(e);
+  }
+};
+
