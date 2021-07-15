@@ -10,12 +10,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
-  avaRoot: {
-    display: 'flex',
-    '& > *': {
-      margin: theme.spacing(1),
-    },
-  },
   paper: {
     padding: theme.spacing(2),
     margin: 'auto',
@@ -31,13 +25,11 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: '100%',
     maxHeight: '100%',
   },
-  small: {
-    width: theme.spacing(3),
-    height: theme.spacing(3),
-  },
   large: {
-    width: theme.spacing(7),
-    height: theme.spacing(7),
+    // width: theme.spacing(7),
+    // height: theme.spacing(7),
+    maxWidth: '80%',
+    borderRadius: '50%',
   },
 }));
 
@@ -47,29 +39,26 @@ const User = (props) => {
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
-        <Grid container spacing={2}>
-          <Grid item xs={12} sm container>
-            <Grid item xs container direction="column" spacing={2}>
-              <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" className={classes.large} />
-              <Grid item xs>
-                <Typography gutterBottom variant="subtitle1">
-                  Standard license
+        <Grid container spacing={3}>
+          <Grid item xs={12} container direction="row">
+            <Grid className={classes.img} item xs container direction="column">
+                <img alt="Remy Sharp" src="https://www.w3schools.com/howto/img_avatar2.png" className={classes.large} />
+            </Grid>
+            <Grid item xs direction="column">
+              <Grid item xs direction="row">
+                {/* <Typography variant="subtitle1" color="textSecondary">joined {props.userInfo.joinedDate}</Typography> */}
+                <Typography variant="subtitle2" color="textSecondary">joined yesterday</Typography>
+              </Grid>
+              <Grid item xs direction="row">
+                <Typography gutterBottom variant="h4">
+                  {/* {props.userInfo.name} */}
+                  Jane Doe
                 </Typography>
                 <Typography variant="body2" gutterBottom>
-                  Full resolution 1920x1080 • JPEG
-                </Typography>
-                <Typography variant="body2" color="textSecondary">
-                  ID: 1030114
+                  {/* Total Books Read: {props.userInfo.lists.previouslyRead.length} */}
+                  Total Books Read: 42
                 </Typography>
               </Grid>
-              <Grid item>
-                <Typography variant="body2" style={{ cursor: 'pointer' }}>
-                  Remove
-                </Typography>
-              </Grid>
-            </Grid>
-            <Grid item>
-              <Typography variant="subtitle1">$19.00</Typography>
             </Grid>
           </Grid>
         </Grid>
