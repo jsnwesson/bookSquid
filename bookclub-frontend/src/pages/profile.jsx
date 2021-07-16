@@ -21,6 +21,8 @@ const Profile = (props) => {
   let toRead;
   let currReading;
 
+  const [user, setUser] = useState([]);
+  const [joinedDate, setJoinedDate] = useState('');
   const [favorites, setFavorites] = useState([]);
   const [previouslyRead, setPreviouslyRead] = useState([]);
   const [wantToRead, setWantToRead] = useState([]);
@@ -29,6 +31,8 @@ const Profile = (props) => {
   useEffect(() => {
     return getUserData()
       .then((results) => {
+        setUser(results.name);
+        setJoinedDate(results.joinedDate);
         setFavorites(results.lists.favorites);
         setPreviouslyRead(results.lists.alreadyRead);
         setWantToRead(results.lists.goingToRead);
@@ -75,7 +79,11 @@ const Profile = (props) => {
         setSearchResults={props.setSearchResults}
       />
       <Container maxWidth='sm'>
-        <User />
+        <User
+          user={user}
+          joinedDate={joinedDate}
+          previouslyRead={previouslyRead}
+        />
       </Container>
       <Container fixed={true} className={classes.root} maxWidth='lg'>
         {withSlide(faves, faveList, props.setBook)}
