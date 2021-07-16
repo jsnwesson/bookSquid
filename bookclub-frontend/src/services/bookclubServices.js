@@ -22,10 +22,8 @@ const createToken = async () => {
 
 export const searchByCategory = async (searchInput) => {
   try {
-    await axios.get(`${url}/books/search/${searchInput}`)
-      .then((result) => {
-        return result.data;
-      })
+    const res = await axios.get(`${url}/books/search/${searchInput}`);
+    return res.data;
   }
   catch (e) {
     console.error(e);
@@ -37,10 +35,8 @@ export const searchByCategory = async (searchInput) => {
 export const getRecentlyReviewed = async () => {
   const header = await createToken()
   try {
-    await axios.get(`${url}/books/recentlyReviewed`, header)
-      .then((result) => {
-        return result.data;
-      });
+    const res = await axios.get(`${url}/books/recentlyReviewed`, header);
+    return res.data;
   } catch (e) {
     console.error(e);
   };
@@ -48,10 +44,8 @@ export const getRecentlyReviewed = async () => {
 
 export const recommendedBooks = async () => {
   try {
-    await axios.get(`${url}/books/recommended`)
-      .then((result) => {
-        return result.data;
-      });
+    const res = await axios.get(`${url}/books/recommended`);
+    return res.data;
   } catch (e) {
     console.error(e);
   };
@@ -59,10 +53,8 @@ export const recommendedBooks = async () => {
 
 export const specificBookData = async (bookId) => {
   try {
-    await axios.get(`${url}/books/${bookId}`)
-      .then((result) => {
-        return result.data;
-      });
+    const res = await axios.get(`${url}/books/${bookId}`);
+    return res.data;
   } catch (e) {
     console.error(e);
   };
@@ -71,10 +63,8 @@ export const specificBookData = async (bookId) => {
 export const carouselMetaData = async () => {
   const header = await createToken();
   try {
-    await axios.get(`${url}/books/carouselMeta`, header)
-      .then((result) => {
-        return result.data;
-      });
+    const res = await axios.get(`${url}/books/carouselMeta`, header);
+    return res.data;
   } catch (e) {
     console.error(e);
   };
@@ -82,10 +72,8 @@ export const carouselMetaData = async () => {
 
 export const addBookToMongo = async (book) => {
   try {
-    await axios.post(`${url}/books/add`, { book })
-      .then((result) => {
-        return result.data;
-      });
+    const res = await axios.post(`${url}/books/add`, { book });
+    return res.data;
   } catch (e) {
     console.error(e);
   };
@@ -103,10 +91,8 @@ export const postBookReview = async (body, title, rating, bookId) => {
     bookId,
   };
   try {
-    await axios.post(`${url}/reviews`, payload, header)
-      .then((result) => {
-        return result.data;
-      });
+    const res = await axios.post(`${url}/reviews`, payload, header);
+    return res.data;
   } catch (e) {
     console.error(e);
   };
@@ -114,10 +100,8 @@ export const postBookReview = async (body, title, rating, bookId) => {
 
 export const getBookReviews = async (bookId) => {
   try {
-    await axios.get(`${url}/reviews/${bookId}`)
-      .then((result) => {
-        return result.data;
-      });
+    const res = await axios.get(`${url}/reviews/${bookId}`);
+    return res.data;
   } catch (e) {
     console.error(e);
   };
@@ -133,10 +117,8 @@ export const createUser = async (uid, name, email, date) => {
     date: date.toISOString(),
   };
   try {
-    await axios.post(`${url}/user/create`, payload)
-      .then((result) => {
-        return result.data;
-      });
+    const res = await axios.post(`${url}/user/create`, payload);
+    return res.data;
   } catch (e) {
     console.error(e);
   };
@@ -145,10 +127,8 @@ export const createUser = async (uid, name, email, date) => {
 export const addToList = async (listName, bookId) => {
   const header = await createToken();
   try {
-    await axios.post(`${url}/user/list`, { listName, bookId }, header)
-      .then((result) => {
-        return result.data;
-      });
+    const res = await axios.post(`${url}/user/list`, { listName, bookId }, header);
+    return res.data;
   } catch (e) {
     console.error(e);
   };
@@ -157,10 +137,8 @@ export const addToList = async (listName, bookId) => {
 export const removeFromList = async (listName, bookId) => {
   const header = await createToken();
   try {
-    await axios.put(`${url}/user/list`, { listName, bookId }, header)
-      .then((result) => {
-        return result.data;
-      });
+    const res = await axios.put(`${url}/user/list`, { listName, bookId }, header);
+    return res.data;
   } catch (e) {
     console.error(e);
   };
@@ -169,10 +147,8 @@ export const removeFromList = async (listName, bookId) => {
 export const getUserData = async () => {
   const header = await createToken();
   try {
-    await axios.get(`${url}/user/profile`, header)
-      .then((result) => {
-        return result.data;
-      });
+    const res = await axios.get(`${url}/user/profile`, header);
+    return res.data;
   } catch (e) {
     console.error(e);
   };
