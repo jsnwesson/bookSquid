@@ -1,13 +1,39 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles';
 import AddOrRemoveBook from './AddOrRemoveBook';
 import Paper from '@material-ui/core/Paper';
+import { specificBookData } from '../../services/bookclubServices';
+// import { addBookToMongo } from '../../services/bookclubServices';
 
 import '@fontsource/roboto';
-
+import { useParams } from 'react-router';
 const BookInfo = (props) => {
+  const { id } = useParams()
+  console.log('this should be the id', id)
+  const [book, setBook] = useState(null)
+
+  useEffect(() => {
+    // addBookToMongo(props.book)
+    //   .then(() => {
+    //     specificBookData(id)
+    //       .then((results) => {
+    //         console.log('response to specifc bookData', results.data)
+    //         setBook(results)
+    //       })
+    //   })
+    specificBookData(id)
+      .then((results) => {
+        console.log('response to specifc bookData', results.data)
+        setBook(results)
+      })
+  }, [])
+
+  // useEffect(() => {
+  //   window.localStorage.setItem('book', book);
+  // }, [book]);
+
   /*
   console.log(props.book)
   * FOR API specificBookData(bookId)
@@ -90,52 +116,59 @@ const BookInfo = (props) => {
     }
   }));
   const classes = useStyles();
-  const image = props.book.image === '' ? props.book.thumbnail : props.book.image;
+  const image = book ? book.image : null;
   let authors = '';
-  props.book.authors.forEach((author, i) => {
-    if (i !== (props.book.authors.length - 1)) {
-      authors += `${author}, `;
-    } else {
-      authors += author;
-    }
-  })
+  // if (book) {
+  //   book.authors.forEach((author, i) => {
+  //     if (i !== (book.authors.length - 1)) {
+  //       authors += `${author}, `;
+  //     } else {
+  //       authors += author;
+  //     }
+  //   })
+  // }
   // console.log('image......', props)
   return (
-    <Grid container item className={classes.mainContainer} >
-      <Grid container item className={classes.parentContainer}>
-        <Grid container item direction='column' xs={3} className={classes.imageContainer}>
-          <img
-            className={classes.media}
-            src={image}
-            alt={props.book.title}
-          />
-        </Grid>
-        <Grid container item direction='column' xs={8} >
-          <Paper className={classes.paper} elevation={5}>
-            <Grid className={classes.authorsContainer}>
-              <Grid container item direction='row' className={classes.titleRow}>
-                <Typography variant='h5'><b>{props.book.title}</b></Typography >
-                <Typography variant='h5'>{props.book.genre}</Typography>
-              </Grid>
-              <Grid container item direction='row'>
-                <Typography variant='h5'>Published: <b>{props.book.publishedDate}</b></Typography>
-              </Grid>
+    <>
+      {book
+        ? <Grid container item className={classes.mainContainer} >
+          <Grid container item className={classes.parentContainer}>
+            <Grid container item direction='column' xs={3} className={classes.imageContainer}>
+              <img
+                className={classes.media}
+                src={image}
+                alt={book.title}
+              />
             </Grid>
-            <Grid container item direction='column'>
-              <Grid direction='row'>
-                <Typography variant='h5'>{authors}</Typography>
-              </Grid>
-              <Grid direction='row' className={classes.titleContainer}>
-                <Typography className={classes.descriptionContainer} variant='subtitle1'>{props.book.description}</Typography>
-              </Grid>
-              <Grid direction="row" className={classes.buttonRow}>
-                <AddOrRemoveBook bookId={props.book.bookId} functionality={'both'} />
-              </Grid>
+            <Grid container item direction='column' xs={8} >
+              <Paper className={classes.paper} elevation={5}>
+                <Grid className={classes.authorsContainer}>
+                  <Grid container item direction='row' className={classes.titleRow}>
+                    <Typography variant='h5'><b>{book.title}</b></Typography >
+                    <Typography variant='h5'>{book.genre}</Typography>
+                  </Grid>
+                  <Grid container item direction='row'>
+                    <Typography variant='h5'>Published: <b>{book.publishedDate}</b></Typography>
+                  </Grid>
+                </Grid>
+                <Grid container item direction='column'>
+                  <Grid direction='row'>
+                    {/* <Typography variant='h5'>{authors}</Typography> */}
+                    <Typography variant='h5'>yo</Typography>
+                  </Grid>
+                  <Grid direction='row' className={classes.titleContainer}>
+                    <Typography className={classes.descriptionContainer} variant='subtitle1'>{book.description}</Typography>
+                  </Grid>
+                  <Grid direction="row" className={classes.buttonRow}>
+                    <AddOrRemoveBook bookId={book.bookId} functionality={'both'} />
+                  </Grid>
+                </Grid>
+              </Paper>
             </Grid>
-          </Paper>
+          </Grid>
         </Grid>
-      </Grid>
-    </Grid>
+        : null}
+    </>
   )
 }
 
