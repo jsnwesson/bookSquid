@@ -1,40 +1,41 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles';
 import AddOrRemoveBook from './AddOrRemoveBook';
 import Paper from '@material-ui/core/Paper';
-
+import { specificBookData } from '../../services/bookclubServices';
+// import { addBookToMongo } from '../../services/bookclubServices';
 import '@fontsource/roboto';
+import { useParams } from 'react-router';
+
 
 const BookInfo = (props) => {
-  /*
-  console.log(props.book)
-  * FOR API specificBookData(bookId)
-  * response returns:
-  *   status code 200
-  *   response.data = {
-  *     description: 'STRING',
-  *     publishedDate: 'STRING',
-  *     authors: [ 'STRING', ... ],
-  *     genre: 'STRING',
-  *     title: 'STRING',
-  *     image: 'STRING', // this should be the larger image
-  *   }
+  const { id } = useParams()
+  console.log('this is props', props)
+  // console.log('this should be the id', id)
+  const [book, setBook] = useState(null)
+  const [ready, setReady] = useState(false)
+  useEffect(() => {
+    // addBookToMongo(props.book)
+    //   .then(() => {
+    //     specificBookData(id)
+    //       .then((results) => {
+    //         console.log('response to specifc bookData', results.data)
+    //         setBook(results[0])
+    //       })
+    //   })
+    specificBookData(id)
+      .then((results) => {
+        console.log('response to specifc bookData', results)
+        setBook(results[0])
+      })
+  }, [])
 
-  Props (current) from BookGallery:
-  - props.book.authors []
-  - props.book.title
-  - props.book.bookId
-  - props.book.publishedDate
-  - props.book.description
-  - props.book.genre
-  - props.book.thumbnail
-  - props.book.img
+  useEffect(() => {
+    setReady(true)
+  }, [book]);
 
-  Props from Search:
-  - props.book.gid
-  */
   const useStyles = makeStyles((theme) => ({
     mainContainer: {
       paddingTop: '75px',
@@ -48,21 +49,13 @@ const BookInfo = (props) => {
       justifyContent: 'center'
     },
     imageContainer: {
-      // backgroundColor: '#0dcaf0'
       paddingRight: '10%'
     },
     titleContainer: {
-      // backgroundColor: '#20c997',
-      // backgroundColor: 'yellow',
       display: 'flex',
       justifyContent: 'center',
-
     },
     buttonRow: {
-      // backgroundColor: '#20c997',
-      // backgroundColor: 'yellow',
-      // display: 'flex',
-      // justifyContent: 'center',
       width: '75%',
       paddingLeft: '25%'
     },
@@ -71,11 +64,7 @@ const BookInfo = (props) => {
       alignItems: 'center',
       justifyContent: 'space-between'
     },
-    authorsContainer: {
-      // backgroundColor: '#0d6efd'
-    },
     descriptionContainer: {
-      // backgroundColor: '#ffc107',
       width: '75%'
     },
     media: {
@@ -90,52 +79,58 @@ const BookInfo = (props) => {
     }
   }));
   const classes = useStyles();
-  const image = props.book.image === '' ? props.book.thumbnail : props.book.image;
+  const image = book ? book.image : null;
   let authors = '';
-  props.book.authors.forEach((author, i) => {
-    if (i !== (props.book.authors.length - 1)) {
-      authors += `${author}, `;
-    } else {
-      authors += author;
-    }
-  })
+  if (book) {
+    book.authors.forEach((author, i) => {
+      if (i !== (book.authors.length - 1)) {
+        authors += `${author}, `;
+      } else {
+        authors += author;
+      }
+    })
+  }
   // console.log('image......', props)
   return (
-    <Grid container item className={classes.mainContainer} >
-      <Grid container item className={classes.parentContainer}>
-        <Grid container item direction='column' xs={3} className={classes.imageContainer}>
-          <img
-            className={classes.media}
-            src={image}
-            alt={props.book.title}
-          />
-        </Grid>
-        <Grid container item direction='column' xs={8} >
-          <Paper className={classes.paper} elevation={5}>
-            <Grid className={classes.authorsContainer}>
-              <Grid container item direction='row' className={classes.titleRow}>
-                <Typography variant='h5'><b>{props.book.title}</b></Typography >
-                <Typography variant='h5'>{props.book.genre}</Typography>
-              </Grid>
-              <Grid container item direction='row'>
-                <Typography variant='h5'>Published: <b>{props.book.publishedDate}</b></Typography>
-              </Grid>
+    <>
+      {ready && book !== null
+        ? <Grid container item className={classes.mainContainer} >
+          <Grid container item className={classes.parentContainer}>
+            <Grid container item direction='column' xs={3} className={classes.imageContainer}>
+              <img
+                className={classes.media}
+                src={image}
+                alt={book.title}
+              />
             </Grid>
-            <Grid container item direction='column'>
-              <Grid direction='row'>
-                <Typography variant='h5'>{authors}</Typography>
-              </Grid>
-              <Grid direction='row' className={classes.titleContainer}>
-                <Typography className={classes.descriptionContainer} variant='subtitle1'>{props.book.description}</Typography>
-              </Grid>
-              <Grid direction="row" className={classes.buttonRow}>
-                <AddOrRemoveBook bookId={props.book.bookId} functionality={'both'} />
-              </Grid>
+            <Grid container item direction='column' xs={8} >
+              <Paper className={classes.paper} elevation={5}>
+                <Grid >
+                  <Grid container item direction='row' className={classes.titleRow}>
+                    <Typography variant='h5'><b>{book.title}</b></Typography >
+                    <Typography variant='h5'>{book.genre}</Typography>
+                  </Grid>
+                  <Grid container item direction='row'>
+                    <Typography variant='h5'>Published: <b>{book.publishedDate}</b></Typography>
+                  </Grid>
+                </Grid>
+                <Grid container item direction='column'>
+                  <Grid direction='row'>
+                    <Typography variant='h5'>{authors}</Typography>
+                  </Grid>
+                  <Grid direction='row' className={classes.titleContainer}>
+                    <Typography className={classes.descriptionContainer} variant='subtitle1'>{book.description}</Typography>
+                  </Grid>
+                  <Grid direction="row" className={classes.buttonRow}>
+                    <AddOrRemoveBook bookId={book.bookId} functionality={'both'} />
+                  </Grid>
+                </Grid>
+              </Paper>
             </Grid>
-          </Paper>
+          </Grid>
         </Grid>
-      </Grid>
-    </Grid>
+        : null}
+    </>
   )
 }
 

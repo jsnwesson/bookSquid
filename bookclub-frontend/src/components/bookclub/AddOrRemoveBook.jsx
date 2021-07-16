@@ -9,7 +9,8 @@ import Select from '@material-ui/core/Select';
 import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
-
+import { addToList } from '../../services/bookclubServices';
+import { removeFromList } from '../../services/bookclubServices';
 const AddOrRemoveBook = (props) => {
   const [changed, setChanged] = useState(false)
   const [listName, setListName] = useState()
@@ -44,15 +45,18 @@ const AddOrRemoveBook = (props) => {
 
   const handleSubmit = (option) => {
     if (option === 3) {
-      setListName(props.listName)
-      alert(`these are your selections... you will be removing book: ${props.bookId} from: ${props.listName} `)
+      // setListName(props.listName)
+      removeFromList(props.listName, props.bookId)
+      // alert(`these are your selections... you will be removing book: ${props.bookId} from: ${props.listName} `)
     }
     if (changed === true && option === 1) {
       // add to a selected list
-      alert(`these are your selections... you will be adding book: ${props.bookId} to: ${listName} `)
+      addToList(listName, props.bookId)
+      // alert(`these are your selections... you will be adding book: ${props.bookId} to: ${listName} `)
     } else if (changed === true && option === 2) {
       // remove from selected list
-      alert(`these are your selections... you will be removing book: ${props.bookId} from: ${listName} `)
+      removeFromList(listName, props.bookId)
+      // alert(`these are your selections... you will be removing book: ${props.bookId} from: ${listName} `)
     } else if (changed === false && option === 1) {
       alert('you have not selected a list to add to')
     } else if (changed === false && option === 2) {

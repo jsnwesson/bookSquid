@@ -17,7 +17,7 @@ bookclubRouter.get('/books/search/:q', async (req, res) => {
   url.search = params;
   try {
     let googleResults = await axios.get(url.toString());
-    let mongoResults = await Books.find({ $text: { $search: req.params.q } }).lean();
+    // let mongoResults = await Books.find({ $text: { $search: req.params.q } }).lean();
 
     let processed = googleResults.data.items.map(entry => {
       let { id } = entry;
@@ -35,7 +35,7 @@ bookclubRouter.get('/books/search/:q', async (req, res) => {
         image: imageLinks ? imageLinks.thumbnail : '',
       };
     });
-    res.send(mongoResults.concat(processed)).status(200);
+    res.send(processed).status(200);
   } catch (e) {
     res.sendStatus(400);
   };
