@@ -1,16 +1,20 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const cors = require('cors');
 const functions = require('firebase-functions')
-const bookclubRouter = require('./routes/bookclubRoutes');
-const decodeIDToken = require('./authenticateToken');
-const atlasPassword = require('./config');
+const cors = require('cors');
+const path = require('path');
 
 const app = express();
+
+const bookclubRouter = require('./routes/bookclubRoutes');
+const atlasPassword = require('./config');
+const decodeIDToken = require('./authenticateToken');
 
 app.use(cors());
 app.use(express.json());
 app.use(decodeIDToken);
+app.use(express.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api', bookclubRouter);
 
 mongoose.connect(
@@ -33,9 +37,5 @@ app.listen(PORT, () => {
 //   res.send('Hello World');
 // });
 
+//module.exports = app;
 exports.api = functions.https.onRequest(app);
-<<<<<<< HEAD
-// module.exports = app;
-=======
-// module.exports = app;
->>>>>>> 1abe9f68f2287dcc27a0e167430b4cc5d57c462b

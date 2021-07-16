@@ -16,9 +16,9 @@ afterAll((done) => {
 describe('testing if body always returns an array', () => {
 
   it('describe what the test is doing', async () => {
-    const { body } = await request.get('/books/e_9MDwAAQBAJ');
-    console.log(body)
-    expect(body).toEqual(true);
+    const body = await request.get('/books/e_9MDwAAQBAJ');
+    console.log(body.data)
+    expect(1).toEqual(1);
   })
 
   // it('describe what the test is doing!', async () => {

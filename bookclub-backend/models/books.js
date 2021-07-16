@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const booksSchema = new mongoose.Schema({
   img: String,
-  title: String,
+  title: { type: String, unique: true },
   authors: [String],
   reviews: [String],
   totalRating: Number,
@@ -11,7 +11,7 @@ const booksSchema = new mongoose.Schema({
   thumbnail: String,
   genre: String,
   bookId: { type: String, unique: true },
-})
+});
 
 booksSchema.set('toJSON', {
   transform: (doc, returnedObject) => {
