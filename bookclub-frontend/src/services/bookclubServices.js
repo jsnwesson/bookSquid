@@ -18,6 +18,70 @@ const createToken = async () => {
   return payloadHeader;
 };
 
+/////////////////// search axios methods ///////////////////
+
+export const searchByCategory = async (searchInput) => {
+  try {
+    const res = await axios.get(`${url}/books/search/${searchInput}`);
+    return res.data;
+  }
+  catch (e) {
+    console.error(e);
+  };
+};
+
+/////////////////// book axios methods ///////////////////
+
+export const getRecentlyReviewed = async () => {
+  const header = await createToken()
+  try {
+    const res = await axios.get(`${url}/books/recentlyReviewed`, header);
+    return res.data;
+  } catch (e) {
+    console.error(e);
+  };
+};
+
+export const recommendedBooks = async () => {
+  try {
+    const res = await axios.get(`${url}/books/recommended`);
+    return res.data;
+  } catch (e) {
+    console.error(e);
+  };
+};
+
+export const specificBookData = async (bookId) => {
+  try {
+    const res = await axios.get(`${url}/books/${bookId}`);
+    return res.data;
+  } catch (e) {
+    console.error(e);
+  };
+};
+
+export const carouselMetaData = async () => {
+  const header = await createToken();
+  try {
+    const res = await axios.get(`${url}/books/carouselMeta`, header);
+    return res.data;
+  } catch (e) {
+    console.error(e);
+  };
+};
+
+export const addBookToMongo = async (book) => {
+  try {
+    const res = await axios.post(`${url}/books/add`, { book });
+    return res.data;
+  } catch (e) {
+    console.error(e);
+  };
+};
+
+
+/////////////////// axios reviews methods ///////////////////
+
 export const postBookReview = async (body, title, rating, bookId) => {
   const header = await createToken();
   const payload = {
@@ -43,35 +107,7 @@ export const getBookReviews = async (bookId) => {
   };
 };
 
-export const carouselMetaData = async () => {
-  const header = await createToken();
-  try {
-    const res = await axios.get(`${url}/books/carouselMeta`, header);
-    return res.data;
-  } catch (e) {
-    console.error(e);
-  };
-};
-
-export const specificBookData = async (bookId) => {
-  try {
-    const res = await axios.get(`${url}/books/${bookId}`);
-    return res.data;
-  } catch (e) {
-    console.error(e);
-  };
-};
-
-
-export const searchByCategory = async (searchInput) => {
-  try {
-    const res = await axios.get(`${url}/books/search/${searchInput}`);
-    return res.data;
-  }
-  catch (e) {
-    console.error(e);
-  };
-};
+/////////////////// axios user methods ///////////////////
 
 export const createUser = async (uid, name, email, date) => {
   const payload = {
@@ -112,15 +148,6 @@ export const getUserData = async () => {
   const header = await createToken();
   try {
     const res = await axios.get(`${url}/user/profile`, header);
-    return res.data;
-  } catch (e) {
-    console.error(e);
-  };
-};
-
-export const addBookToMongo = async (book) => {
-  try {
-    const res = await axios.post(`${url}/books/add`, { book });
     return res.data;
   } catch (e) {
     console.error(e);

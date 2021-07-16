@@ -6,6 +6,41 @@ const Reviews = require('../models/reviews');
 const Books = require('../models/books');
 const Users = require('../models/users');
 
+/////////////// get search results from our book collection by authors and titles, and googles api for 20 relevant books
+bookclubRouter.get('/books/search/:q', async (req, res) => {
+  let url = new URL('https://www.googleapis.com/books/v1/volumes');
+  let params = new URLSearchParams({
+    q: req.params.q,
+    printType: 'books',
+    maxResults: 20
+  });
+  url.search = params;
+  try {
+    let googleResults = await axios.get(url.toString());
+    let mongoResults = await Books.find({ $text: { $search: req.params.q } }).lean();
+
+    let processed = googleResults.data.items.map(entry => {
+      let { id } = entry;
+      let { title, authors, averageRating, imageLinks, description, publishedDate, categories } = entry.volumeInfo;
+      return {
+        authors,
+        reviews: [],
+        title,
+        totalRating: averageRating || 0,
+        description,
+        publishedDate,
+        thumbnail: imageLinks ? imageLinks.smallThumbnail : '',
+        genre: categories ? categories[0] : '',
+        bookId: id,
+        image: imageLinks ? imageLinks.thumbnail : '',
+      };
+    });
+    res.send(mongoResults.concat(processed)).status(200);
+  } catch (e) {
+    res.sendStatus(400);
+  };
+});
+
 /////////////////////////////////// book endpoints ///////////////////////////////////////////
 
 /////////////// get recently reviewed books
@@ -41,9 +76,26 @@ bookclubRouter.get('/books/:bookId', async (req, res) => {
   let { bookId } = req.params;
   try {
     let book = await Books.find({ bookId }).lean();
-    res.send(book[0]).status(200);
+    res.send(book).status(200);
   } catch (e) {
     res.sendStatus(400);
+  };
+});
+
+/////////////// get all book data from all lists of a specific user
+bookclubRouter.get('/books/carouselMeta', async (req, res) => {
+  const { uid } = req.headers;
+  try {
+    const listData = await Users.find({ uid }, { lists: 1, _id: 0 }).lean();
+    const lists = listData[0].lists;
+    let results = {};
+    for (var list in lists) {
+      const bookData = await Books.find({ bookId: { $in: lists[list] } }, { _id: 0 }).lean();
+      results[list] = bookData;
+    };
+    res.send(results).status(200);
+  } catch (e) {
+    res.status(400);
   };
 });
 
@@ -75,58 +127,6 @@ bookclubRouter.post('/books/add', async (req, res) => {
       image
     });
     res.sendStatus(201);
-  } catch (e) {
-    res.sendStatus(400);
-  };
-});
-
-/////////////// get all book data from all lists of a specific user
-bookclubRouter.get('/books/carouselMeta', async (req, res) => {
-  const { uid } = req.headers;
-  try {
-    const listData = await Users.find({ uid }, { lists: 1, _id: 0 }).lean();
-    const lists = listData[0].lists;
-    let results = {};
-    for (var list in lists) {
-      const bookData = await Books.find({ bookId: { $in: lists[list] } }, { _id: 0 }).lean();
-      results[list] = bookData;
-    };
-    res.send(results).status(200);
-  } catch (e) {
-    res.status(400);
-  };
-});
-
-/////////////// get search results from our book collection by authors and titles, and googles api for 20 relevant books
-bookclubRouter.get('/books/search/:q', async (req, res) => {
-  let url = new URL('https://www.googleapis.com/books/v1/volumes');
-  let params = new URLSearchParams({
-    q: req.params.q,
-    printType: 'books',
-    maxResults: 20
-  });
-  url.search = params;
-  try {
-    let googleResults = await axios.get(url.toString());
-    let mongoResults = await Books.find({ $text: { $search: req.params.q } }).lean();
-
-    let processed = googleResults.data.items.map(entry => {
-      let { id } = entry;
-      let { title, authors, averageRating, imageLinks, description, publishedDate, categories } = entry.volumeInfo;
-      return {
-        authors,
-        reviews: [],
-        title,
-        totalRating: averageRating || 0,
-        description,
-        publishedDate,
-        thumbnail: imageLinks ? imageLinks.smallThumbnail : '',
-        genre: categories ? categories[0] : '',
-        bookId: id,
-        image: imageLinks ? imageLinks.thumbnail : '',
-      };
-    });
-    res.send(mongoResults.concat(processed)).status(200);
   } catch (e) {
     res.sendStatus(400);
   };
@@ -234,7 +234,7 @@ bookclubRouter.get('/user/profile', async (req, res) => {
       let bookData = await Books.find({ bookId: { $in: userData.lists[list] } }, { _id: 0, reviews: 0, totalRating: 0 }).lean();
       userData.lists[list] = bookData;
     };
-    res.send(userData);
+    res.send(userData).status(200);
   } catch (e) {
     res.send(400);
   };
