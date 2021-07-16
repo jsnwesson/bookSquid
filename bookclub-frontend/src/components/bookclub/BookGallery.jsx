@@ -40,7 +40,7 @@ const withSlide = (wrappedComponent, selectData, setBook) => {
     slidesToScroll: 4,
     responsive: [
       {
-        breakpoint: 1224,
+        breakpoint: 1300,
         settings: {
           slidesToShow: 4,
           slidesToScroll: 4,
@@ -56,7 +56,7 @@ const withSlide = (wrappedComponent, selectData, setBook) => {
         }
       },
       {
-        breakpoint: 775,
+        breakpoint: 960,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
