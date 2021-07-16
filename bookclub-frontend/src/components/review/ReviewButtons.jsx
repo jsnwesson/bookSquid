@@ -8,9 +8,9 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+// import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Rating from '@material-ui/lab/Rating';
-import axios from 'axios';
+// import axios from 'axios';
 // import access from '../../../../config.js';
 
 //ratings
@@ -54,10 +54,7 @@ const ReviewButtons = ({handleMoreReviews, reviewsRenderedNum, reviewSum, id}) =
     // rating state
     const [value, setValue] = useState(2);
     const [summary, setSummary] = useState('');
-    const [checked, setChecked] = useState(true);
     const [body, setBody] = useState('');
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
 
   let moreReviews;
   if(reviewsRenderedNum < reviewSum) {
@@ -162,28 +159,6 @@ const ReviewButtons = ({handleMoreReviews, reviewsRenderedNum, reviewSum, id}) =
                 variant="outlined"
               />
             </div>
-            <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Name"
-            value={name}
-            onChange={e => setName(e.target.value)}
-            type="text"
-            fullWidth
-            variant="standard"
-          />
-          <TextField
-            autoFocus
-            margin="dense"
-            id="email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            label="Email Address"
-            type="email"
-            fullWidth
-            variant="standard"
-          />
           <Box pt={1}>
           <input
             accept="image/*"

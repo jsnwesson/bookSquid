@@ -12,7 +12,7 @@ const createToken = async () => {
       Authorization: `Bearer ${token}`,
     },
   };
-  if (user.uid !== null) {
+  if (user !== null) {
     payloadHeader.headers.uid = user.uid;
   };
   return payloadHeader;

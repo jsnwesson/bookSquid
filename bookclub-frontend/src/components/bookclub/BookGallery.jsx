@@ -1,7 +1,5 @@
 import React from 'react';
 import Slider from 'react-slick';
-// import Row from 'react-bootstrap/Row';
-// import Col from 'react-bootstrap/Col';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid'
 import Card from '@material-ui/core/Card';
@@ -25,8 +23,7 @@ const UseStyles = makeStyles(() => ({
     height: 300,
   },
   content: {
-    display: 'flex',
-    justifyContent: 'center',
+    marginTop: '30px',
   },
 })
 );
@@ -36,41 +33,51 @@ const withSlide = (wrappedComponent, selectData, setBook) => {
     arrows: true,
     centerMode: true,
     infinite: true,
-    speed: 500,
-    slidesToShow: 3,
+    speed: 100,
+    slidesToShow: 1,
     slidesToScroll: 1,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1300,
         settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
+          slidesToShow: 4,
+          slidesToScroll: 4,
           infinite: true,
-          dots: true
         }
       },
       {
-        breakpoint: 600,
+        breakpoint: 1000,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 2,
+          infinite: true,
+        }
+      },
+      {
+        breakpoint: 950,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          initialSlide: 2
+          infinite: true,
         }
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1
+          slidesToScroll: 1,
+          infinite: true,
         }
       }
     ]
   };
 
   const classes = UseStyles();
+  console.log(selectData)
+
   return (
     <div>
-      <Grid item direction='row'>
+      <Grid item >
         <h2>{selectData.title}</h2>
         <Slider className='slider' {...settings}>
           {selectData.list.map((book) => {
