@@ -34,4 +34,8 @@ app.listen(PORT, () => {
 // });
 
 exports.api = functions.https.onRequest(app);
+<<<<<<< HEAD
 // module.exports = app;
+=======
+// module.exports = app;
+>>>>>>> 1abe9f68f2287dcc27a0e167430b4cc5d57c462b
