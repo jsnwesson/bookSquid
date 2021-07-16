@@ -118,6 +118,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Header = (props) => {
+  const submitButton = document.getElementById('submitButton')
   const classes = useStyles();
   const [searchInput, setSearchInput] = useState();
 
@@ -130,6 +131,12 @@ const Header = (props) => {
       props.setSearchResults(results);
     });
   };
+
+  const handleEnterSearch = (e) => {
+    if (e.key === 'Enter') {
+      submitButton.click();
+    }
+  }
 
 
   return (
@@ -167,6 +174,7 @@ const Header = (props) => {
                     </div>
                     <InputBase
                       onChange={handleSearchInput}
+                      onKeyUp={handleEnterSearch}
                       placeholder="Search Books, Authors and Genres!"
                       classes={{
                         root: classes.inputRoot,
@@ -178,7 +186,12 @@ const Header = (props) => {
                   <Grid>
                     {searchInput
                       ? < Link to={'/search'}>
-                        <Button className={classes.searchButton} variant="contained" onClick={handleSearchSubmit}>Search</Button>
+                        <Button
+                          id="submitButton"
+                          className={classes.searchButton}
+                          variant="contained"
+                          onClick={handleSearchSubmit}
+                        >Search</Button>
                       </Link>
                       : <Button disabled className={classes.searchButton} variant="contained" onClick={handleSearchSubmit}>Search</Button>
                     }
