@@ -11,9 +11,9 @@ import '@fontsource/roboto';
 import { useParams } from 'react-router';
 const BookInfo = (props) => {
   const { id } = useParams()
-  console.log('this should be the id', id)
+  // console.log('this should be the id', id)
   const [book, setBook] = useState(null)
-
+  const [ready, setReady] = useState(false)
   useEffect(() => {
     // addBookToMongo(props.book)
     //   .then(() => {
@@ -25,14 +25,14 @@ const BookInfo = (props) => {
     //   })
     specificBookData(id)
       .then((results) => {
-        console.log('response to specifc bookData', results.data)
-        setBook(results)
+        console.log('response to specifc bookData', results)
+        setBook(results[0])
       })
   }, [])
 
-  // useEffect(() => {
-  //   window.localStorage.setItem('book', book);
-  // }, [book]);
+  useEffect(() => {
+    setReady(true)
+  }, [book]);
 
   /*
   console.log(props.book)
@@ -118,19 +118,19 @@ const BookInfo = (props) => {
   const classes = useStyles();
   const image = book ? book.image : null;
   let authors = '';
-  // if (book) {
-  //   book.authors.forEach((author, i) => {
-  //     if (i !== (book.authors.length - 1)) {
-  //       authors += `${author}, `;
-  //     } else {
-  //       authors += author;
-  //     }
-  //   })
-  // }
+  if (book) {
+    book.authors.forEach((author, i) => {
+      if (i !== (book.authors.length - 1)) {
+        authors += `${author}, `;
+      } else {
+        authors += author;
+      }
+    })
+  }
   // console.log('image......', props)
   return (
     <>
-      {book
+      {ready && book !== null
         ? <Grid container item className={classes.mainContainer} >
           <Grid container item className={classes.parentContainer}>
             <Grid container item direction='column' xs={3} className={classes.imageContainer}>
@@ -153,8 +153,7 @@ const BookInfo = (props) => {
                 </Grid>
                 <Grid container item direction='column'>
                   <Grid direction='row'>
-                    {/* <Typography variant='h5'>{authors}</Typography> */}
-                    <Typography variant='h5'>yo</Typography>
+                    <Typography variant='h5'>{authors}</Typography>
                   </Grid>
                   <Grid direction='row' className={classes.titleContainer}>
                     <Typography className={classes.descriptionContainer} variant='subtitle1'>{book.description}</Typography>
