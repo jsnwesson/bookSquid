@@ -18,7 +18,7 @@ const LandingPage = (props) => {
         setEmailCookie={props.setEmailCookie}
         removeEmailCookie={props.removeEmailCookie}
         setSearchResults={props.setSearchResults}
-        searchIsTrue={true}
+        isLandingPage={true}
       />
       <LandingSearch
         setSearchResults={props.setSearchResults}

@@ -13,6 +13,7 @@ import { Link } from 'react-router-dom';
 import Login from '../sessions/Login.jsx';
 import SignOut from '../sessions/SignOut.jsx';
 import Logo from '../../pages/landingComponents/assets/BookSquidLogo_Main.svg';
+import bigLogo from '../../pages/landingComponents/assets/BookSquidLogo_No_Tag.svg'
 import { searchByCategory } from '../../services/bookclubServices.js';
 
 
@@ -107,7 +108,11 @@ const useStyles = makeStyles((theme) => ({
   },
   logo: {
     height: '10vh',
-    margin: '15px 15px 15px 15px'
+    margin: '1.75vh'
+  },
+  bigLogo: {
+    height: '10vh',
+    margin: '1.75vh 1.75vh 1.75vh 15vh'
   }
 
 }));
@@ -131,24 +136,28 @@ const Header = (props) => {
     <div className={classes.grow}>
       <AppBar className={classes.appBar} >
         <Toolbar>
-
           <Grid container className={classes.mainContent}>
 
-            <Grid item>
-              <Link to='/'>
-                <ButtonBase >
-                  <Typography className={classes.title} variant="h6" noWrap>
-                    <img alt='' src={Logo} className={classes.logo} />
-                  </Typography>
-                </ButtonBase>
-              </Link>
-            </Grid>
+            {/* Logo */}
+            {props.isLandingPage
+              ? <Grid item ></Grid>
 
+              : <Grid item>
+                <Link to='/'>
+                  <ButtonBase >
+                    <Typography className={classes.title} variant="h6" noWrap>
+                      <img alt='' src={Logo} className={classes.logo} />
+                    </Typography>
+                  </ButtonBase>
+                </Link>
+              </Grid>
+            }
 
+            {/* Search Bar */}
             <Grid item className={classes.searchItems}>
-              {props.searchIsTrue
+              {props.isLandingPage
                 ?
-                null
+                <Grid><img className={classes.bigLogo} alt='squid logo' src={bigLogo} /></Grid>
                 :
                 <Grid container item >
 
@@ -178,6 +187,7 @@ const Header = (props) => {
               }
             </Grid>
 
+            {/* Login/SignOut Profile Button */}
             <Grid>
               <div className={classes.grow} />
               <div className={classes.sectionDesktop}>
