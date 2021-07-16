@@ -8,12 +8,15 @@ import Typography from '@material-ui/core/Typography'
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    position: 'relative',
+    left: '-70%',
     flexGrow: 1,
+    padding: '5%',
   },
   paper: {
     padding: theme.spacing(2),
     margin: 'auto',
-    maxWidth: 500,
+    maxWidth: 400,
   },
   image: {
     width: 128,
@@ -39,7 +42,7 @@ const User = (props) => {
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
-        <Grid container spacing={3}>
+        {/* <Grid container spacing={3}> */}
           <Grid item xs={12} container direction="row">
             <Grid className={classes.img} item xs container direction="column">
                 <img alt="Remy Sharp" src="https://www.w3schools.com/howto/img_avatar2.png" className={classes.large} />
@@ -61,7 +64,7 @@ const User = (props) => {
               </Grid>
             </Grid>
           </Grid>
-        </Grid>
+        {/* </Grid> */}
       </Paper>
     </div>
   );
