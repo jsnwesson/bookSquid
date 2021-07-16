@@ -141,8 +141,6 @@ class Review extends React.Component {
 
   render (props) {
     const { classes } = this.props;
-    console.log(this.state.reviewData)
-
     return (
       <div className={classes.rrCont}>
       <div className={classes.rrTitleCont}>
