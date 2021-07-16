@@ -5,10 +5,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import AddOrRemoveBook from './AddOrRemoveBook';
 import Paper from '@material-ui/core/Paper';
 import { specificBookData } from '../../services/bookclubServices';
-import { addBookToMongo } from '../../services/bookclubServices';
-
+// import { addBookToMongo } from '../../services/bookclubServices';
 import '@fontsource/roboto';
 import { useParams } from 'react-router';
+
+
 const BookInfo = (props) => {
   const { id } = useParams()
   console.log('this is props', props)
@@ -16,19 +17,19 @@ const BookInfo = (props) => {
   const [book, setBook] = useState(null)
   const [ready, setReady] = useState(false)
   useEffect(() => {
-    addBookToMongo(props.book)
-      .then(() => {
-        specificBookData(id)
-          .then((results) => {
-            console.log('response to specifc bookData', results.data)
-            setBook(results[0])
-          })
-      })
-    // specificBookData(id)
-    //   .then((results) => {
-    //     console.log('response to specifc bookData', results)
-    //     setBook(results[0])
+    // addBookToMongo(props.book)
+    //   .then(() => {
+    //     specificBookData(id)
+    //       .then((results) => {
+    //         console.log('response to specifc bookData', results.data)
+    //         setBook(results[0])
+    //       })
     //   })
+    specificBookData(id)
+      .then((results) => {
+        console.log('response to specifc bookData', results)
+        setBook(results[0])
+      })
   }, [])
 
   useEffect(() => {

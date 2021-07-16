@@ -7,6 +7,7 @@ import ButtonBase from "@material-ui/core/ButtonBase";
 import AddOrRemoveBook from "./AddOrRemoveBook";
 import Rating from "@material-ui/lab/Rating";
 import { Link } from "react-router-dom";
+import { addBookToMongo } from '../../services/bookclubServices';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,7 +41,13 @@ const SearchResults = (props) => {
         <Grid container spacing={1}>
           <Grid item>
             <Link
-              onClick={() => { props.setBook(item); }}
+              onClick={async () => {
+                console.log('this is an item', item)
+                await addBookToMongo(item)
+                // .then(() => {
+                //   props.setBook(item);
+                // })
+              }}
               to={`/book/${item.bookId}`}
             >
               <ButtonBase className={classes.image}>
