@@ -56,7 +56,7 @@ const withSlide = (wrappedComponent, selectData, setBook) => {
         }
       },
       {
-        breakpoint: 960,
+        breakpoint: 950,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
