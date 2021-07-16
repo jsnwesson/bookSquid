@@ -1,11 +1,20 @@
 import React, { useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import Container from 'react-bootstrap/Container'
 import withSlide from '../../components/bookclub/BookGallery.jsx'
 import { favorites, previouslyRead, wantToRead } from '../../dummyData/booklist.jsx';
 
-
+const useStyles = makeStyles((theme) => ({
+  root: {
+    position: 'relative',
+    left: '-70%',
+    flexGrow: 1,
+    padding: '5%',
+  },
+}));
 
 const Carousel = (props) => {
+  const classes = useStyles();
 
   const [recommendations, setRecommendations] = useState([]);
   const [latestReviews, setLatestReviews] = useState([]);

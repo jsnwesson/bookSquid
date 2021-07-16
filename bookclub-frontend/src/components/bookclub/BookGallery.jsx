@@ -25,8 +25,7 @@ const UseStyles = makeStyles(() => ({
     height: 300,
   },
   content: {
-    display: 'flex',
-    justifyContent: 'center',
+    marginTop: '30px',
   },
 })
 );
@@ -34,34 +33,42 @@ const UseStyles = makeStyles(() => ({
 const withSlide = (wrappedComponent, selectData, setBook) => {
   var settings = {
     arrows: true,
-    centerMode: true,
+    // centerMode: true,
     infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
+    speed: 100,
+    slidesToShow: 5,
+    slidesToScroll: 4,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1300,
         settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
+          slidesToShow: 4,
+          slidesToScroll: 4,
           infinite: true,
-          dots: true
         }
       },
       {
-        breakpoint: 600,
+        breakpoint: 1000,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 2,
+          infinite: true,
+        }
+      },
+      {
+        breakpoint: 950,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          initialSlide: 2
+          infinite: true,
         }
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1
+          slidesToScroll: 1,
+          infinite: true,
         }
       }
     ]
@@ -70,7 +77,7 @@ const withSlide = (wrappedComponent, selectData, setBook) => {
   const classes = UseStyles();
   return (
     <div>
-      <Grid item direction='row'>
+      <Grid item >
         <h2>{selectData.title}</h2>
         <Slider className='slider' {...settings}>
           {selectData.list.map((book) => {
