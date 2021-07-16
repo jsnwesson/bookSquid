@@ -49,10 +49,10 @@ const Profile = (props) => {
         removeEmailCookie={props.removeEmailCookie}
         setSearchResults={props.setSearchResults}
       />
-      <Container maxWidth='md'>
+      <Container maxWidth='sm'>
         <User />
       </Container>
-      <Container fixed={true} className={classes.root} maxWidth='md'>
+      <Container fixed={true} className={classes.root} maxWidth='lg'>
         {withSlide(faves, faveList, props.setBook)}
         {withSlide(prevRead, prevList, props.setBook)}
         {withSlide(toRead, toReadList, props.setBook)}
