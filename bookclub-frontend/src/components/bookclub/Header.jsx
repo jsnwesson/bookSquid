@@ -107,11 +107,11 @@ const useStyles = makeStyles((theme) => ({
 
   },
   logo: {
-    height: '10vh',
+    height: '6vh',
     margin: '1.75vh'
   },
   bigLogo: {
-    height: '10vh',
+    height: '6vh',
     margin: '1.75vh 1.75vh 1.75vh 15vh'
   }
 
