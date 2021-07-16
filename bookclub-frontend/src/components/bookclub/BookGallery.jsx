@@ -1,5 +1,7 @@
 import React from 'react';
 import Slider from 'react-slick';
+// import Row from 'react-bootstrap/Row';
+// import Col from 'react-bootstrap/Col';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid'
 import Card from '@material-ui/core/Card';
@@ -15,15 +17,13 @@ import './bookclub.css';
 import '@fontsource/roboto';
 
 
-const UseStyles = makeStyles (() => ({
+const UseStyles = makeStyles(() => ({
   root: {
     maxWidth: 200,
-    minHeight: 475
   },
   media: {
     height: 300,
   },
-
   content: {
     marginTop: '30px',
   },
@@ -92,15 +92,15 @@ const withSlide = (wrappedComponent, selectData, setBook) => {
                         title={book.title}
                       />
                     </Link>
-                    <CardContent className={classes.content}>
-                      <Typography gutterBottom variant="h6" component="h2">
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="h2">
                         {book.title}
                       </Typography>
                       <Typography variant="body2" color="textSecondary" component="p">
                         {book.authors[0]}
                       </Typography>
                     </CardContent>
-                      {(selectData.removeBook) ? <AddOrRemoveBook bookId={book.bookId} listName={selectData.title} functionality={'remove'} />: <></>}
+                    {(selectData.removeBook) ? <AddOrRemoveBook bookId={book.bookId} listName={selectData.title} functionality={'remove'} /> : <></>}
                   </CardActionArea>
                 </Card>
               </div>
