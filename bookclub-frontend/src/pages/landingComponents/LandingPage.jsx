@@ -4,12 +4,7 @@ import LandingSearch from './LandingSearch.jsx';
 import Carousel from './Carousel.jsx';
 
 
-
-
 const LandingPage = (props) => {
-
-
-
 
   return (
     <div >

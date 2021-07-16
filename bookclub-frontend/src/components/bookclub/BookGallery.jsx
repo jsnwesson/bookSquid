@@ -17,7 +17,7 @@ import './bookclub.css';
 import '@fontsource/roboto';
 
 
-const UseStyles = makeStyles (() => ({
+const UseStyles = makeStyles(() => ({
   root: {
     maxWidth: 200,
   },
@@ -93,7 +93,7 @@ const withSlide = (wrappedComponent, selectData, setBook) => {
                         {book.authors[0]}
                       </Typography>
                     </CardContent>
-                      {(selectData.removeBook) ? <AddOrRemoveBook bookId={book.bookId} listName={selectData.title} functionality={'remove'} />: <></>}
+                    {(selectData.removeBook) ? <AddOrRemoveBook bookId={book.bookId} listName={selectData.title} functionality={'remove'} /> : <></>}
                   </CardActionArea>
                 </Card>
               </div>

@@ -12,7 +12,7 @@ import Grid from '@material-ui/core/Grid';
 import { Link } from 'react-router-dom';
 import Login from '../sessions/Login.jsx';
 import SignOut from '../sessions/SignOut.jsx';
-import Logo from '../../pages/landingComponents/assets/bookSquid.svg';
+import Logo from '../../pages/landingComponents/assets/BookSquidLogo_Main.svg';
 import { searchByCategory } from '../../services/bookclubServices.js';
 
 
@@ -54,11 +54,14 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    color: '#004D86'
   },
   inputRoot: {
-    color: 'inherit',
+    color: '#004D86',
     fontSize: '16pt',
-    width: '40vw'
+    width: '40vw',
+    border: "2px solid #004D86",
+    borderRadius: '7px'
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
@@ -67,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
     transition: theme.transitions.create("width"),
     width: "100%",
     [theme.breakpoints.up("xs")]: {
-      width: "20ch",
+      width: "38vw",
     },
   },
   dropdown: {
@@ -76,7 +79,7 @@ const useStyles = makeStyles((theme) => ({
   profileIcon: {
     fontSize: '35px',
     margin: '20px',
-    color: '#fee4ea'
+    color: '#004D86'
   },
   buttons: {
     display: 'flex',
@@ -93,10 +96,11 @@ const useStyles = makeStyles((theme) => ({
   },
   searchButton: {
     height: '100%',
-    backgroundColor: '#FEE4EA'
+    color: '#FEE4EA',
+    backgroundColor: "#004D86"
   },
   appBar: {
-    backgroundColor: '#004D86'
+    backgroundColor: '#FEE4EA'
   },
   loginSignOut: {
 
@@ -115,7 +119,6 @@ const Header = (props) => {
   const handleSearchInput = (e) => {
     setSearchInput(e.target.value);
   };
-
 
   const handleSearchSubmit = () => {
     searchByCategory(searchInput).then((results) => {
@@ -155,7 +158,7 @@ const Header = (props) => {
                     </div>
                     <InputBase
                       onChange={handleSearchInput}
-                      placeholder="Search..."
+                      placeholder="Search Books, Authors and Genres!"
                       classes={{
                         root: classes.inputRoot,
                         input: classes.inputInput,
@@ -211,7 +214,6 @@ const Header = (props) => {
             </Grid>
 
           </Grid>
-
         </Toolbar>
       </AppBar>
     </div >
