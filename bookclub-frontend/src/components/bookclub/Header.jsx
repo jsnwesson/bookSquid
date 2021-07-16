@@ -191,6 +191,7 @@ const Header = (props) => {
             <Grid>
               <div className={classes.grow} />
               <div className={classes.sectionDesktop}>
+                {/* Login */}
                 {!props.isLoggedIn
                   ? <Login
                     className={classes.loginSignOut}
@@ -208,6 +209,7 @@ const Header = (props) => {
                         </Link>
                       </Grid>
 
+                      {/* Signout */}
                       <Grid item>
                         <SignOut
                           className={classes.loginSignOut}
