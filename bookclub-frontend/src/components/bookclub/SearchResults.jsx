@@ -40,8 +40,8 @@ const SearchResults = (props) => {
         <Grid container spacing={1}>
           <Grid item>
             <Link
-              onClick={() => {props.setBook(item);}}
-              to={`/book/${item.id}`}
+              onClick={() => { props.setBook(item); }}
+              to={`/book/${item.bookId}`}
             >
               <ButtonBase className={classes.image}>
                 <img

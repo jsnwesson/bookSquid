@@ -5,62 +5,36 @@ import { makeStyles } from '@material-ui/core/styles';
 import AddOrRemoveBook from './AddOrRemoveBook';
 import Paper from '@material-ui/core/Paper';
 import { specificBookData } from '../../services/bookclubServices';
-// import { addBookToMongo } from '../../services/bookclubServices';
+import { addBookToMongo } from '../../services/bookclubServices';
 
 import '@fontsource/roboto';
 import { useParams } from 'react-router';
 const BookInfo = (props) => {
   const { id } = useParams()
+  console.log('this is props', props)
   // console.log('this should be the id', id)
   const [book, setBook] = useState(null)
   const [ready, setReady] = useState(false)
   useEffect(() => {
-    // addBookToMongo(props.book)
-    //   .then(() => {
-    //     specificBookData(id)
-    //       .then((results) => {
-    //         console.log('response to specifc bookData', results.data)
-    //         setBook(results)
-    //       })
-    //   })
-    specificBookData(id)
-      .then((results) => {
-        console.log('response to specifc bookData', results)
-        setBook(results[0])
+    addBookToMongo(props.book)
+      .then(() => {
+        specificBookData(id)
+          .then((results) => {
+            console.log('response to specifc bookData', results.data)
+            setBook(results[0])
+          })
       })
+    // specificBookData(id)
+    //   .then((results) => {
+    //     console.log('response to specifc bookData', results)
+    //     setBook(results[0])
+    //   })
   }, [])
 
   useEffect(() => {
     setReady(true)
   }, [book]);
 
-  /*
-  console.log(props.book)
-  * FOR API specificBookData(bookId)
-  * response returns:
-  *   status code 200
-  *   response.data = {
-  *     description: 'STRING',
-  *     publishedDate: 'STRING',
-  *     authors: [ 'STRING', ... ],
-  *     genre: 'STRING',
-  *     title: 'STRING',
-  *     image: 'STRING', // this should be the larger image
-  *   }
-
-  Props (current) from BookGallery:
-  - props.book.authors []
-  - props.book.title
-  - props.book.bookId
-  - props.book.publishedDate
-  - props.book.description
-  - props.book.genre
-  - props.book.thumbnail
-  - props.book.img
-
-  Props from Search:
-  - props.book.gid
-  */
   const useStyles = makeStyles((theme) => ({
     mainContainer: {
       paddingTop: '75px',
@@ -74,21 +48,13 @@ const BookInfo = (props) => {
       justifyContent: 'center'
     },
     imageContainer: {
-      // backgroundColor: '#0dcaf0'
       paddingRight: '10%'
     },
     titleContainer: {
-      // backgroundColor: '#20c997',
-      // backgroundColor: 'yellow',
       display: 'flex',
       justifyContent: 'center',
-
     },
     buttonRow: {
-      // backgroundColor: '#20c997',
-      // backgroundColor: 'yellow',
-      // display: 'flex',
-      // justifyContent: 'center',
       width: '75%',
       paddingLeft: '25%'
     },
@@ -97,11 +63,7 @@ const BookInfo = (props) => {
       alignItems: 'center',
       justifyContent: 'space-between'
     },
-    authorsContainer: {
-      // backgroundColor: '#0d6efd'
-    },
     descriptionContainer: {
-      // backgroundColor: '#ffc107',
       width: '75%'
     },
     media: {
@@ -142,7 +104,7 @@ const BookInfo = (props) => {
             </Grid>
             <Grid container item direction='column' xs={8} >
               <Paper className={classes.paper} elevation={5}>
-                <Grid className={classes.authorsContainer}>
+                <Grid >
                   <Grid container item direction='row' className={classes.titleRow}>
                     <Typography variant='h5'><b>{book.title}</b></Typography >
                     <Typography variant='h5'>{book.genre}</Typography>
