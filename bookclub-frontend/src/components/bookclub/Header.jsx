@@ -12,7 +12,8 @@ import Grid from '@material-ui/core/Grid';
 import { Link } from 'react-router-dom';
 import Login from '../sessions/Login.jsx';
 import SignOut from '../sessions/SignOut.jsx';
-import Logo from '../../pages/landingComponents/assets/bookSquid.svg';
+import Logo from '../../pages/landingComponents/assets/BookSquidLogo_Main.svg';
+import bigLogo from '../../pages/landingComponents/assets/BookSquidLogo_No_Tag.svg'
 import { searchByCategory } from '../../services/bookclubServices.js';
 
 
@@ -54,11 +55,14 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    color: '#004D86'
   },
   inputRoot: {
-    color: 'inherit',
+    color: '#004D86',
     fontSize: '16pt',
-    width: '40vw'
+    width: '40vw',
+    border: "2px solid #004D86",
+    borderRadius: '7px'
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
@@ -67,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
     transition: theme.transitions.create("width"),
     width: "100%",
     [theme.breakpoints.up("xs")]: {
-      width: "20ch",
+      width: "38vw",
     },
   },
   dropdown: {
@@ -76,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
   profileIcon: {
     fontSize: '35px',
     margin: '20px',
-    color: '#fee4ea'
+    color: '#004D86'
   },
   buttons: {
     display: 'flex',
@@ -93,17 +97,22 @@ const useStyles = makeStyles((theme) => ({
   },
   searchButton: {
     height: '100%',
-    backgroundColor: '#FEE4EA'
+    color: '#FEE4EA',
+    backgroundColor: "#004D86"
   },
   appBar: {
-    backgroundColor: '#004D86'
+    backgroundColor: '#FEE4EA'
   },
   loginSignOut: {
 
   },
   logo: {
-    height: '10vh',
-    margin: '15px 15px 15px 15px'
+    height: '6vh',
+    margin: '1.75vh'
+  },
+  bigLogo: {
+    height: '6vh',
+    margin: '1.75vh 1.75vh 1.75vh 15vh'
   }
 
 }));
@@ -116,7 +125,6 @@ const Header = (props) => {
     setSearchInput(e.target.value);
   };
 
-
   const handleSearchSubmit = () => {
     searchByCategory(searchInput).then((results) => {
       props.setSearchResults(results);
@@ -128,24 +136,28 @@ const Header = (props) => {
     <div className={classes.grow}>
       <AppBar className={classes.appBar} >
         <Toolbar>
-
           <Grid container className={classes.mainContent}>
 
-            <Grid item>
-              <Link to='/'>
-                <ButtonBase >
-                  <Typography className={classes.title} variant="h6" noWrap>
-                    <img alt='' src={Logo} className={classes.logo} />
-                  </Typography>
-                </ButtonBase>
-              </Link>
-            </Grid>
+            {/* Logo */}
+            {props.isLandingPage
+              ? <Grid item ></Grid>
 
+              : <Grid item>
+                <Link to='/'>
+                  <ButtonBase >
+                    <Typography className={classes.title} variant="h6" noWrap>
+                      <img alt='' src={Logo} className={classes.logo} />
+                    </Typography>
+                  </ButtonBase>
+                </Link>
+              </Grid>
+            }
 
+            {/* Search Bar */}
             <Grid item className={classes.searchItems}>
-              {props.searchIsTrue
+              {props.isLandingPage
                 ?
-                null
+                <Grid><img className={classes.bigLogo} alt='squid logo' src={bigLogo} /></Grid>
                 :
                 <Grid container item >
 
@@ -155,7 +167,7 @@ const Header = (props) => {
                     </div>
                     <InputBase
                       onChange={handleSearchInput}
-                      placeholder="Search..."
+                      placeholder="Search Books, Authors and Genres!"
                       classes={{
                         root: classes.inputRoot,
                         input: classes.inputInput,
@@ -175,9 +187,11 @@ const Header = (props) => {
               }
             </Grid>
 
+            {/* Login/SignOut Profile Button */}
             <Grid>
               <div className={classes.grow} />
               <div className={classes.sectionDesktop}>
+                {/* Login */}
                 {!props.isLoggedIn
                   ? <Login
                     className={classes.loginSignOut}
@@ -195,6 +209,7 @@ const Header = (props) => {
                         </Link>
                       </Grid>
 
+                      {/* Signout */}
                       <Grid item>
                         <SignOut
                           className={classes.loginSignOut}
@@ -211,7 +226,6 @@ const Header = (props) => {
             </Grid>
 
           </Grid>
-
         </Toolbar>
       </AppBar>
     </div >

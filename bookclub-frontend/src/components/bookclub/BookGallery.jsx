@@ -15,18 +15,15 @@ import './bookclub.css';
 import '@fontsource/roboto';
 
 
-const UseStyles = makeStyles (() => ({
+const UseStyles = makeStyles(() => ({
   root: {
     maxWidth: 200,
-    minHeight: 475
   },
   media: {
     height: 300,
   },
-
   content: {
     marginTop: '30px',
-
   },
 })
 );
@@ -36,50 +33,51 @@ const withSlide = (wrappedComponent, selectData, setBook) => {
     arrows: true,
     centerMode: true,
     infinite: true,
-    speed: 500,
-    slidesToShow: 3,
+    speed: 100,
+    slidesToShow: 1,
     slidesToScroll: 1,
     responsive: [
       {
-        breakpoint: 5000,
+        breakpoint: 1300,
         settings: {
-          slidesToShow: 5,
-          slidesToScroll: 3,
+          slidesToShow: 4,
+          slidesToScroll: 4,
           infinite: true,
-          dots: true
         }
       },
       {
-        breakpoint: 1024,
+        breakpoint: 1000,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 3,
+          slidesToScroll: 2,
           infinite: true,
-          dots: true
         }
       },
       {
-        breakpoint: 600,
+        breakpoint: 950,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          initialSlide: 2
+          infinite: true,
         }
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1
+          slidesToScroll: 1,
+          infinite: true,
         }
       }
     ]
   };
 
   const classes = UseStyles();
+  console.log(selectData)
+
   return (
     <div>
-      <Grid item direction='row'>
+      <Grid item >
         <h2>{selectData.title}</h2>
         <Slider className='slider' {...settings}>
           {selectData.list.map((book) => {
@@ -94,15 +92,15 @@ const withSlide = (wrappedComponent, selectData, setBook) => {
                         title={book.title}
                       />
                     </Link>
-                    <CardContent className={classes.content}>
-                      <Typography gutterBottom variant="h6" component="h2">
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="h2">
                         {book.title}
                       </Typography>
                       <Typography variant="body2" color="textSecondary" component="p">
                         {book.authors[0]}
                       </Typography>
                     </CardContent>
-                      {(selectData.removeBook) ? <AddOrRemoveBook bookId={book.bookId} listName={selectData.title} functionality={'remove'} />: <></>}
+                    {(selectData.removeBook) ? <AddOrRemoveBook bookId={book.bookId} listName={selectData.title} functionality={'remove'} /> : <></>}
                   </CardActionArea>
                 </Card>
               </div>

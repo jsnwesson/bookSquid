@@ -37,7 +37,7 @@ const AddOrRemoveBook = (props) => {
       color: 'red',
       backgroundColor: '#FEE4EA',
       padding: '0px',
-      '&:hover' : {backgroundColor: '#FEE4EA'},
+      '&:hover': { backgroundColor: '#FEE4EA' },
     },
   }));
   const classes = useStyles();
@@ -96,11 +96,11 @@ const AddOrRemoveBook = (props) => {
 
       {/* <Grid container item direction="row" > */}
       {props.functionality === 'remove' ?
-          <IconButton className={classes.icon}  aria-label="delete button" onClick={() => {
-            handleSubmit(3)
-          }}>
-            <HighlightOffIcon type="submit" />
-          </IconButton>
+        <IconButton className={classes.icon} aria-label="delete button" onClick={() => {
+          handleSubmit(3)
+        }}>
+          <HighlightOffIcon type="submit" />
+        </IconButton>
         :
         <IconButton aria-label="add button" onClick={() => {
           handleSubmit(1)

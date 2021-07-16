@@ -6,19 +6,14 @@ const ReviewList = ({reviewResults}) => {
   return (
     <>
     <div>
-     {reviewResults.map((item) => (
+     {reviewResults.map((item, index) => (
        <ReviewTile 
-          key={item.review_id}
-          review_id={item.review_id}
+          key={index}
           rating={item.rating}
-          summary={item.summary}
-          recommend={item.recommend}
-          response={item.response}
+          summary={item.title}
           body={item.body}
           date={item.date}
-          reviewer_name={item.reviewer_name}
-          helpfulness={item.helpfulness}
-          photos={item.photos}
+          reviewer_name={item.name}
        />
     ))}
     </div>

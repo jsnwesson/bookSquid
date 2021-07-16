@@ -22,7 +22,7 @@ function App() {
   return (
 
     <div className="App" >
-      <h1 style={{ fontSize: '11vh' }}>secrit message</h1>
+      <h1 style={{ fontSize: '7vh' }}>secrit message</h1>
 
       <Router>
         <Switch>
@@ -41,7 +41,7 @@ function App() {
               setBook={setBook}
             />
           </Route>
-          <Route path="/book/">
+          <Route path="/book/:id">
             <Book
               isLoggedIn={isLoggedIn}
               setIsLoggedIn={setIsLoggedIn}
