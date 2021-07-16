@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import reviewStyles from './reviewStyles.js';
 // import ReviewGridTile from './ReviewGridTile.jsx';
 import Rating from '@material-ui/lab/Rating';
