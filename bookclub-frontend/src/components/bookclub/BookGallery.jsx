@@ -1,7 +1,5 @@
 import React from 'react';
 import Slider from 'react-slick';
-// import Row from 'react-bootstrap/Row';
-// import Col from 'react-bootstrap/Col';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid'
 import Card from '@material-ui/core/Card';
@@ -33,11 +31,11 @@ const UseStyles = makeStyles(() => ({
 const withSlide = (wrappedComponent, selectData, setBook) => {
   var settings = {
     arrows: true,
-    // centerMode: true,
+    centerMode: true,
     infinite: true,
     speed: 100,
-    slidesToShow: 5,
-    slidesToScroll: 4,
+    slidesToShow: 1,
+    slidesToScroll: 1,
     responsive: [
       {
         breakpoint: 1300,
@@ -75,6 +73,8 @@ const withSlide = (wrappedComponent, selectData, setBook) => {
   };
 
   const classes = UseStyles();
+  console.log(selectData)
+
   return (
     <div>
       <Grid item >
