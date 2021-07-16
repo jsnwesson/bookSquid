@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container'
-import withSlide from '../../components/bookclub/BookGallery.jsx'
+import withSlide from '../../components/bookclub/BookGallery.jsx';
+import { getRecentlyReviewed, recommendedBooks } from '../../services/bookclubServices.js'
 import { favorites, previouslyRead, wantToRead } from '../../dummyData/booklist.jsx';
 
 
@@ -12,17 +13,48 @@ const Carousel = (props) => {
   const [latestread, setLatestRead] = useState([]);
 
 
-  const getRecommendations = () => {
 
-  }
+  useEffect(() => {
 
-  const getLatestReviews = () => {
+    getRecentlyReviewed()
+      .then((results) => {
+        // console.log(results)
+        setLatestReviews(results)
+        // console.log(results)
+      })
+      .then(() => {
+        recommendedBooks()
+          .then((results) => {
+            setRecommendations(results)
+          })
+      })
 
-  }
+  }, [])
 
-  const getLatestRead = () => {
+  useEffect(() => {
+    console.log('Reviews: ', latestReviews)
+    console.log('recommendations: ', recommendations)
+  }, [latestReviews, recommendations])
 
-  }
+
+  // const getRecommendations = () => {
+
+
+  // }
+
+  // const getLatestReviews = () => {
+  //   getRecentlyReviewed()
+  //     .then((results) => {
+  //       setLatestReviews(results)
+
+  //     })
+
+
+  // }
+
+  // const getLatestRead = () => {
+
+  // }
 
 
 
@@ -40,7 +72,7 @@ const Carousel = (props) => {
   const recRevList = {
     title: 'Recently Reviewed',
     className: 'recentlyRev',
-    list: previouslyRead,
+    list: latestReviews,
     removeBook: false,
   }
 
