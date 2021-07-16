@@ -41,7 +41,7 @@ function App() {
               setBook={setBook}
             />
           </Route>
-          <Route path="/book/">
+          <Route path="/book/:id">
             <Book
               isLoggedIn={isLoggedIn}
               setIsLoggedIn={setIsLoggedIn}

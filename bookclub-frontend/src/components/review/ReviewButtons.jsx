@@ -162,28 +162,6 @@ const ReviewButtons = ({handleMoreReviews, reviewsRenderedNum, reviewSum, id}) =
                 variant="outlined"
               />
             </div>
-            <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Name"
-            value={name}
-            onChange={e => setName(e.target.value)}
-            type="text"
-            fullWidth
-            variant="standard"
-          />
-          <TextField
-            autoFocus
-            margin="dense"
-            id="email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            label="Email Address"
-            type="email"
-            fullWidth
-            variant="standard"
-          />
           <Box pt={1}>
           <input
             accept="image/*"
