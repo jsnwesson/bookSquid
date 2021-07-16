@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
@@ -33,7 +33,6 @@ const useStyles = makeStyles((theme) => ({
 const SearchResults = (props) => {
   const classes = useStyles();
   const item = props.thing;
-  console.log("item:", item);
 
   return (
     <div className={classes.root}>
@@ -41,9 +40,7 @@ const SearchResults = (props) => {
         <Grid container spacing={1}>
           <Grid item>
             <Link
-              onClick={() => {
-                props.setBook(item);
-              }}
+              onClick={() => {props.setBook(item);}}
               to={`/book/${item.id}`}
             >
               <ButtonBase className={classes.image}>
@@ -79,7 +76,7 @@ const SearchResults = (props) => {
             <Grid item>
               <Rating
                 name="simple-controlled"
-                value={item.averageRating}
+                value={item.totalRating}
                 precision={0.25}
                 size="medium"
                 mt="20"
