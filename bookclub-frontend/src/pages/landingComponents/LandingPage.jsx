@@ -4,12 +4,7 @@ import LandingSearch from './LandingSearch.jsx';
 import Carousel from './Carousel.jsx';
 
 
-
-
 const LandingPage = (props) => {
-
-
-
 
   return (
     <div >
@@ -23,7 +18,7 @@ const LandingPage = (props) => {
         setEmailCookie={props.setEmailCookie}
         removeEmailCookie={props.removeEmailCookie}
         setSearchResults={props.setSearchResults}
-        searchIsTrue={true}
+        isLandingPage={true}
       />
       <LandingSearch
         setSearchResults={props.setSearchResults}

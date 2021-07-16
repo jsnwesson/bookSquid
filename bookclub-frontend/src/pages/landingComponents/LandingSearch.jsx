@@ -12,16 +12,26 @@ import searchBackdrop from './assets/SearchBackdrop.jpeg'
 
 
 const useStyles = makeStyles((theme) => ({
+  container: {
+    boxShadow: '0px 7px 15px -5px gray'
+  },
   buttons: {
-    color: '#004d86',
-    backgroundColor: '#fee4ea'
+    color: '#fee4ea',
+    backgroundColor: '#004d86',
+    boxShadow: '0px 7px 10px -5px black'
   },
   backdrop: {
     backgroundImage: `url(${searchBackdrop})`,
     backgroundSize: 'contain',
     height: '45vh'
-
   },
+  searchInput: {
+    // position: 'fixed',
+    display: 'flex',
+    alignItems: 'center',
+    boxShadow: '0 0 30px 0px black'
+
+  }
 }))
 
 
@@ -45,7 +55,7 @@ const LandingSearch = (props) => {
 
   return (
 
-    <Container fluid id="landingSearch" >
+    <Container fluid className={classes.container} >
       <div >
         <Row id="landingSearch" className={`align-items-center justify-items-center ${classes.backdrop}`}>
           <Col xs={3}>
@@ -53,11 +63,13 @@ const LandingSearch = (props) => {
           <Col xs={6}>
             <Form >
               <FormControl
-                style={{ padding: "12px", marginBottom: "3vh" }}
+                className={classes.searchInput}
+                style={{ padding: "12px", marginBottom: "2vh" }}
                 type="text"
                 placeholder="Search Books, Authors or Genres!"
                 onChange={handleInputChange}
-              ></FormControl>
+              // onKeyUp={() => alert('yo!')}
+              ></FormControl >
               {searchInput
                 ? <Link to='/search'>
                   <Button className={classes.buttons} onClick={handleSearchSubmit}>Search Books</Button>
