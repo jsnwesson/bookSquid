@@ -31,7 +31,7 @@ const BookInfo = (props) => {
     },
     parentContainer: {
       display: 'flex',
-      width: '65%',
+      // width: '65%',
       justifyContent: 'center'
     },
     imageContainer: {
@@ -54,9 +54,9 @@ const BookInfo = (props) => {
       width: '75%'
     },
     media: {
-      height: '75%',
+      height: 'auto',
       maxHeight: '500px',
-      width: '100%',
+      width: '165%',
       maxWidth: '300px',
     },
     paper: {
@@ -77,6 +77,8 @@ const BookInfo = (props) => {
     <>
       {book !== undefined
         ? <Grid container item className={classes.mainContainer} >
+
+
           <Grid container item className={classes.parentContainer}>
             <Grid container item direction='column' xs={3} className={classes.imageContainer}>
               <img
@@ -85,6 +87,8 @@ const BookInfo = (props) => {
                 alt={book.title}
               />
             </Grid>
+
+
             <Grid container item direction='column' xs={8} >
               <Paper className={classes.paper} elevation={5}>
                 <Grid >
@@ -109,12 +113,12 @@ const BookInfo = (props) => {
                 </Grid>
               </Paper>
               <Paper className={classes.paper2} elevation={5}>
-              <Review id={id} isLoggedIn={props.isLoggedIn}/>
+                <Review id={id} isLoggedIn={props.isLoggedIn} />
               </Paper>
             </Grid>
           </Grid>
         </Grid>
-        
+
         : null}
     </>
   )

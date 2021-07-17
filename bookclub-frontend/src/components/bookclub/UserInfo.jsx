@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
 
   root: {
     position: 'relative',
-    left: '-70%',
+    // left: '-70%',
     flexGrow: 1,
     padding: '5%',
   },
@@ -45,20 +45,20 @@ const User = (props) => {
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
-          <Grid item xs={12} container direction="row">
-            <Grid className={classes.img} item xs container direction="column">
-                <img alt="user" src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png" className={classes.large} />
-            </Grid>
-            <Grid item xs direction="column">
-                <Typography gutterBottom variant="h4">
-                  {props.user}
-                </Typography>
-                <Typography variant="h6" gutterBottom>
-                  Total Books Read: {props.previouslyRead.length}
-                </Typography>
-                <Typography variant="subtitle1" color="textSecondary">joined {dayjs(props.joinedDate).fromNow(true)} ago</Typography>
-            </Grid>
+        <Grid item xs={12} container direction="row">
+          <Grid className={classes.img} item xs container direction="column">
+            <img alt="user" src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png" className={classes.large} />
           </Grid>
+          <Grid item xs direction="column">
+            <Typography gutterBottom variant="h4">
+              {props.user}
+            </Typography>
+            <Typography variant="h6" gutterBottom>
+              Total Books Read: {props.previouslyRead.length}
+            </Typography>
+            <Typography variant="subtitle1" color="textSecondary">joined {dayjs(props.joinedDate).fromNow(true)} ago</Typography>
+          </Grid>
+        </Grid>
       </Paper>
     </div>
   );

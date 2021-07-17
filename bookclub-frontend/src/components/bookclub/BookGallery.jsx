@@ -19,23 +19,14 @@ const UseStyles = makeStyles(() => ({
   root: {
 
   },
-  media: {
-    height: 300,
-  },
-  content: {
-    marginTop: '30px',
-  },
   booksContainer: {
     // border: '2px solid red',
     borderRadius: '4px',
     boxShadow: 'inset 0 0 15px -10px black',
     backgroundColor: '#faf5f6', //'#e8e8e8',
-    margin: '1.5vh',
-    padding: '3vh'
+    // margin: '1.5vh',
+    // padding: '3vh'
 
-  },
-  emptyContainer: {
-    minHeight: '10vh'
   },
   titles: {
     font: 'robot sans-serif',
@@ -45,10 +36,16 @@ const UseStyles = makeStyles(() => ({
     borderBottom: '1px solid gray'
 
   },
+  slider: {
+    // border: '2px solid green',
+    // backgroundColor: '#f0edee',
+    // boxShadow: 'inset 0 0 15px -7px gray'
+  },
   cardContainer: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
+    alignItems: 'center',
     // border: '2px solid red',
     height: '45vh'
   },
@@ -58,13 +55,37 @@ const UseStyles = makeStyles(() => ({
     height: '100%',
     margin: '15px',
     padding: '20px',
-    boxShadow: '0 0 5px 0 gray',
+    boxShadow: '15px 15px 25px -15px gray',
     // border: '2px solid blue',
-    justifyContent: 'center'
+    alignItems: 'center',
+    borderRadius: '10px'
   },
-  bookImage: {
+  content: {
+    height: '100%',
+    marginTop: '30px',
+    border: '5px solid red'
+  },
+  media: {
+    height: 300,
+    // padding: '20px',
+    // margin: '10px',
+    boxShadow: '0 0 15px 0px gray'
+  },
+  textContainer: {
+    borderTop: '1px solid gray',
+    // border: '2px solid purple',
+    marginTop: '20px'
 
-  }
+  },
+  bookTitle: {
+    // border: '2px solid orange'
+  },
+  author: {
+    // border: '2px solid pink'
+  },
+  emptyContainer: {
+    minHeight: '10vh'
+  },
 })
 );
 
@@ -134,26 +155,44 @@ const withSlide = (wrappedComponent, selectData, setBook) => {
   } else {
     return (
       <div >
+
+        {/* Entire Container */}
         <Grid item className={classes.booksContainer}>
+
+          {/* Title */}
           <h2 className={classes.titles}>{selectData.title}</h2>
-          <Slider className={`slider ${classes.container}`} {...settings}>
+
+          {/* Slider */}
+          <Slider className={`slider ${classes.slider}`} {...settings}>
             {selectData.list.map((book) => {
               return (
+
+                // Card Container
                 <div key={book.bookId} className={classes.cardContainer}>
+
+                  {/* Card */}
                   <Card className={classes.card}>
                     <CardActionArea>
                       <Link onClick={() => { setBook(book) }} to={`/book/${book.bookId}`}>
+
+                        {/* Card Media */}
                         <CardMedia
                           className={classes.media}
                           image={book.thumbnail}
                           title={book.title}
                         />
                       </Link>
-                      <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
+
+                      {/* Text Container */}
+                      <CardContent className={classes.textContainer}>
+
+                        {/* Book Title */}
+                        <Typography className={classes.bookTitle} gutterBottom variant="h5" component="h2">
                           {book.title}
                         </Typography>
-                        <Typography variant="body2" color="textSecondary" component="p">
+
+                        {/* Book Author */}
+                        <Typography className={classes.author} variant="body2" color="textSecondary" component="p">
                           {book.authors[0]}
                         </Typography>
                       </CardContent>
