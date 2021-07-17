@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -11,70 +11,67 @@ import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import { addToList } from '../../services/bookclubServices';
 import { removeFromList } from '../../services/bookclubServices';
-const AddOrRemoveBook = (props) => {
-  const [changed, setChanged] = useState(false)
-  const [listName, setListName] = useState()
+import { Link } from 'react-router-dom';
 
-  /*
-  if props.add === false then FUNCTIONALITY=delete
-  if props.add === true then FUNCTIONALITY=add
-  <AddOrRemoveBook bookId={book.bookId} whatList={selectData.title} functionality={'remove'}>
-  bookId --- props.bookId
-  */
-  const useStyles = makeStyles((theme) => ({
-    formControl: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      width: '100%',
-    },
-    remove: {
-      display: 'flex',
-      justifyContent: 'center',
-    },
-    icon: {
-      position: 'absolute',
-      top: '1%',
-      right: '1%',
-      color: 'red',
-      backgroundColor: '#FEE4EA',
-      padding: '0px',
-      '&:hover': { backgroundColor: '#FEE4EA' },
-    },
-  }));
+const useStyles = makeStyles((theme) => ({
+  formControl: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    width: '100%',
+  },
+  remove: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  icon: {
+    position: 'absolute',
+    top: '1%',
+    right: '1%',
+    color: 'red',
+    backgroundColor: '#FEE4EA',
+    padding: '0px',
+    '&:hover': { backgroundColor: '#FEE4EA' },
+  },
+}));
+
+const AddOrRemoveBook = (props) => {
+  const [listName, setListName] = useState()
   const classes = useStyles();
 
+  let list;
+  if (props.listName === 'Favorites') {
+    list = 'favorites'
+  } else if (props.listName === 'Previously Read') {
+    list = 'alreadyRead'
+  } else if (props.listName === 'Want to Read') {
+    list = 'goingToRead'
+  } else if (props.listName === 'Currently Reading') {
+    list = 'currentlyReading'
+  }
+
   const handleSubmit = (option) => {
-    if (option === 3) {
-      // setListName(props.listName)
-      removeFromList(props.listName, props.bookId)
-      // alert(`these are your selections... you will be removing book: ${props.bookId} from: ${props.listName} `)
-    }
-    if (changed === true && option === 1) {
+    if (option === 'delete X button') {
+      // let index = props.list.findIndex((book) => props.bookId === book.bookId)
+      removeFromList(list, props.bookId)
+      // .then(() => {
+      //   let storedList = props.list
+      //   storedList.splice(index, 1)
+      //   console.log('storedList', storedList)
+      //   props.removeFunc(storedList)
+      // })
+    } else if (option === 'add') {
       // add to a selected list
       addToList(listName, props.bookId)
-      // alert(`these are your selections... you will be adding book: ${props.bookId} to: ${listName} `)
-    } else if (changed === true && option === 2) {
+    } else if (option === 'remove from selected list') {
       // remove from selected list
       removeFromList(listName, props.bookId)
-      // alert(`these are your selections... you will be removing book: ${props.bookId} from: ${listName} `)
-    } else if (changed === false && option === 1) {
-      alert('you have not selected a list to add to')
-    } else if (changed === false && option === 2) {
-      alert('you have not selected a list to add to delete from')
     }
   };
 
   const handleChange = (event) => {
     setListName(event.target.value)
   }
-  useEffect(() => {
-    if (listName === undefined) {
-      setChanged(false)
-    } else {
-      setChanged(true)
-    }
 
-  }, [listName])
   return (
     <Grid container item direction='row' className={classes.formControl}>
 
@@ -89,10 +86,10 @@ const AddOrRemoveBook = (props) => {
             <MenuItem value="" disabled>
               Lists:
             </MenuItem>
-            <MenuItem value={'Favorite'}>Favorite</MenuItem>
-            <MenuItem value={'Currently Reading'}>Currently Reading</MenuItem>
-            <MenuItem value={'Previously Read'}>Previously Read</MenuItem>
-            <MenuItem value={'Want To Read'}>Want To Read</MenuItem>
+            <MenuItem value={'favorites'}>Favorite</MenuItem>
+            <MenuItem value={'currentlyReading'}>Currently Reading</MenuItem>
+            <MenuItem value={'alreadyRead'}>Previously Read</MenuItem>
+            <MenuItem value={'goingToRead'}>Want To Read</MenuItem>
           </Select>
           <FormHelperText>Select a list</FormHelperText>
         </FormControl>
@@ -100,24 +97,30 @@ const AddOrRemoveBook = (props) => {
 
       {/* <Grid container item direction="row" > */}
       {props.functionality === 'remove' ?
+
         <IconButton className={classes.icon} aria-label="delete button" onClick={() => {
-          handleSubmit(3)
+          handleSubmit('delete X button')
         }}>
           <HighlightOffIcon type="submit" />
         </IconButton>
+
         :
-        <IconButton aria-label="add button" onClick={() => {
-          handleSubmit(1)
-        }}>
-          <PlaylistAddIcon type="submit" />
-        </IconButton>
+        <Link to='/profile'>
+          <IconButton aria-label="add button" disabled={listName ? false : true} onClick={() => {
+            handleSubmit('add')
+          }}>
+            <PlaylistAddIcon type="submit" />
+          </IconButton>
+        </Link>
       }
       {props.functionality === 'both' ?
-        <IconButton aria-label="delete button" onClick={() => {
-          handleSubmit(2)
-        }}>
-          <DeleteOutlineIcon type="submit" />
-        </IconButton>
+        <Link to='/profile'>
+          <IconButton aria-label="delete button" disabled={listName ? false : true} onClick={() => {
+            handleSubmit('remove from selected list')
+          }}>
+            <DeleteOutlineIcon type="submit" />
+          </IconButton>
+        </Link>
         : null}
       {/* </Grid> */}
 
