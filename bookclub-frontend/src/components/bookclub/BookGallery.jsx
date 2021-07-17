@@ -17,7 +17,7 @@ import '@fontsource/roboto';
 
 const UseStyles = makeStyles(() => ({
   root: {
-    maxWidth: 200,
+
   },
   media: {
     height: 300,
@@ -25,11 +25,49 @@ const UseStyles = makeStyles(() => ({
   content: {
     marginTop: '30px',
   },
-  empty: {
-    height: '25vh',
+  booksContainer: {
+    // border: '2px solid red',
+    borderRadius: '4px',
+    boxShadow: 'inset 0 0 15px -10px black',
+    backgroundColor: '#faf5f6', //'#e8e8e8',
+    margin: '1.5vh',
+    padding: '3vh'
+
+  },
+  emptyContainer: {
+    minHeight: '10vh'
+  },
+  titles: {
+    font: 'robot sans-serif',
+    marginBottom: '3vh',
+    padding: '0vh 1vh 1vh 6vh',
+    textAlign: 'left',
+    borderBottom: '1px solid gray'
+
+  },
+  cardContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    // border: '2px solid red',
+    height: '45vh'
+  },
+  card: {
+    // display: 'flex',
+    maxWidth: '230px',
+    height: '100%',
+    margin: '15px',
+    padding: '20px',
+    boxShadow: '0 0 5px 0 gray',
+    // border: '2px solid blue',
+    justifyContent: 'center'
+  },
+  bookImage: {
+
   }
 })
 );
+
 
 const withSlide = (wrappedComponent, selectData, setBook) => {
   var settings = {
@@ -37,41 +75,41 @@ const withSlide = (wrappedComponent, selectData, setBook) => {
     centerMode: true,
     infinite: true,
     speed: 100,
-    slidesToShow: 1,
+    slidesToShow: (selectData.list.length > 4) ? 4 : selectData.list.length,
     slidesToScroll: 1,
     responsive: [
-      {
-        breakpoint: 1300,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 4,
-          infinite: true,
-        }
-      },
-      {
-        breakpoint: 1000,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 2,
-          infinite: true,
-        }
-      },
-      {
-        breakpoint: 950,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          infinite: true,
-        }
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          infinite: true,
-        }
-      }
+      // {
+      //   breakpoint: 1300,
+      //   settings: {
+      //     slidesToShow: 4,
+      //     slidesToScroll: 4,
+      //     infinite: true,
+      //   }
+      // },
+      // {
+      //   breakpoint: 1000,
+      //   settings: {
+      //     slidesToShow: 3,
+      //     slidesToScroll: 2,
+      //     infinite: true,
+      //   }
+      // },
+      // {
+      //   breakpoint: 950,
+      //   settings: {
+      //     slidesToShow: 2,
+      //     slidesToScroll: 2,
+      //     infinite: true,
+      //   }
+      // },
+      // {
+      //   breakpoint: 480,
+      //   settings: {
+      //     slidesToShow: 1,
+      //     slidesToScroll: 1,
+      //     infinite: true,
+      //   }
+      // }
     ]
   };
 
@@ -79,30 +117,30 @@ const withSlide = (wrappedComponent, selectData, setBook) => {
   if (selectData.list.length === 0) {
     return (
       <div>
-        <Grid item className={classes.empty}>
-          <h2>{selectData.title}</h2>
+        <Grid item className={classes.booksContainer}>
+          <h2 className={classes.titles}>{selectData.title}</h2>
           <h3>It appears that there are no books added to this list!</h3>
         </Grid>
       </div>
     )
-  // } else if (selectData.list.length < 3) {
-  //   return (
-  //     <div>
-  //       <Grid item >
-  //         <h2>{selectData.title}</h2>
-  //       </Grid>
-  //     </div>
-  //   )
+    // } else if (selectData.list.length < 3) {
+    //   return (
+    //     <div>
+    //       <Grid item >
+    //         <h2>{selectData.title}</h2>
+    //       </Grid>
+    //     </div>
+    //   )
   } else {
     return (
-      <div>
-        <Grid item >
-          <h2>{selectData.title}</h2>
-          <Slider className='slider' {...settings}>
+      <div >
+        <Grid item className={classes.booksContainer}>
+          <h2 className={classes.titles}>{selectData.title}</h2>
+          <Slider className={`slider ${classes.container}`} {...settings}>
             {selectData.list.map((book) => {
               return (
-                <div key={book.bookId}>
-                  <Card className={classes.root}>
+                <div key={book.bookId} className={classes.cardContainer}>
+                  <Card className={classes.card}>
                     <CardActionArea>
                       <Link onClick={() => { setBook(book) }} to={`/book/${book.bookId}`}>
                         <CardMedia
