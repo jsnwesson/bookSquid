@@ -46,24 +46,28 @@ const Profile = (props) => {
     className: 'fave',
     list: favorites, // <-- name of array of book objects
     removeBook: true,
+    setter: setFavorites,
   };
   const prevList = {
     title: 'Previously Read',
     className: 'prevRead',
     list: previouslyRead,
     removeBook: true,
+    setter: setPreviouslyRead,
   }
   const toReadList = {
     title: 'Want to Read',
     className: 'toRead',
     list: wantToRead,
     removeBook: true,
+    setter: setWantToRead,
   }
   const currentList = {
     title: 'Currently Reading',
     className: 'currRead',
     list: currentlyReading,
     removeBook: true,
+    setter: setCurrentlyReading,
   }
 
   return (
