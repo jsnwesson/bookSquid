@@ -5,36 +5,20 @@ import { makeStyles } from '@material-ui/core/styles';
 import AddOrRemoveBook from './AddOrRemoveBook';
 import Paper from '@material-ui/core/Paper';
 import { specificBookData } from '../../services/bookclubServices';
-// import { addBookToMongo } from '../../services/bookclubServices';
 import '@fontsource/roboto';
 import { useParams } from 'react-router';
 
 
-const BookInfo = (props) => {
+const BookInfo = () => {
   const { id } = useParams()
-  console.log('this is props', props)
-  // console.log('this should be the id', id)
-  const [book, setBook] = useState(null)
-  const [ready, setReady] = useState(false)
-  useEffect(() => {
-    // addBookToMongo(props.book)
-    //   .then(() => {
-    //     specificBookData(id)
-    //       .then((results) => {
-    //         console.log('response to specifc bookData', results.data)
-    //         setBook(results[0])
-    //       })
-    //   })
-    specificBookData(id)
-      .then((results) => {
-        console.log('response to specifc bookData', results)
-        setBook(results[0])
-      })
-  }, [])
+  const [book, setBook] = useState()
 
   useEffect(() => {
-    setReady(true)
-  }, [book]);
+    specificBookData(id)
+      .then((results) => {
+        setBook(results[0])
+      })
+  }, [id])
 
   const useStyles = makeStyles((theme) => ({
     mainContainer: {
@@ -80,20 +64,10 @@ const BookInfo = (props) => {
   }));
   const classes = useStyles();
   const image = book ? book.image : null;
-  let authors = '';
-  if (book) {
-    book.authors.forEach((author, i) => {
-      if (i !== (book.authors.length - 1)) {
-        authors += `${author}, `;
-      } else {
-        authors += author;
-      }
-    })
-  }
-  // console.log('image......', props)
+
   return (
     <>
-      {ready && book !== null
+      {book !== undefined
         ? <Grid container item className={classes.mainContainer} >
           <Grid container item className={classes.parentContainer}>
             <Grid container item direction='column' xs={3} className={classes.imageContainer}>
@@ -116,7 +90,7 @@ const BookInfo = (props) => {
                 </Grid>
                 <Grid container item direction='column'>
                   <Grid direction='row'>
-                    <Typography variant='h5'>{authors}</Typography>
+                    <Typography variant='h5'>{book.authors.join(', ')}</Typography>
                   </Grid>
                   <Grid direction='row' className={classes.titleContainer}>
                     <Typography className={classes.descriptionContainer} variant='subtitle1'>{book.description}</Typography>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import SearchPage from './pages/search'
@@ -26,7 +26,7 @@ function App() {
 
       <Router>
         <Switch>
-          <Route path="/search">
+          <Route path="/search/:searchTerm">
             <SearchPage
               isLoggedIn={isLoggedIn}
               setIsLoggedIn={setIsLoggedIn}
