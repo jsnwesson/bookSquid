@@ -13,36 +13,31 @@ import { addToList } from '../../services/bookclubServices';
 import { removeFromList } from '../../services/bookclubServices';
 import { Link } from 'react-router-dom';
 
+const useStyles = makeStyles((theme) => ({
+  formControl: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    width: '100%',
+  },
+  remove: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  icon: {
+    position: 'absolute',
+    top: '1%',
+    right: '1%',
+    color: 'red',
+    backgroundColor: '#FEE4EA',
+    padding: '0px',
+    '&:hover': { backgroundColor: '#FEE4EA' },
+  },
+}));
+
 const AddOrRemoveBook = (props) => {
   const [listName, setListName] = useState()
-
-  /*
-  if props.add === false then FUNCTIONALITY=delete
-  if props.add === true then FUNCTIONALITY=add
-  <AddOrRemoveBook bookId={book.bookId} whatList={selectData.title} functionality={'remove'}>
-  bookId --- props.bookId
-  */
-  const useStyles = makeStyles((theme) => ({
-    formControl: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      width: '100%',
-    },
-    remove: {
-      display: 'flex',
-      justifyContent: 'center',
-    },
-    icon: {
-      position: 'absolute',
-      top: '1%',
-      right: '1%',
-      color: 'red',
-      backgroundColor: '#FEE4EA',
-      padding: '0px',
-      '&:hover': { backgroundColor: '#FEE4EA' },
-    },
-  }));
   const classes = useStyles();
+
   let list;
   if (props.listName === 'Favorites') {
     list = 'favorites'
@@ -53,29 +48,26 @@ const AddOrRemoveBook = (props) => {
   } else if (props.listName === 'Currently Reading') {
     list = 'currentlyReading'
   }
+
   const handleSubmit = (option) => {
     if (option === 'delete X button') {
-      // setListName(props.listName)
+      // let index = props.list.findIndex((book) => props.bookId === book.bookId)
       removeFromList(list, props.bookId)
-        .then(() => {
-          let index = props.list.indexOf(props.book.bookId === props.bookId)
-          console.log('-------------', index)
-          console.log('after', props.list)
-          props.removeFunc(props.list.splice(index, 1))
-          console.log('before', props.list)
-        })
-      // alert(`these are your selections... you will be removing book: ${props.bookId} from: ${list} `)
+      // .then(() => {
+      //   let storedList = props.list
+      //   storedList.splice(index, 1)
+      //   console.log('storedList', storedList)
+      //   props.removeFunc(storedList)
+      // })
     } else if (option === 'add') {
       // add to a selected list
       addToList(listName, props.bookId)
-      // alert(`these are your selections... you will be adding book: ${props.bookId} to: ${listName} `)
     } else if (option === 'remove from selected list') {
       // remove from selected list
       removeFromList(listName, props.bookId)
-      // alert(`these are your selections... you will be removing book: ${props.bookId} from: ${listName} `)
     }
   };
-  //  props.setter(list.splice(book, 1))
+
   const handleChange = (event) => {
     setListName(event.target.value)
   }
