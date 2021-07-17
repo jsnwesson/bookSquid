@@ -68,10 +68,8 @@ class Review extends React.Component {
   }
 
   componentDidMount() {
-
-     getBookReviews('e_9MDwAAQBAJ')
+     getBookReviews(this.props.id)
     .then(data => {
-      
       //get ratings
       let reviewSum = data.data.length;
       let avgRating;
@@ -100,16 +98,12 @@ class Review extends React.Component {
       three = (three / reviewSum) * 100;
       two = (two / reviewSum) * 100;
       one = (one / reviewSum) * 100;
-
-
       //get reviews rendered
       let reviewsRendered = data.data.slice(0, 2)
       let reviewsRenderedNum = 0;
       if(reviewsRendered.length === 0) {reviewsRenderedNum = 0;} 
       else if (reviewsRendered.length === 1) {reviewsRenderedNum = 1;} 
       else {reviewsRenderedNum = 2;}
-
-
 
       this.setState({
         reviewData: data.data,
@@ -123,11 +117,11 @@ class Review extends React.Component {
         reviewsRendered: reviewsRendered,
         reviewsRenderedNum: reviewsRenderedNum
       })
-
     })
+    .catch(err => {
+      console.log('error at getBookReviews',err)
+    });
   }
-
-
 
   handleMoreReviews() {
     var count = this.state.reviewsRenderedNum;
@@ -157,7 +151,7 @@ class Review extends React.Component {
           {/* {filterTypeLine} */}
           <ReviewList reviewResults={this.state.reviewsRendered} />
           <div className={classes.rrButtons}>
-          <ReviewButtons reviewsRenderedNum={this.state.reviewsRenderedNum} reviewSum={this.state.reviewSum} handleMoreReviews={this.handleMoreReviews} />
+          <ReviewButtons reviewsRenderedNum={this.state.reviewsRenderedNum} reviewSum={this.state.reviewSum} handleMoreReviews={this.handleMoreReviews} id={this.props.id} isLoggedIn={this.props.isLoggedIn} />
           </div>
         </div>
         {/* end box right  */}
