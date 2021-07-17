@@ -74,42 +74,61 @@ const withSlide = (wrappedComponent, selectData, setBook) => {
 
   const classes = UseStyles();
   console.log(selectData)
-
-  return (
-    <div>
-      <Grid item >
-        <h2>{selectData.title}</h2>
-        <Slider className='slider' {...settings}>
-          {selectData.list.map((book) => {
-            return (
-              <div key={book.bookId}>
-                <Card className={classes.root}>
-                  <CardActionArea>
-                    <Link onClick={() => { setBook(book) }} to={`/book/${book.bookId}`}>
-                      <CardMedia
-                        className={classes.media}
-                        image={book.thumbnail}
-                        title={book.title}
-                      />
-                    </Link>
-                    <CardContent>
-                      <Typography gutterBottom variant="h5" component="h2">
-                        {book.title}
-                      </Typography>
-                      <Typography variant="body2" color="textSecondary" component="p">
-                        {book.authors[0]}
-                      </Typography>
-                    </CardContent>
-                    {(selectData.removeBook) ? <AddOrRemoveBook bookId={book.bookId} listName={selectData.title} functionality={'remove'} /> : <></>}
-                  </CardActionArea>
-                </Card>
-              </div>
-            )
-          })}
-        </Slider>
-      </Grid>
-    </div>
-  );
+  if (selectData.list === undefined || selectData.list === 0) {
+    return (
+      <div>
+        <Grid item >
+          <h2>{selectData.title}</h2>
+          <h3>It appears that there are no books added to this list!</h3>
+        </Grid>
+      </div>
+    )
+  } else if (selectData.list < 3) {
+    return (
+      <div>
+        <Grid item >
+          <h2>{selectData.title}</h2>
+        </Grid>
+      </div>
+    )
+  } else {
+    console.log(selectData.list)
+    return (
+      <div>
+        <Grid item >
+          <h2>{selectData.title}</h2>
+          <Slider className='slider' {...settings}>
+            {selectData.list.map((book) => {
+              return (
+                <div key={book.bookId}>
+                  <Card className={classes.root}>
+                    <CardActionArea>
+                      <Link onClick={() => { setBook(book) }} to={`/book/${book.bookId}`}>
+                        <CardMedia
+                          className={classes.media}
+                          image={book.thumbnail}
+                          title={book.title}
+                        />
+                      </Link>
+                      <CardContent>
+                        <Typography gutterBottom variant="h5" component="h2">
+                          {book.title}
+                        </Typography>
+                        <Typography variant="body2" color="textSecondary" component="p">
+                          {book.authors[0]}
+                        </Typography>
+                      </CardContent>
+                      {(selectData.removeBook) ? <AddOrRemoveBook bookId={book.bookId} listName={selectData.title} functionality={'remove'} /> : <></>}
+                    </CardActionArea>
+                  </Card>
+                </div>
+              )
+            })}
+          </Slider>
+        </Grid>
+      </div>
+    );
+  }
 }
 
 export default withSlide;
