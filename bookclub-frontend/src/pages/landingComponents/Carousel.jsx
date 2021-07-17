@@ -6,11 +6,11 @@ import { getRecentlyReviewed, recommendedBooks } from '../../services/bookclubSe
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
-    // border: '1px solid white',
-    backgroundColor: '#dde9eb',
     heightMin: '100vh',
     padding: '20px',
-    boxShadow: '0 0 15px -7px gray'
+    // border: '1px solid white',
+    // backgroundColor: '#d8dfeb', //'#dde9eb',
+    // boxShadow: '0 0 15px -7px gray'
   }
 }))
 
