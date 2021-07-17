@@ -10,6 +10,7 @@ import { getUserData } from '../services/bookclubServices.js'
 const useStyles = makeStyles (() => ({
   root: {
     minWidth: 200,
+    minHeight: '100vh',
   },
 }));
 
