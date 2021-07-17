@@ -37,12 +37,20 @@ const useStyles = makeStyles((theme) => ({
 
 const LandingSearch = (props) => {
 
+  let submitButton = document.getElementById('submitButton')
   const [searchInput, setSearchInput] = useState((''))
   const classes = useStyles()
 
   const handleInputChange = (e) => {
     setSearchInput(e.target.value)
   }
+
+  const handleEnterSearch = (e) => {
+    if (e.key === 'Enter') {
+      submitButton.click();
+    }
+  }
+
 
   return (
 
@@ -59,11 +67,11 @@ const LandingSearch = (props) => {
                 type="text"
                 placeholder="Search Books, Authors or Genres!"
                 onChange={handleInputChange}
-              // onKeyUp={() => alert('yo!')}
+                onKeyDown={handleEnterSearch}
               ></FormControl >
               {searchInput
                 ? <Link to={`/search/${searchInput}`}>
-                  <Button className={classes.buttons}>Search Books</Button>
+                  <Button id='submitButton' className={classes.buttons}>Search Books</Button>
                 </Link>
                 : <Button className={classes.buttons} disabled>Search Books</Button>
               }
