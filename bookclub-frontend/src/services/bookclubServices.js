@@ -72,7 +72,7 @@ export const carouselMetaData = async () => {
 
 export const addBookToMongo = async (book) => {
   try {
-    const res = await axios.post(`${url}/books/add`, { book });
+    const res = await axios.post(`${url}/books/add`, book);
     return res.data;
   } catch (e) {
     console.error(e);
