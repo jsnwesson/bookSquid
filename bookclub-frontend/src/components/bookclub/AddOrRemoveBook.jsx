@@ -47,7 +47,7 @@ const AddOrRemoveBook = (props) => {
     if (option === 'delete X button') {
       // setListName(props.listName)
       // removeFromList(props.listName, props.bookId)
-      alert(`these are your selections... you will be removing book: ${props.bookId} from: ${props.listName} `)
+      // alert(`these are your selections... you will be removing book: ${props.bookId} from: ${props.listName} `)
     } else if (option === 'add') {
       // add to a selected list
       addToList(listName, props.bookId)
@@ -84,10 +84,10 @@ const AddOrRemoveBook = (props) => {
             <MenuItem value="" disabled>
               Lists:
             </MenuItem>
-            <MenuItem value={'Favorite'}>Favorite</MenuItem>
-            <MenuItem value={'Currently Reading'}>Currently Reading</MenuItem>
-            <MenuItem value={'Previously Read'}>Previously Read</MenuItem>
-            <MenuItem value={'Want To Read'}>Want To Read</MenuItem>
+            <MenuItem value={'favorite'}>Favorite</MenuItem>
+            <MenuItem value={'currentlyReading'}>Currently Reading</MenuItem>
+            <MenuItem value={'alreadyRead'}>Previously Read</MenuItem>
+            <MenuItem value={'goingToRead'}>Want To Read</MenuItem>
           </Select>
           <FormHelperText>Select a list</FormHelperText>
         </FormControl>
