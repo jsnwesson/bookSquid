@@ -18,6 +18,7 @@ import '@fontsource/roboto';
 const UseStyles = makeStyles(() => ({
   root: {
     maxWidth: 200,
+    boxShadow: '0 0 5px 0 gray'
   },
   media: {
     height: 300,
@@ -25,6 +26,29 @@ const UseStyles = makeStyles(() => ({
   content: {
     marginTop: '30px',
   },
+  booksContainer: {
+    // border: '2px solid red',
+    borderRadius: '5px',
+    boxShadow: 'inset 0 0 15px -10px black',
+    backgroundColor: '#e8e8e8',
+    margin: '1.5vh',
+    padding: '3vh'
+
+  },
+  emptyContainer: {
+    minHeight: '10vh'
+  },
+  titles: {
+    font: 'robot sans-serif',
+    marginBottom: '3vh',
+    padding: '0vh 1vh 1vh 6vh',
+    textAlign: 'left',
+    borderBottom: '1px solid gray'
+
+  },
+  bookContainer: {
+
+  }
 })
 );
 
@@ -73,12 +97,13 @@ const withSlide = (wrappedComponent, selectData, setBook) => {
   };
 
   const classes = UseStyles();
-  console.log(selectData)
+  console.log(selectData.list)
+
   if (selectData.list === undefined || selectData.list === 0) {
     return (
       <div>
-        <Grid item >
-          <h2>{selectData.title}</h2>
+        <Grid item className={classes.booksContainer}>
+          <h2 className={classes.titles}>{selectData.title}</h2>
           <h3>It appears that there are no books added to this list!</h3>
         </Grid>
       </div>
@@ -94,13 +119,13 @@ const withSlide = (wrappedComponent, selectData, setBook) => {
   } else {
     console.log(selectData.list)
     return (
-      <div>
-        <Grid item >
-          <h2>{selectData.title}</h2>
-          <Slider className='slider' {...settings}>
+      <div >
+        <Grid item className={classes.booksContainer}>
+          <h2 className={classes.titles}>{selectData.title}</h2>
+          <Slider className={`slider ${classes.container}`} {...settings}>
             {selectData.list.map((book) => {
               return (
-                <div key={book.bookId}>
+                <div key={book.bookId} className={classes.cardContainer}>
                   <Card className={classes.root}>
                     <CardActionArea>
                       <Link onClick={() => { setBook(book) }} to={`/book/${book.bookId}`}>
