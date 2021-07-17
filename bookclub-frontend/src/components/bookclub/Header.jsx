@@ -9,7 +9,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import Button from '@material-ui/core/Button'
 import ButtonBase from '@material-ui/core/ButtonBase'
 import Grid from '@material-ui/core/Grid';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Login from '../sessions/Login.jsx';
 import SignOut from '../sessions/SignOut.jsx';
 import Logo from '../../pages/landingComponents/assets/BookSquidLogo_Main.svg';
@@ -132,6 +132,8 @@ const Header = (props) => {
     }
   }
 
+  let history = useHistory();
+
 
   return (
     <div className={classes.grow}>
@@ -225,11 +227,20 @@ const Header = (props) => {
                   : <div>
                     <Grid className={classes.buttons} container item direction='row'>
                       <Grid item>
-                        <Link to='/profile'>
+
+                      <Link onClick={() => {
+                        console.log(props.uidCookie)
+                        history.push(`/profile/${props.uidCookie.UID}`)}}>
+                        <ButtonBase >
+                          <AccountCircle className={classes.profileIcon} />
+                        </ButtonBase>
+                      </Link>
+
+                        {/* <Link to='/profile'>
                           <ButtonBase >
                             <AccountCircle className={classes.profileIcon} />
                           </ButtonBase>
-                        </Link>
+                        </Link> */}
                       </Grid>
 
                       {/* Signout */}

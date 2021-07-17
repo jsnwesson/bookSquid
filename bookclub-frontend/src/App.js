@@ -55,7 +55,7 @@ function App() {
               book={book}
             />
           </Route>
-          <Route path="/profile">
+          <Route path="/profile/:user">
             <Profile
               isLoggedIn={isLoggedIn}
               setIsLoggedIn={setIsLoggedIn}
