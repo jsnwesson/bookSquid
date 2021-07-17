@@ -52,13 +52,15 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    color: '#004D86'
+    color: '#004D86',
+    zIndex: '1000'
   },
   inputRoot: {
     color: '#004D86',
+    backgroundColor: '#fffcfd',
     fontSize: '16pt',
     width: '40vw',
-    border: "2px solid #004D86",
+    border: "1.1px solid #004D86",
     borderRadius: '7px'
   },
   inputInput: {
@@ -67,9 +69,9 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
     transition: theme.transitions.create("width"),
     width: "100%",
-    [theme.breakpoints.up("xs")]: {
-      width: "38vw",
-    },
+    // [theme.breakpoints.up("xs")]: {
+    //   width: "38vw",
+    // },
   },
   dropdown: {
     width: '5vw',
@@ -115,12 +117,20 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Header = (props) => {
+  const submitButton = document.getElementById('submitButton')
   const classes = useStyles();
   const [searchInput, setSearchInput] = useState();
 
   const handleSearchInput = (e) => {
     setSearchInput(e.target.value);
   };
+
+
+  const handleEnterSearch = (e) => {
+    if (e.key === 'Enter') {
+      submitButton.click();
+    }
+  }
 
 
   return (
@@ -158,6 +168,7 @@ const Header = (props) => {
                     </div>
                     <InputBase
                       onChange={handleSearchInput}
+                      onKeyUp={handleEnterSearch}
                       placeholder="Search Books, Authors and Genres!"
                       classes={{
                         root: classes.inputRoot,
@@ -167,11 +178,21 @@ const Header = (props) => {
                     />
                   </Grid>
                   <Grid>
+                    {/* // {searchInput
+                    //   ? < Link to={'/search'}>
+                    //     <Button
+                    //       id="submitButton"
+                    //       className={classes.searchButton}
+                    //       variant="contained"
+                    //       onClick={handleSearchSubmit}
+                    //     >Search</Button> */}
                     {searchInput ?
                       <Link to={`/search/${searchInput}`}>
                         <Button
+                          id='submitButton'
                           className={classes.searchButton}
                           variant="contained"
+
                         >
                           Search
                         </Button>

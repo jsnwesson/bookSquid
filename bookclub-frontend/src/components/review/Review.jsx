@@ -8,6 +8,9 @@ import ReviewStars from './ReviewStars.jsx';
 import ReviewList from './ReviewList.jsx';
 import ReviewButtons from './ReviewButtons.jsx';
 import { getBookReviews } from '../../services/bookclubServices.js';
+import LoginAddReview from '../sessions/LoginAddReview.jsx';
+import AddReviewBtn from './AddReviewBtn.jsx'
+
 
 
 
@@ -42,6 +45,9 @@ const useStyles = {
   },
   rrButtons: {
     paddingTop: '5px',
+  },
+  AddReviewSpacer: {
+    paddingBottom: '20px',
   }
 };
 
@@ -68,10 +74,8 @@ class Review extends React.Component {
   }
 
   componentDidMount() {
-
-     getBookReviews('e_9MDwAAQBAJ')
+     getBookReviews(this.props.id)
     .then(data => {
-      
       //get ratings
       let reviewSum = data.data.length;
       let avgRating;
@@ -100,16 +104,12 @@ class Review extends React.Component {
       three = (three / reviewSum) * 100;
       two = (two / reviewSum) * 100;
       one = (one / reviewSum) * 100;
-
-
       //get reviews rendered
       let reviewsRendered = data.data.slice(0, 2)
       let reviewsRenderedNum = 0;
       if(reviewsRendered.length === 0) {reviewsRenderedNum = 0;} 
       else if (reviewsRendered.length === 1) {reviewsRenderedNum = 1;} 
       else {reviewsRenderedNum = 2;}
-
-
 
       this.setState({
         reviewData: data.data,
@@ -123,11 +123,11 @@ class Review extends React.Component {
         reviewsRendered: reviewsRendered,
         reviewsRenderedNum: reviewsRenderedNum
       })
-
     })
+    .catch(err => {
+      console.log('error at getBookReviews',err)
+    });
   }
-
-
 
   handleMoreReviews() {
     var count = this.state.reviewsRenderedNum;
@@ -141,27 +141,36 @@ class Review extends React.Component {
 
   render (props) {
     const { classes } = this.props;
+    let AddReview;
+    if(this.props.isLoggedIn){
+      AddReview = <AddReviewBtn id={this.props.id} /> 
+    } else {
+      AddReview = <LoginAddReview />
+    }
     return (
       <div className={classes.rrCont}>
       <div className={classes.rrTitleCont}>
       <h2>Ratings &#38; Reviews</h2>
       </div>
-      <div className={classes.rrBoxCont}>
-        <div className={classes.rrBoxL}>
-          <ReviewRating avgRating={this.state.avgRating} />
-          <ReviewStars five={this.state.five} four={this.state.four} three={this.state.three} two={this.state.two} one={this.state.one} />
-        </div>
-          {/* begin box right  */}
-        <div className={classes.rrBoxR}>
-          <div className={classes.reviewCount}><p>{this.state.reviewSum} reviews</p></div>
-          {/* {filterTypeLine} */}
-          <ReviewList reviewResults={this.state.reviewsRendered} />
-          <div className={classes.rrButtons}>
-          <ReviewButtons reviewsRenderedNum={this.state.reviewsRenderedNum} reviewSum={this.state.reviewSum} handleMoreReviews={this.handleMoreReviews} />
+      {this.state.reviewSum > 0
+      ? <div className={classes.rrBoxCont}>
+          <div className={classes.rrBoxL}>
+            <ReviewRating avgRating={this.state.avgRating} />
+            <ReviewStars five={this.state.five} four={this.state.four} three={this.state.three} two={this.state.two} one={this.state.one} />
           </div>
+            {/* begin box right  */}
+          <div className={classes.rrBoxR}>
+            <div className={classes.reviewCount}><p>{this.state.reviewSum} reviews</p></div>
+            {/* {filterTypeLine} */}
+            <ReviewList reviewResults={this.state.reviewsRendered} />
+            <div className={classes.rrButtons}>
+            <ReviewButtons reviewsRenderedNum={this.state.reviewsRenderedNum} reviewSum={this.state.reviewSum} handleMoreReviews={this.handleMoreReviews} id={this.props.id} isLoggedIn={this.props.isLoggedIn} />
+            </div>
+          </div>
+          {/* end box right  */}
         </div>
-        {/* end box right  */}
-      </div>
+        : <div><div>No Reviews</div> <div className={classes.AddReviewSpacer}>Be the first member to submit a review!</div> {AddReview}</div> }
+  
    </div>
 
 
