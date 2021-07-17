@@ -8,6 +8,9 @@ import ReviewStars from './ReviewStars.jsx';
 import ReviewList from './ReviewList.jsx';
 import ReviewButtons from './ReviewButtons.jsx';
 import { getBookReviews } from '../../services/bookclubServices.js';
+import LoginAddReview from '../sessions/LoginAddReview.jsx';
+import AddReviewBtn from './AddReviewBtn.jsx'
+
 
 
 
@@ -42,6 +45,9 @@ const useStyles = {
   },
   rrButtons: {
     paddingTop: '5px',
+  },
+  AddReviewSpacer: {
+    paddingBottom: '20px',
   }
 };
 
@@ -135,27 +141,36 @@ class Review extends React.Component {
 
   render (props) {
     const { classes } = this.props;
+    let AddReview;
+    if(this.props.isLoggedIn){
+      AddReview = <AddReviewBtn id={this.props.id} /> 
+    } else {
+      AddReview = <LoginAddReview />
+    }
     return (
       <div className={classes.rrCont}>
       <div className={classes.rrTitleCont}>
       <h2>Ratings &#38; Reviews</h2>
       </div>
-      <div className={classes.rrBoxCont}>
-        <div className={classes.rrBoxL}>
-          <ReviewRating avgRating={this.state.avgRating} />
-          <ReviewStars five={this.state.five} four={this.state.four} three={this.state.three} two={this.state.two} one={this.state.one} />
-        </div>
-          {/* begin box right  */}
-        <div className={classes.rrBoxR}>
-          <div className={classes.reviewCount}><p>{this.state.reviewSum} reviews</p></div>
-          {/* {filterTypeLine} */}
-          <ReviewList reviewResults={this.state.reviewsRendered} />
-          <div className={classes.rrButtons}>
-          <ReviewButtons reviewsRenderedNum={this.state.reviewsRenderedNum} reviewSum={this.state.reviewSum} handleMoreReviews={this.handleMoreReviews} id={this.props.id} isLoggedIn={this.props.isLoggedIn} />
+      {this.state.reviewSum > 0
+      ? <div className={classes.rrBoxCont}>
+          <div className={classes.rrBoxL}>
+            <ReviewRating avgRating={this.state.avgRating} />
+            <ReviewStars five={this.state.five} four={this.state.four} three={this.state.three} two={this.state.two} one={this.state.one} />
           </div>
+            {/* begin box right  */}
+          <div className={classes.rrBoxR}>
+            <div className={classes.reviewCount}><p>{this.state.reviewSum} reviews</p></div>
+            {/* {filterTypeLine} */}
+            <ReviewList reviewResults={this.state.reviewsRendered} />
+            <div className={classes.rrButtons}>
+            <ReviewButtons reviewsRenderedNum={this.state.reviewsRenderedNum} reviewSum={this.state.reviewSum} handleMoreReviews={this.handleMoreReviews} id={this.props.id} isLoggedIn={this.props.isLoggedIn} />
+            </div>
+          </div>
+          {/* end box right  */}
         </div>
-        {/* end box right  */}
-      </div>
+        : <div><div>No Reviews</div> <div className={classes.AddReviewSpacer}>Be the first member to submit a review!</div> {AddReview}</div> }
+  
    </div>
 
 
