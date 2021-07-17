@@ -7,7 +7,6 @@ const ReviewRating = ({avgRating}) => {
 
   return (
     <div className={cl.rrBoxLMainRating}>
-    <div className={cl.rrBoxLMainRatingL}>{avgRating ? avgRating.toFixed(1) : ''}</div>
     <div className={cl.rrBoxLMainRatingR}>
     <div className={cl.rrBoxRatingWrapper}>
     <Rating
@@ -19,6 +18,9 @@ const ReviewRating = ({avgRating}) => {
           readOnly
         />
       </div>
+    <div className={cl.rrBoxLMainRatingL}>{avgRating ? avgRating.toFixed(1) : ''}</div>
+    <div className={cl.rrBoxLMainRatingLText}>{avgRating ? 'Average Rating: ' + avgRating.toFixed(1) : ''}</div>
+
     </div>
     </div>
   )
