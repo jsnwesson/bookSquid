@@ -15,7 +15,7 @@ import { searchByCategory } from '../../services/bookclubServices.js';
 //   },
 // }));
 const Search = (props) => {
-  const [data, setData] = useState(props.searchResults)
+  const [data, setData] = useState()
   const { searchTerm } = useParams()
 
   useEffect(() => {
@@ -23,24 +23,27 @@ const Search = (props) => {
       .then((results) => {
         setData(results)
       })
-  }, [])
+  }, [searchTerm])
 
   return (
     <div>
-      <Grid
-        container
-        direction="row"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Grid item xs={6}>
-          <Grid item xs>
-            {data.map((item) => {
-              return <SearchResults thing={item} setBook={props.setBook} />;
-            })}
+      {data ?
+        <div>
+          <Grid
+            container
+            direction="row"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Grid item xs={6}>
+              <Grid item xs>
+                {data.map((item) => {
+                  return <SearchResults thing={item} setBook={props.setBook} />;
+                })}
+              </Grid>
+            </Grid>
           </Grid>
-        </Grid>
-      </Grid>
+        </div> : null}
     </div>
   );
 };

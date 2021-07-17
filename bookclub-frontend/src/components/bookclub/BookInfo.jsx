@@ -5,7 +5,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import AddOrRemoveBook from './AddOrRemoveBook';
 import Paper from '@material-ui/core/Paper';
 import { specificBookData } from '../../services/bookclubServices';
-// import { addBookToMongo } from '../../services/bookclubServices';
 import '@fontsource/roboto';
 import { useParams } from 'react-router';
 
@@ -19,7 +18,7 @@ const BookInfo = () => {
       .then((results) => {
         setBook(results[0])
       })
-  }, [])
+  }, [id])
 
   const useStyles = makeStyles((theme) => ({
     mainContainer: {
