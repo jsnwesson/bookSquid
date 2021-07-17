@@ -14,9 +14,6 @@ import Login from '../sessions/Login.jsx';
 import SignOut from '../sessions/SignOut.jsx';
 import Logo from '../../pages/landingComponents/assets/BookSquidLogo_Main.svg';
 import bigLogo from '../../pages/landingComponents/assets/BookSquidLogo_No_Tag.svg'
-import { searchByCategory } from '../../services/bookclubServices.js';
-
-
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -125,12 +122,6 @@ const Header = (props) => {
     setSearchInput(e.target.value);
   };
 
-  const handleSearchSubmit = () => {
-    searchByCategory(searchInput).then((results) => {
-      props.setSearchResults(results);
-    });
-  };
-
 
   return (
     <div className={classes.grow}>
@@ -176,11 +167,22 @@ const Header = (props) => {
                     />
                   </Grid>
                   <Grid>
-                    {searchInput
-                      ? < Link to={'/search'}>
-                        <Button className={classes.searchButton} variant="contained" onClick={handleSearchSubmit}>Search</Button>
+                    {searchInput ?
+                      <Link to={`/search/${searchInput}`}>
+                        <Button
+                          className={classes.searchButton}
+                          variant="contained"
+                        >
+                          Search
+                        </Button>
                       </Link>
-                      : <Button disabled className={classes.searchButton} variant="contained" onClick={handleSearchSubmit}>Search</Button>
+                      : <Button
+                        disabled className={classes.searchButton}
+                        variant="contained"
+                      // onClick={handleSearchSubmit}
+                      >
+                        Search
+                      </Button>
                     }
                   </Grid>
                 </Grid>

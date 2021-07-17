@@ -7,7 +7,6 @@ import Form from 'react-bootstrap/Form'
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
-import { searchByCategory } from '../../services/bookclubServices.js'
 import searchBackdrop from './assets/SearchBackdrop.jpeg'
 
 
@@ -45,14 +44,6 @@ const LandingSearch = (props) => {
     setSearchInput(e.target.value)
   }
 
-  const handleSearchSubmit = () => {
-    searchByCategory(searchInput).then((results) => {
-      props.setSearchResults(results);
-    });
-  };
-
-
-
   return (
 
     <Container fluid className={classes.container} >
@@ -71,10 +62,10 @@ const LandingSearch = (props) => {
               // onKeyUp={() => alert('yo!')}
               ></FormControl >
               {searchInput
-                ? <Link to='/search'>
-                  <Button className={classes.buttons} onClick={handleSearchSubmit}>Search Books</Button>
+                ? <Link to={`/search/${searchInput}`}>
+                  <Button className={classes.buttons}>Search Books</Button>
                 </Link>
-                : <Button className={classes.buttons} disabled onClick={handleSearchSubmit}>Search Books</Button>
+                : <Button className={classes.buttons} disabled>Search Books</Button>
               }
             </Form>
           </Col>
