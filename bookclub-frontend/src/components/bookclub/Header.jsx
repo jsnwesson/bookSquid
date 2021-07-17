@@ -14,9 +14,6 @@ import Login from '../sessions/Login.jsx';
 import SignOut from '../sessions/SignOut.jsx';
 import Logo from '../../pages/landingComponents/assets/BookSquidLogo_Main.svg';
 import bigLogo from '../../pages/landingComponents/assets/BookSquidLogo_No_Tag.svg'
-import { searchByCategory } from '../../services/bookclubServices.js';
-
-
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -128,11 +125,6 @@ const Header = (props) => {
     setSearchInput(e.target.value);
   };
 
-  const handleSearchSubmit = () => {
-    searchByCategory(searchInput).then((results) => {
-      props.setSearchResults(results);
-    });
-  };
 
   const handleEnterSearch = (e) => {
     if (e.key === 'Enter') {
@@ -186,16 +178,32 @@ const Header = (props) => {
                     />
                   </Grid>
                   <Grid>
-                    {searchInput
-                      ? < Link to={'/search'}>
+                    {/* // {searchInput
+                    //   ? < Link to={'/search'}>
+                    //     <Button
+                    //       id="submitButton"
+                    //       className={classes.searchButton}
+                    //       variant="contained"
+                    //       onClick={handleSearchSubmit}
+                    //     >Search</Button> */}
+                    {searchInput ?
+                      <Link to={`/search/${searchInput}`}>
                         <Button
-                          id="submitButton"
+                          id='submitButton'
                           className={classes.searchButton}
                           variant="contained"
-                          onClick={handleSearchSubmit}
-                        >Search</Button>
+
+                        >
+                          Search
+                        </Button>
                       </Link>
-                      : <Button disabled className={classes.searchButton} variant="contained" onClick={handleSearchSubmit}>Search</Button>
+                      : <Button
+                        disabled className={classes.searchButton}
+                        variant="contained"
+                      // onClick={handleSearchSubmit}
+                      >
+                        Search
+                      </Button>
                     }
                   </Grid>
                 </Grid>

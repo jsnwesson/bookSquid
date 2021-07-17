@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const booksSchema = new mongoose.Schema({
   image: String,
-  title: { type: String, unique: true },
+  title: String,
   authors: [String],
   reviews: [String],
   totalRating: Number,

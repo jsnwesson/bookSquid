@@ -46,11 +46,15 @@ const UseStyles = makeStyles(() => ({
     borderBottom: '1px solid gray'
 
   },
-  bookContainer: {
+  book: {
 
+  },
+  empty: {
+    height: '25hv'
   }
 })
 );
+
 
 const withSlide = (wrappedComponent, selectData, setBook) => {
   var settings = {
@@ -97,9 +101,7 @@ const withSlide = (wrappedComponent, selectData, setBook) => {
   };
 
   const classes = UseStyles();
-  console.log(selectData.list)
-
-  if (selectData.list === undefined || selectData.list === 0) {
+  if (selectData.list.length === 0) {
     return (
       <div>
         <Grid item className={classes.booksContainer}>
@@ -108,16 +110,15 @@ const withSlide = (wrappedComponent, selectData, setBook) => {
         </Grid>
       </div>
     )
-  } else if (selectData.list < 3) {
-    return (
-      <div>
-        <Grid item >
-          <h2>{selectData.title}</h2>
-        </Grid>
-      </div>
-    )
+    // } else if (selectData.list.length < 3) {
+    //   return (
+    //     <div>
+    //       <Grid item >
+    //         <h2>{selectData.title}</h2>
+    //       </Grid>
+    //     </div>
+    //   )
   } else {
-    console.log(selectData.list)
     return (
       <div >
         <Grid item className={classes.booksContainer}>
