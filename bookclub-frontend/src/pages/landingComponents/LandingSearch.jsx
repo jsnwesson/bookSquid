@@ -76,7 +76,6 @@ const LandingSearch = (props) => {
                 placeholder="Search Books, Authors or Genres!"
                 onChange={handleInputChange}
                 onKeyDown={handleEnterSearch}
-              // onKeyUp={() => alert('yo!')}
               ></FormControl >
               {searchInput
                 ? <Link to='/search'>

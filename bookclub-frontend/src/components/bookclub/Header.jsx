@@ -55,10 +55,12 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    color: '#004D86'
+    color: '#004D86',
+    zIndex: '1000'
   },
   inputRoot: {
     color: '#004D86',
+    backgroundColor: '#fffcfd',
     fontSize: '16pt',
     width: '40vw',
     border: "2px solid #004D86",
@@ -70,9 +72,9 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
     transition: theme.transitions.create("width"),
     width: "100%",
-    [theme.breakpoints.up("xs")]: {
-      width: "38vw",
-    },
+    // [theme.breakpoints.up("xs")]: {
+    //   width: "38vw",
+    // },
   },
   dropdown: {
     width: '5vw',
