@@ -11,8 +11,8 @@ import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import { addToList } from '../../services/bookclubServices';
 import { removeFromList } from '../../services/bookclubServices';
+
 const AddOrRemoveBook = (props) => {
-  const [changed, setChanged] = useState(false)
   const [listName, setListName] = useState()
 
   /*
@@ -44,37 +44,32 @@ const AddOrRemoveBook = (props) => {
   const classes = useStyles();
 
   const handleSubmit = (option) => {
-    if (option === 3) {
+    if (option === 'delete X button') {
       // setListName(props.listName)
-      removeFromList(props.listName, props.bookId)
-      // alert(`these are your selections... you will be removing book: ${props.bookId} from: ${props.listName} `)
-    }
-    if (changed === true && option === 1) {
+      // removeFromList(props.listName, props.bookId)
+      alert(`these are your selections... you will be removing book: ${props.bookId} from: ${props.listName} `)
+    } else if (option === 'add') {
       // add to a selected list
       addToList(listName, props.bookId)
       // alert(`these are your selections... you will be adding book: ${props.bookId} to: ${listName} `)
-    } else if (changed === true && option === 2) {
+    } else if (option === 'remove from selected list') {
       // remove from selected list
-      removeFromList(listName, props.bookId)
-      // alert(`these are your selections... you will be removing book: ${props.bookId} from: ${listName} `)
-    } else if (changed === false && option === 1) {
-      alert('you have not selected a list to add to')
-    } else if (changed === false && option === 2) {
-      alert('you have not selected a list to add to delete from')
+      // removeFromList(listName, props.bookId)
+      alert(`these are your selections... you will be removing book: ${props.bookId} from: ${listName} `)
     }
   };
 
   const handleChange = (event) => {
     setListName(event.target.value)
   }
-  useEffect(() => {
-    if (listName === undefined) {
-      setChanged(false)
-    } else {
-      setChanged(true)
-    }
+  // useEffect(() => {
+  //   if (listName === undefined) {
+  //     setChanged(false)
+  //   } else {
+  //     setChanged(true)
+  //   }
 
-  }, [listName])
+  // }, [listName])
   return (
     <Grid container item direction='row' className={classes.formControl}>
 
@@ -101,20 +96,20 @@ const AddOrRemoveBook = (props) => {
       {/* <Grid container item direction="row" > */}
       {props.functionality === 'remove' ?
         <IconButton className={classes.icon} aria-label="delete button" onClick={() => {
-          handleSubmit(3)
+          handleSubmit('delete X button')
         }}>
           <HighlightOffIcon type="submit" />
         </IconButton>
         :
-        <IconButton aria-label="add button" onClick={() => {
-          handleSubmit(1)
+        <IconButton aria-label="add button" disabled={listName ? false : true} onClick={() => {
+          handleSubmit('add')
         }}>
           <PlaylistAddIcon type="submit" />
         </IconButton>
       }
       {props.functionality === 'both' ?
-        <IconButton aria-label="delete button" onClick={() => {
-          handleSubmit(2)
+        <IconButton aria-label="delete button" disabled={listName ? false : true} onClick={() => {
+          handleSubmit('remove from selected list')
         }}>
           <DeleteOutlineIcon type="submit" />
         </IconButton>
