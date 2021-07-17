@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles'
 import fire from '../../fire';
 import { Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -28,9 +29,11 @@ const SignOut = (props) => {
 
   return (
     <div>
-      <Button className={classes.buttons} onClick={signOut}>
-        Sign out
-      </Button>
+      <Link to='/'>
+        <Button className={classes.buttons} onClick={signOut}>
+          Sign out
+        </Button>
+      </Link>
     </div>
   );
 }
