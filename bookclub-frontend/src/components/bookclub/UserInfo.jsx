@@ -45,27 +45,20 @@ const User = (props) => {
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
-        {/* <Grid container spacing={3}> */}
           <Grid item xs={12} container direction="row">
             <Grid className={classes.img} item xs container direction="column">
                 <img alt="user" src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png" className={classes.large} />
             </Grid>
             <Grid item xs direction="column">
-              <Grid item xs direction="row">
-                <Typography variant="subtitle1" color="textSecondary">joined {dayjs(props.joinedDate).fromNow()}</Typography>
-              </Grid>
-              <Grid item xs direction="row">
                 <Typography gutterBottom variant="h4">
                   {props.user}
                 </Typography>
-                <Typography variant="body2" gutterBottom>
-                  {/* Total Books Read: {props.userInfo.lists.previouslyRead.length} */}
+                <Typography variant="h6" gutterBottom>
                   Total Books Read: {props.previouslyRead.length}
                 </Typography>
-              </Grid>
+                <Typography variant="subtitle1" color="textSecondary">joined {dayjs(props.joinedDate).fromNow()}</Typography>
             </Grid>
           </Grid>
-        {/* </Grid> */}
       </Paper>
     </div>
   );
