@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Header from '../components/bookclub/Header.jsx';
@@ -7,7 +7,7 @@ import withSlide from '../components/bookclub/BookGallery.jsx';
 // import { favorites, previouslyRead, wantToRead } from '../dummyData/booklist.jsx';
 import { getUserData } from '../services/bookclubServices.js'
 
-const useStyles = makeStyles (() => ({
+const useStyles = makeStyles(() => ({
   root: {
     minWidth: 200,
     minHeight: '100vh',
