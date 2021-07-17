@@ -26,7 +26,7 @@ function App() {
 
       <Router>
         <Switch>
-          <Route path="/search">
+          <Route path="/search/:searchTerm">
             <SearchPage
               isLoggedIn={isLoggedIn}
               setIsLoggedIn={setIsLoggedIn}

@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import SearchResults from "./SearchResults.jsx";
-
+import { useParams } from "react-router-dom";
+import { searchByCategory } from '../../services/bookclubServices.js';
 
 // const useStyles = makeStyles((theme) => ({
 //   root: {
@@ -14,8 +15,15 @@ import SearchResults from "./SearchResults.jsx";
 //   },
 // }));
 const Search = (props) => {
-  //console.log("props: ", props);
-  //const classes = useStyles();
+  const [data, setData] = useState(props.searchResults)
+  const { searchTerm } = useParams()
+
+  useEffect(() => {
+    searchByCategory(searchTerm)
+      .then((results) => {
+        setData(results)
+      })
+  }, [])
 
   return (
     <div>
@@ -27,7 +35,7 @@ const Search = (props) => {
       >
         <Grid item xs={6}>
           <Grid item xs>
-            {props.searchResults.map((item) => {
+            {data.map((item) => {
               return <SearchResults thing={item} setBook={props.setBook} />;
             })}
           </Grid>
