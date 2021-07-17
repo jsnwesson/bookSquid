@@ -10,6 +10,8 @@ import Review from '../components/review/Review.jsx';
 import Grid from '@material-ui/core/Grid'
 import { makeStyles } from '@material-ui/core/styles';
 // import Paper from '@material-ui/core/Paper';
+import { useParams } from 'react-router';
+
 
 const Book = (props) => {
   const useStyles = makeStyles((theme) => ({
@@ -26,6 +28,9 @@ const Book = (props) => {
     },
   }));
   const classes = useStyles();
+  const { id } = useParams()
+
+
   return (
     <div >
       <Header
@@ -46,7 +51,7 @@ const Book = (props) => {
 
         </Grid>
         <Grid item direction='row' className={classes.reviews}>
-          <Review />
+          <Review id={id} isLoggedIn={props.isLoggedIn}/>
         </Grid>
       </Grid>
     </div>
