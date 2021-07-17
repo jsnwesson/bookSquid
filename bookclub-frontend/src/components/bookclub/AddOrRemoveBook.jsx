@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -11,6 +11,7 @@ import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import { addToList } from '../../services/bookclubServices';
 import { removeFromList } from '../../services/bookclubServices';
+import { Link } from 'react-router-dom';
 
 const AddOrRemoveBook = (props) => {
   const [listName, setListName] = useState()
@@ -42,34 +43,43 @@ const AddOrRemoveBook = (props) => {
     },
   }));
   const classes = useStyles();
-
+  let list;
+  if (props.listName === 'Favorites') {
+    list = 'favorites'
+  } else if (props.listName === 'Previously Read') {
+    list = 'alreadyRead'
+  } else if (props.listName === 'Want to Read') {
+    list = 'goingToRead'
+  } else if (props.listName === 'Currently Reading') {
+    list = 'currentlyReading'
+  }
   const handleSubmit = (option) => {
     if (option === 'delete X button') {
       // setListName(props.listName)
-      // removeFromList(props.listName, props.bookId)
-      // alert(`these are your selections... you will be removing book: ${props.bookId} from: ${props.listName} `)
+      removeFromList(list, props.bookId)
+        .then(() => {
+          let index = props.list.indexOf(props.book.bookId === props.bookId)
+          console.log('-------------', index)
+          console.log('after', props.list)
+          props.removeFunc(props.list.splice(index, 1))
+          console.log('before', props.list)
+        })
+      // alert(`these are your selections... you will be removing book: ${props.bookId} from: ${list} `)
     } else if (option === 'add') {
       // add to a selected list
       addToList(listName, props.bookId)
       // alert(`these are your selections... you will be adding book: ${props.bookId} to: ${listName} `)
     } else if (option === 'remove from selected list') {
       // remove from selected list
-      // removeFromList(listName, props.bookId)
-      alert(`these are your selections... you will be removing book: ${props.bookId} from: ${listName} `)
+      removeFromList(listName, props.bookId)
+      // alert(`these are your selections... you will be removing book: ${props.bookId} from: ${listName} `)
     }
   };
-
+  //  props.setter(list.splice(book, 1))
   const handleChange = (event) => {
     setListName(event.target.value)
   }
-  // useEffect(() => {
-  //   if (listName === undefined) {
-  //     setChanged(false)
-  //   } else {
-  //     setChanged(true)
-  //   }
 
-  // }, [listName])
   return (
     <Grid container item direction='row' className={classes.formControl}>
 
@@ -84,7 +94,7 @@ const AddOrRemoveBook = (props) => {
             <MenuItem value="" disabled>
               Lists:
             </MenuItem>
-            <MenuItem value={'favorite'}>Favorite</MenuItem>
+            <MenuItem value={'favorites'}>Favorite</MenuItem>
             <MenuItem value={'currentlyReading'}>Currently Reading</MenuItem>
             <MenuItem value={'alreadyRead'}>Previously Read</MenuItem>
             <MenuItem value={'goingToRead'}>Want To Read</MenuItem>
@@ -95,24 +105,30 @@ const AddOrRemoveBook = (props) => {
 
       {/* <Grid container item direction="row" > */}
       {props.functionality === 'remove' ?
+
         <IconButton className={classes.icon} aria-label="delete button" onClick={() => {
           handleSubmit('delete X button')
         }}>
           <HighlightOffIcon type="submit" />
         </IconButton>
+
         :
-        <IconButton aria-label="add button" disabled={listName ? false : true} onClick={() => {
-          handleSubmit('add')
-        }}>
-          <PlaylistAddIcon type="submit" />
-        </IconButton>
+        <Link to='/profile'>
+          <IconButton aria-label="add button" disabled={listName ? false : true} onClick={() => {
+            handleSubmit('add')
+          }}>
+            <PlaylistAddIcon type="submit" />
+          </IconButton>
+        </Link>
       }
       {props.functionality === 'both' ?
-        <IconButton aria-label="delete button" disabled={listName ? false : true} onClick={() => {
-          handleSubmit('remove from selected list')
-        }}>
-          <DeleteOutlineIcon type="submit" />
-        </IconButton>
+        <Link to='/profile'>
+          <IconButton aria-label="delete button" disabled={listName ? false : true} onClick={() => {
+            handleSubmit('remove from selected list')
+          }}>
+            <DeleteOutlineIcon type="submit" />
+          </IconButton>
+        </Link>
         : null}
       {/* </Grid> */}
 

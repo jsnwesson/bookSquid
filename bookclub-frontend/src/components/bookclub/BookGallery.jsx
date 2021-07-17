@@ -85,14 +85,14 @@ const withSlide = (wrappedComponent, selectData, setBook) => {
         </Grid>
       </div>
     )
-  // } else if (selectData.list.length < 3) {
-  //   return (
-  //     <div>
-  //       <Grid item >
-  //         <h2>{selectData.title}</h2>
-  //       </Grid>
-  //     </div>
-  //   )
+    // } else if (selectData.list.length < 3) {
+    //   return (
+    //     <div>
+    //       <Grid item >
+    //         <h2>{selectData.title}</h2>
+    //       </Grid>
+    //     </div>
+    //   )
   } else {
     return (
       <div>
@@ -119,7 +119,7 @@ const withSlide = (wrappedComponent, selectData, setBook) => {
                           {book.authors[0]}
                         </Typography>
                       </CardContent>
-                      {(selectData.removeBook) ? <AddOrRemoveBook bookId={book.bookId} listName={selectData.title} functionality={'remove'} /> : <></>}
+                      {(selectData.removeBook) ? <AddOrRemoveBook bookId={book.bookId} book={book} removeFunc={selectData.setter} list={selectData.list} listName={selectData.title} functionality={'remove'} /> : <></>}
                     </CardActionArea>
                   </Card>
                 </div>
