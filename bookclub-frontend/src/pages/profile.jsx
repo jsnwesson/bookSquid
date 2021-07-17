@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Header from '../components/bookclub/Header.jsx';
@@ -7,7 +7,7 @@ import withSlide from '../components/bookclub/BookGallery.jsx';
 // import { favorites, previouslyRead, wantToRead } from '../dummyData/booklist.jsx';
 import { getUserData } from '../services/bookclubServices.js'
 
-const useStyles = makeStyles (() => ({
+const useStyles = makeStyles(() => ({
   root: {
     minWidth: 200,
     minHeight: '100vh',
@@ -46,24 +46,28 @@ const Profile = (props) => {
     className: 'fave',
     list: favorites, // <-- name of array of book objects
     removeBook: true,
+    setter: setFavorites,
   };
   const prevList = {
     title: 'Previously Read',
     className: 'prevRead',
     list: previouslyRead,
     removeBook: true,
+    setter: setPreviouslyRead,
   }
   const toReadList = {
     title: 'Want to Read',
     className: 'toRead',
     list: wantToRead,
     removeBook: true,
+    setter: setWantToRead,
   }
   const currentList = {
     title: 'Currently Reading',
     className: 'currRead',
     list: currentlyReading,
     removeBook: true,
+    setter: setCurrentlyReading,
   }
 
   return (
