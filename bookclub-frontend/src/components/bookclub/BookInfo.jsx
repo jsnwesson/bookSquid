@@ -7,9 +7,11 @@ import Paper from '@material-ui/core/Paper';
 import { specificBookData } from '../../services/bookclubServices';
 import '@fontsource/roboto';
 import { useParams } from 'react-router';
+import Review from '../../components/review/Review.jsx';
 
 
-const BookInfo = () => {
+
+const BookInfo = (props) => {
   const { id } = useParams()
   const [book, setBook] = useState()
 
@@ -60,6 +62,12 @@ const BookInfo = () => {
     paper: {
       padding: '3%',
       backgroundColor: '#eae9e9'
+    },
+    paper2: {
+      padding: '3%',
+      marginTop: '50px',
+      marginBottom: '50px',
+      backgroundColor: '#eae9e9'
     }
   }));
   const classes = useStyles();
@@ -100,9 +108,13 @@ const BookInfo = () => {
                   </Grid>
                 </Grid>
               </Paper>
+              <Paper className={classes.paper2} elevation={5}>
+              <Review id={id} isLoggedIn={props.isLoggedIn}/>
+              </Paper>
             </Grid>
           </Grid>
         </Grid>
+        
         : null}
     </>
   )

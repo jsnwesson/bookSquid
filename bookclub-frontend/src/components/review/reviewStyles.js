@@ -15,12 +15,12 @@ const reviewStyles = makeStyles({
     maxWidth: '700px',
   },
   rrBoxLMainRating: {
-    display: 'grid',
-    gridTemplateColumns: '33% 66%',
-    gridGap: '30px',
+    // display: 'grid',
+    // gridTemplateColumns: '33% 66%',
+    // gridGap: '30px',
   },
   rrBoxLMainRatingL: {
-    fontSize: '4.0em',
+    fontSize: '3.0em',
     fontWeight: '700',
     opacity: '0.7',
     marginLeft: '3px',
@@ -29,8 +29,7 @@ const reviewStyles = makeStyles({
 
   },
   rrBoxRatingWrapper: {
-    paddingTop: '15px'
-
+    paddingTop: '15px',
   },
   rrBoxLRecommendPercentage: {
     fontSize: '.91rem', 
@@ -43,7 +42,7 @@ const reviewStyles = makeStyles({
     display: 'grid',
     gridTemplateColumns: '25% 70%',
     gridGap: '0px',
-    marginTop: '15px',
+    marginTop: '4px',
   },
   starsBoxImg: {
     height: '27px',

@@ -17,18 +17,22 @@ import AddReviewBtn from './AddReviewBtn.jsx'
 
 const useStyles = {
   rrCont: {
-    marginTop: '60px',
-    marginBottom: '60px',
+    marginTop: '30px',
+    marginBottom: '30px',
   },
   rrTitleCont: {},
   rrBoxCont: {
-    display: 'grid',
-    gridTemplateColumns: '24.8% 60%',
-    gridGap: '30px',
+    marginTop: '30px',
   },
-  rrBoxL: {},
+  rrBoxL: {
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr',
+    '@media (max-width: 1000px)': {
+      gridTemplateColumns: '1fr',
+    },
+  },
   rrBoxR: {
-    maxWidth: '700px',
+    
   },
   reviewCount: {
     fontWeight: '600',
@@ -47,8 +51,13 @@ const useStyles = {
     paddingTop: '5px',
   },
   AddReviewSpacer: {
-    paddingBottom: '20px',
-  }
+    paddingBottom: '30px',
+  },
+  rrBoxL2: {
+    '@media (max-width: 1000px)': {
+      display: 'none',
+    },
+  },
 };
 
 
@@ -70,7 +79,6 @@ class Review extends React.Component {
       
     }
     this.handleMoreReviews = this.handleMoreReviews.bind(this);
-
   }
 
   componentDidMount() {
@@ -137,8 +145,6 @@ class Review extends React.Component {
     })
   }
 
-
-
   render (props) {
     const { classes } = this.props;
     let AddReview;
@@ -153,11 +159,14 @@ class Review extends React.Component {
       <h2>Ratings &#38; Reviews</h2>
       </div>
       {this.state.reviewSum > 0
-      ? <div className={classes.rrBoxCont}>
+      ? <div>
+        <div className={classes.rrStarCont}>
           <div className={classes.rrBoxL}>
-            <ReviewRating avgRating={this.state.avgRating} />
-            <ReviewStars five={this.state.five} four={this.state.four} three={this.state.three} two={this.state.two} one={this.state.one} />
-          </div>
+            <div className={classes.rrBoxL1}> <ReviewRating avgRating={this.state.avgRating} /></div>
+            <div className={classes.rrBoxL2}> <ReviewStars five={this.state.five} four={this.state.four} three={this.state.three} two={this.state.two} one={this.state.one} /> </div>
+          </div>  
+        </div>
+        <div className={classes.rrBoxCont}>
             {/* begin box right  */}
           <div className={classes.rrBoxR}>
             <div className={classes.reviewCount}><p>{this.state.reviewSum} reviews</p></div>
@@ -169,6 +178,7 @@ class Review extends React.Component {
           </div>
           {/* end box right  */}
         </div>
+      </div>
         : <div><div>No Reviews</div> <div className={classes.AddReviewSpacer}>Be the first member to submit a review!</div> {AddReview}</div> }
   
    </div>

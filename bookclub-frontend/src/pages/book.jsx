@@ -6,7 +6,6 @@ import React from 'react';
 import Header from '../components/bookclub/Header.jsx';
 import BookInfo from '../components/bookclub/BookInfo';
 // import ReviewButtons from '../components/review/ReviewButtons';
-import Review from '../components/review/Review.jsx';
 import Grid from '@material-ui/core/Grid'
 import { makeStyles } from '@material-ui/core/styles';
 // import Paper from '@material-ui/core/Paper';
@@ -50,8 +49,8 @@ const Book = (props) => {
           <BookInfo book={props.book} className={classes.info} />
 
         </Grid>
-        <Grid item direction='row' className={classes.reviews}>
-          <Review id={id} isLoggedIn={props.isLoggedIn}/>
+        <Grid item direction='row' className={classes.reviews} id={id} isLoggedIn={props.isLoggedIn} >
+          {/* <Review id={id} isLoggedIn={props.isLoggedIn}/> */}
         </Grid>
       </Grid>
     </div>
