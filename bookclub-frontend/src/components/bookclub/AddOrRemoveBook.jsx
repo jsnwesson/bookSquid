@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const AddOrRemoveBook = (props) => {
-  const [listName, setListName] = useState()
+  const [listName, setListName] = useState('')
   const classes = useStyles();
 
   let list;
@@ -105,22 +105,18 @@ const AddOrRemoveBook = (props) => {
         </IconButton>
 
         :
-        <Link to='/profile'>
-          <IconButton aria-label="add button" disabled={listName ? false : true} onClick={() => {
-            handleSubmit('add')
-          }}>
-            <PlaylistAddIcon type="submit" />
-          </IconButton>
-        </Link>
+        <IconButton aria-label="add button" disabled={listName ? false : true} onClick={() => {
+          handleSubmit('add')
+        }}>
+          <PlaylistAddIcon type="submit" />
+        </IconButton>
       }
       {props.functionality === 'both' ?
-        <Link to='/profile'>
-          <IconButton aria-label="delete button" disabled={listName ? false : true} onClick={() => {
-            handleSubmit('remove from selected list')
-          }}>
-            <DeleteOutlineIcon type="submit" />
-          </IconButton>
-        </Link>
+        <IconButton aria-label="delete button" disabled={listName ? false : true} onClick={() => {
+          handleSubmit('remove from selected list')
+        }}>
+          <DeleteOutlineIcon type="submit" />
+        </IconButton>
         : null}
       {/* </Grid> */}
 
