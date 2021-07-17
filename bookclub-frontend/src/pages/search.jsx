@@ -3,18 +3,12 @@ import { makeStyles } from "@material-ui/core/styles";
 import Header from "../components/bookclub/Header.jsx";
 import Search from "../components/bookclub/Search.jsx";
 
-const useStyles = makeStyles((theme) => ({
-  main: {
-    // backgroundColor: '#bcdae4'
-    backgroundColor: "#F7F1C3",
-  },
-}));
 
 function SearchPage(props) {
-  const classes = useStyles();
+
 
   return (
-    <div className={classes.main}>
+    <div>
       <Header
         isLoggedIn={props.isLoggedIn}
         setIsLoggedIn={props.setIsLoggedIn}

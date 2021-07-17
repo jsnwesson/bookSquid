@@ -17,11 +17,11 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#eae9e9",
     padding: theme.spacing(2),
     margin: 10,
-    maxWidth: 750,
+    maxWidth: 1000,
   },
   image: {
     width: 128,
-    height: 128,
+    height: 200,
   },
   img: {
     margin: "auto",
@@ -71,12 +71,10 @@ const SearchResults = (props) => {
                   {item.authors}
                 </Typography>
               </Grid>
-              <Grid item>
-                <AddOrRemoveBook
-                //bookId={}
-                //listName={}
-                //functionality={"remove"}
-                />
+              <Grid item xs>
+                  <Typography>
+                  {item.description ? item.description.slice(0, 150) : 'No Description'}...
+                  </Typography>
               </Grid>
             </Grid>
             <Grid item>
