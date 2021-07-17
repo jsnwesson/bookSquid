@@ -24,8 +24,8 @@ const UseStyles = makeStyles(() => ({
     borderRadius: '4px',
     boxShadow: 'inset 0 0 15px -10px black',
     backgroundColor: '#faf5f6', //'#e8e8e8',
-    // margin: '1.5vh',
-    // padding: '3vh'
+    margin: '3vh',
+    padding: '3vh'
 
   },
   titles: {
