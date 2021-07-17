@@ -56,7 +56,7 @@ const User = (props) => {
                 <Typography variant="h6" gutterBottom>
                   Total Books Read: {props.previouslyRead.length}
                 </Typography>
-                <Typography variant="subtitle1" color="textSecondary">joined {dayjs(props.joinedDate).fromNow()}</Typography>
+                <Typography variant="subtitle1" color="textSecondary">joined {dayjs(props.joinedDate).fromNow(true)} ago</Typography>
             </Grid>
           </Grid>
       </Paper>

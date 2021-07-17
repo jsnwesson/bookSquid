@@ -25,6 +25,9 @@ const UseStyles = makeStyles(() => ({
   content: {
     marginTop: '30px',
   },
+  empty: {
+    height: '25vh',
+  }
 })
 );
 
@@ -73,26 +76,24 @@ const withSlide = (wrappedComponent, selectData, setBook) => {
   };
 
   const classes = UseStyles();
-  console.log(selectData)
-  if (selectData.list === undefined || selectData.list === 0) {
+  if (selectData.list.length === 0) {
     return (
       <div>
-        <Grid item >
+        <Grid item className={classes.empty}>
           <h2>{selectData.title}</h2>
           <h3>It appears that there are no books added to this list!</h3>
         </Grid>
       </div>
     )
-  } else if (selectData.list < 3) {
-    return (
-      <div>
-        <Grid item >
-          <h2>{selectData.title}</h2>
-        </Grid>
-      </div>
-    )
+  // } else if (selectData.list.length < 3) {
+  //   return (
+  //     <div>
+  //       <Grid item >
+  //         <h2>{selectData.title}</h2>
+  //       </Grid>
+  //     </div>
+  //   )
   } else {
-    console.log(selectData.list)
     return (
       <div>
         <Grid item >
