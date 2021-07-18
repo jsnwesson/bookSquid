@@ -16,24 +16,23 @@ import '@fontsource/roboto';
 
 
 const UseStyles = makeStyles(() => ({
-  root: {
+  titles: {
+    font: 'robot sans-serif',
+    fontSize: '20pt',
+    margin: '3vh 0 2vh 0',
+    padding: '0vh 1vh 1vh 6vh',
+    textAlign: 'left',
+    borderBottom: '1px solid gray',
+    color: '#004D86'
 
   },
   booksContainer: {
     // border: '2px solid red',
     borderRadius: '4px',
-    boxShadow: 'inset 0 0 15px -10px black',
+    boxShadow: 'inset 0 0 18px -8px black',
     backgroundColor: '#faf5f6', //'#e8e8e8',
-    margin: '3vh',
-    padding: '3vh'
-
-  },
-  titles: {
-    font: 'robot sans-serif',
-    marginBottom: '3vh',
-    padding: '0vh 1vh 1vh 6vh',
-    textAlign: 'left',
-    borderBottom: '1px solid gray'
+    // margin: '1vh',
+    padding: '2vh'
 
   },
   slider: {
@@ -47,15 +46,17 @@ const UseStyles = makeStyles(() => ({
     justifyContent: 'center',
     alignItems: 'center',
     // border: '2px solid red',
-    height: '45vh'
+    height: '40vh'
+
   },
   card: {
     // display: 'flex',
+    minHeight: '20vh',
     maxWidth: '230px',
     height: '100%',
     margin: '15px',
     padding: '20px',
-    boxShadow: '15px 15px 25px -15px gray',
+    boxShadow: '0px 0px 15px 0px gray',
     // border: '2px solid blue',
     alignItems: 'center',
     borderRadius: '10px'
@@ -69,7 +70,7 @@ const UseStyles = makeStyles(() => ({
     height: 300,
     // padding: '20px',
     // margin: '10px',
-    boxShadow: '0 0 15px 0px gray'
+    boxShadow: '0 0 15px -4px gray'
   },
   textContainer: {
     borderTop: '1px solid gray',
@@ -84,7 +85,10 @@ const UseStyles = makeStyles(() => ({
     // border: '2px solid pink'
   },
   emptyContainer: {
-    minHeight: '10vh'
+    height: '475px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
 })
 );
@@ -138,9 +142,9 @@ const withSlide = (wrappedComponent, selectData, setBook) => {
   if (selectData.list.length === 0) {
     return (
       <div>
-        <Grid item className={classes.booksContainer}>
-          <h2 className={classes.titles}>{selectData.title}</h2>
-          <h3>It appears that there are no books added to this list!</h3>
+        <h2 className={classes.titles}>{selectData.title}</h2>
+        <Grid item className={`${classes.booksContainer} ${classes.emptyContainer}`} >
+          <h5>It appears you haven't added books to this list!</h5>
         </Grid>
       </div>
     )
@@ -155,12 +159,12 @@ const withSlide = (wrappedComponent, selectData, setBook) => {
   } else {
     return (
       <div >
+        {/* Title */}
+        <h2 className={classes.titles}>{selectData.title}</h2>
 
         {/* Entire Container */}
         <Grid item className={classes.booksContainer}>
 
-          {/* Title */}
-          <h2 className={classes.titles}>{selectData.title}</h2>
 
           {/* Slider */}
           <Slider className={`slider ${classes.slider}`} {...settings}>
