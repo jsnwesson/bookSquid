@@ -27,10 +27,10 @@ function App() {
     handleSnackbarOpen()
   }, [isLoggedIn])
 
+
   const handleSnackbarOpen = () => {
     setSnackbarStatus(true)
   }
-
   const snackbarClose = () => {
     setSnackbarStatus(false)
   }
