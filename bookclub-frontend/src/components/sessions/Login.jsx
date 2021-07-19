@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles'
+import Snackbar from '@material-ui/core/Snackbar'
 import { Button, Modal } from 'react-bootstrap';
 import fire from '../../fire.js';
 import { createUser } from '../../services/bookclubServices';

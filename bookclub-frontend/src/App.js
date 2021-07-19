@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import SearchPage from './pages/search'
@@ -7,6 +7,8 @@ import Landing from './pages/landing';
 import Profile from './pages/profile';
 import './App.css';
 import fire from './fire';
+import Snackbar from '@material-ui/core/Snackbar'
+import Alert from '@material-ui/lab/Alert'
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -14,14 +16,38 @@ function App() {
   const [emailCookie, setEmailCookie, removeEmailCookie] = useCookies(['email']);
   const [book, setBook] = useState(0);
   const [searchResults, setSearchResults] = useState([]);
+  const [snackbarStatus, setSnackbarStatus] = useState(false);
 
   fire.auth().onAuthStateChanged((user) => {
     return user ? setIsLoggedIn(true) : setIsLoggedIn(false);
   });
 
+
+  useEffect(() => {
+    handleSnackbarOpen()
+  }, [isLoggedIn])
+
+  const handleSnackbarOpen = () => {
+    setSnackbarStatus(true)
+  }
+
+  const snackbarClose = () => {
+    setSnackbarStatus(false)
+  }
+
   return (
 
     <div className="App" >
+      <Snackbar
+        open={snackbarStatus}
+        originAnchor={{ vertical: 'bottom', horizontal: 'center' }}
+        autoHideDuration={3500}
+        onClose={snackbarClose}
+      >
+        <Alert onClose={snackbarClose} severity='info'>
+          {isLoggedIn ? 'Login successful!' : 'You have been signed out!'}
+        </Alert>
+      </Snackbar>
       <div style={{ height: '9vh' }}></div>
 
       <Router>
@@ -39,6 +65,7 @@ function App() {
               searchResults={searchResults}
               setSearchResults={setSearchResults}
               setBook={setBook}
+              handleSnackbarOpen={handleSnackbarOpen}
             />
           </Route>
           <Route path="/book/:id">
@@ -53,6 +80,7 @@ function App() {
               removeEmailCookie={removeEmailCookie}
               setSearchResults={setSearchResults}
               book={book}
+              handleSnackbarOpen={handleSnackbarOpen}
             />
           </Route>
           <Route path="/profile">
@@ -67,6 +95,7 @@ function App() {
               removeEmailCookie={removeEmailCookie}
               setSearchResults={setSearchResults}
               setBook={setBook}
+              handleSnackbarOpen={handleSnackbarOpen}
             />
           </Route>
           <Route path="/">
@@ -81,6 +110,7 @@ function App() {
               removeEmailCookie={removeEmailCookie}
               setSearchResults={setSearchResults}
               setBook={setBook}
+              handleSnackbarOpen={handleSnackbarOpen}
             />
           </Route>
         </Switch>

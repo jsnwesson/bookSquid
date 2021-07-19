@@ -7,6 +7,7 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
+import PriorityHighIcon from '@material-ui/icons/PriorityHigh';
 import { Link } from 'react-router-dom';
 import AddOrRemoveBook from './AddOrRemoveBook';
 import 'slick-carousel/slick/slick.css';
@@ -17,7 +18,8 @@ import '@fontsource/roboto';
 
 const UseStyles = makeStyles(() => ({
   titles: {
-    font: 'robot sans-serif',
+    font: 'roboto, sans-serif',
+    fontWeight: 500,
     fontSize: '20pt',
     margin: '3vh 0 2vh 0',
     padding: '0vh 1vh 1vh 6vh',
@@ -88,7 +90,8 @@ const UseStyles = makeStyles(() => ({
     height: '475px',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    // border: '2px solid black'
   },
 })
 );
@@ -143,10 +146,17 @@ const withSlide = (wrappedComponent, selectData, setBook) => {
     return (
       <div>
         <h2 className={classes.titles}>{selectData.title}</h2>
-        <Grid item className={`${classes.booksContainer} ${classes.emptyContainer}`} >
-          <h5>It appears you haven't added books to this list!</h5>
+        <Grid container item className={`${classes.booksContainer} ${classes.emptyContainer}`} >
+          <Grid cotainer direction='column' item style={{ padding: '3% 3% 3% 5%', backgroundColor: '#ebe8e9', boxShadow: '0 0 9px -4px gray' }}>
+            <Grid item >
+              <PriorityHighIcon style={{ fontSize: '42pt', opacity: '50%', marginBottom: '8%' }} />
+            </Grid>
+            <Grid item >
+              <span style={{ fontSize: '15pt' }}>It appears you haven't added any books to this list!</span>
+            </Grid>
+          </Grid>
         </Grid>
-      </div>
+      </div >
     )
     // } else if (selectData.list.length < 3) {
     //   return (
