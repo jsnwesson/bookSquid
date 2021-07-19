@@ -41,7 +41,7 @@ function App() {
       <Snackbar
         open={snackbarStatus}
         originAnchor={{ vertical: 'bottom', horizontal: 'center' }}
-        autoHideDuration={3500}
+        autoHideDuration={4000}
         onClose={snackbarClose}
       >
         <Alert onClose={snackbarClose} severity='info'>
