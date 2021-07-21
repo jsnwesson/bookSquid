@@ -10,7 +10,8 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 const useStyles = makeStyles((theme) => ({
 
   root: {
-    position: 'relative',
+
+    // position: 'relative',
     // left: '-70%',
     flexGrow: 1,
     padding: '5%',
