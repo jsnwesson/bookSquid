@@ -144,7 +144,15 @@ export const removeFromList = async (listName, bookId) => {
   };
 };
 
-export const getUserData = async () => {
+export const getUserData = async (uid) => {
+  if (uid !== undefined) {
+    let token = {
+      headers: {
+        uid: uid
+      }
+    };
+    return await axios.get(`${url}/user/profile`, {headers: {uid}})
+  }
   const header = await createToken();
   try {
     const res = await axios.get(`${url}/user/profile`, header);
