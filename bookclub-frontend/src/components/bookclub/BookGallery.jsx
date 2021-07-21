@@ -140,7 +140,6 @@ const withSlide = (wrappedComponent, selectData, setBook) => {
       // }
     ]
   };
-
   const classes = UseStyles();
   if (selectData.list.length === 0) {
     return (
@@ -210,7 +209,14 @@ const withSlide = (wrappedComponent, selectData, setBook) => {
                           {book.authors[0]}
                         </Typography>
                       </CardContent>
-                      {(selectData.removeBook) ? <AddOrRemoveBook bookId={book.bookId} book={book} removeFunc={selectData.setter} list={selectData.list} listName={selectData.title} functionality={'remove'} /> : <></>}
+                      {(selectData.removeBook) ?
+                        <AddOrRemoveBook
+                          bookId={book.bookId}
+                          book={book}
+                          removeFunc={selectData.setter}
+                          list={selectData.list}
+                          listName={selectData.title}
+                          functionality={'remove'} /> : <></>}
                     </CardActionArea>
                   </Card>
                 </div>

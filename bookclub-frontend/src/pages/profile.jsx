@@ -5,7 +5,7 @@ import Header from '../components/bookclub/Header.jsx';
 import User from '../components/bookclub/UserInfo.jsx';
 import withSlide from '../components/bookclub/BookGallery.jsx';
 // import { favorites, previouslyRead, wantToRead } from '../dummyData/booklist.jsx';
-import { getUserData } from '../services/bookclubServices.js'
+import {getUserData} from '../services/bookclubServices.js'
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -30,8 +30,9 @@ const Profile = (props) => {
   const [currentlyReading, setCurrentlyReading] = useState([]);
 
   useEffect(() => {
-    return getUserData()
-      .then((results) => {
+    getUserData(props.uid.UID)
+      .then((response) => {
+        var results = response.data;
         setUser(results.name);
         setJoinedDate(results.joinedDate);
         setFavorites(results.lists.favorites);
@@ -92,9 +93,9 @@ const Profile = (props) => {
       </Container>
       <Container fixed={true} className={classes.root} maxWidth='lg'>
         {withSlide(faves, faveList, props.setBook)}
+        {withSlide(currReading, currentList, props.setBook)}
         {withSlide(prevRead, prevList, props.setBook)}
         {withSlide(toRead, toReadList, props.setBook)}
-        {withSlide(currReading, currentList, props.setBook)}
       </Container>
     </div>
   )
