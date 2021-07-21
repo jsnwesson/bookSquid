@@ -54,10 +54,12 @@ const BookInfo = (props) => {
       width: '75%'
     },
     media: {
-      height: 'auto',
+      // height: 'auto',
       maxHeight: '500px',
       width: '165%',
       maxWidth: '300px',
+      boxShadow: '5px 5px 20px -5px gray',
+      marginLeft: 'auto'
     },
     paper: {
       padding: '3%',

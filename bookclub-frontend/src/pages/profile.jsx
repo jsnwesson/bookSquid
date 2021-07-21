@@ -84,7 +84,8 @@ const Profile = (props) => {
         removeEmailCookie={props.removeEmailCookie}
         setSearchResults={props.setSearchResults}
       />
-      <Container maxWidth='sm'>
+      <Container style={{
+      }}>
         <User
           user={user}
           joinedDate={joinedDate}

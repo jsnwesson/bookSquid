@@ -21,8 +21,8 @@ const UseStyles = makeStyles(() => ({
     font: 'roboto, sans-serif',
     fontWeight: 500,
     fontSize: '20pt',
-    margin: '3vh 0 2vh 0',
-    padding: '0vh 1vh 1vh 6vh',
+    margin: '5vh 5vh 2vh 5vh',
+    padding: '0vh 1vh 1vh 5vh',
     textAlign: 'left',
     borderBottom: '1px solid gray',
     color: '#004D86'

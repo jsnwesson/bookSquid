@@ -125,12 +125,13 @@ const Header = (props) => {
     setSearchInput(e.target.value);
   };
 
-
   const handleEnterSearch = (e) => {
     if (e.key === 'Enter') {
       submitButton.click();
     }
   }
+
+
 
 
   return (
