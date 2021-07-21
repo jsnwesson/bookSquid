@@ -220,7 +220,8 @@ const Header = (props) => {
                     className={classes.loginSignOut}
                     setIsLoggedIn={props.setIsLoggedIn}
                     setUidCookie={props.setUidCookie}
-                    setEmailCookie={props.setEmailCookie} />
+                    setEmailCookie={props.setEmailCookie}
+                  />
 
                   : <div>
                     <Grid className={classes.buttons} container item direction='row'>

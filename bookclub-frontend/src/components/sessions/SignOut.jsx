@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
 const SignOut = (props) => {
   const classes = useStyles()
 
+
   const signOut = () => {
     fire.auth().signOut()
       .then(() => {
@@ -26,6 +27,7 @@ const SignOut = (props) => {
         props.removeUidCookie('UID');
       })
   };
+
 
   return (
     <div>
