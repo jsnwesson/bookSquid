@@ -14,9 +14,20 @@ function App() {
   const [emailCookie, setEmailCookie, removeEmailCookie] = useCookies(['email']);
   const [book, setBook] = useState(0);
   const [searchResults, setSearchResults] = useState([]);
+  const [uid, setUID] = useCookies(['UID']);
 
   fire.auth().onAuthStateChanged((user) => {
-    return user ? setIsLoggedIn(true) : setIsLoggedIn(false);
+    //console.log('app level onAuthStatechanged')
+    //console.log('this is the user object')
+    //console.log(user);
+    if (user) {
+      setIsLoggedIn(true);
+      setUID(user.uid);
+      //console.log('this is the uid object')
+      return /* console.log(uid) */;
+    }
+    return setIsLoggedIn(false);
+    //return user ? setIsLoggedIn(true) : setIsLoggedIn(false);
   });
 
   return (
@@ -67,6 +78,7 @@ function App() {
               removeEmailCookie={removeEmailCookie}
               setSearchResults={setSearchResults}
               setBook={setBook}
+              uid={uid}
             />
           </Route>
           <Route path="/">
