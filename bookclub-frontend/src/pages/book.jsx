@@ -46,11 +46,13 @@ const Book = (props) => {
       <Grid container item direction='column' className={classes.content}>
         <Grid item direction='row'>
 
+
           <BookInfo book={props.book} className={classes.info} isLoggedIn={props.isLoggedIn} />
+
 
         </Grid>
         <Grid item direction='row' className={classes.reviews} id={id} isLoggedIn={props.isLoggedIn} >
-    
+
         </Grid>
       </Grid>
     </div>

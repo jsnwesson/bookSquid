@@ -78,6 +78,7 @@ const AddOrRemoveBook = (props) => {
       {props.functionality === 'remove' ? null :
         <FormControl >
           <Select
+            disabled={props.isLoggedIn ? false : true}
             value={listName}
             onChange={handleChange}
             displayEmpty

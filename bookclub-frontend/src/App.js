@@ -7,8 +7,6 @@ import Landing from './pages/landing';
 import Profile from './pages/profile';
 import './App.css';
 import fire from './fire';
-import Snackbar from '@material-ui/core/Snackbar'
-import Alert from '@material-ui/lab/Alert'
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -35,32 +33,10 @@ function App() {
   });
 
 
-  useEffect(() => {
-    handleSnackbarOpen()
-  }, [isLoggedIn])
-
-
-  const handleSnackbarOpen = () => {
-    setSnackbarStatus(true)
-  }
-  const snackbarClose = () => {
-    setSnackbarStatus(false)
-  }
 
   return (
 
     <div className="App" >
-      <Snackbar
-
-        open={snackbarStatus}
-        originAnchor={{ vertical: 'bottom', horizontal: 'center' }}
-        autoHideDuration={4000}
-        onClose={snackbarClose}
-      >
-        <Alert onClose={snackbarClose} severity='info' color={isLoggedIn ? 'success' : 'info'} >
-          {isLoggedIn ? 'Login successful!' : 'You have been signed out!'}
-        </Alert>
-      </Snackbar>
       <div style={{ height: '9vh' }}></div>
 
       <Router>
