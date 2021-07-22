@@ -27,7 +27,7 @@ const Book = (props) => {
     },
   }));
   const classes = useStyles();
-  const { id } = useParams()
+  const { id } = useParams();
 
 
   return (
@@ -46,11 +46,11 @@ const Book = (props) => {
       <Grid container item direction='column' className={classes.content}>
         <Grid item direction='row'>
 
-          <BookInfo book={props.book} className={classes.info} />
+          <BookInfo book={props.book} className={classes.info} isLoggedIn={props.isLoggedIn} />
 
         </Grid>
         <Grid item direction='row' className={classes.reviews} id={id} isLoggedIn={props.isLoggedIn} >
-          {/* <Review id={id} isLoggedIn={props.isLoggedIn}/> */}
+    
         </Grid>
       </Grid>
     </div>
