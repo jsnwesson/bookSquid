@@ -110,7 +110,11 @@ const BookInfo = (props) => {
                     <Typography className={classes.descriptionContainer} variant='subtitle1'>{book.description}</Typography>
                   </Grid>
                   <Grid direction="row" className={classes.buttonRow}>
-                    <AddOrRemoveBook bookId={book.bookId} functionality={'both'} />
+                    <AddOrRemoveBook
+                      bookId={book.bookId}
+                      functionality={'both'}
+                      isLoggedIn={props.isLoggedIn}
+                    />
                   </Grid>
                 </Grid>
               </Paper>

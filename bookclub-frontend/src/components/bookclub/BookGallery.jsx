@@ -63,7 +63,6 @@ const UseStyles = makeStyles(() => ({
     maxHeight: '45vh',
     overflow: 'auto',
     minWidth: '10vh',
-    // overflow: 'auto'
     // border: '2px solid blue',
   },
   content: {
