@@ -82,7 +82,8 @@ const AddReviewBtn = ({id}) => {
       .then(data => {
         console.log(data)
         handleClose();
-        alert("Your review has been added!")
+        alert("Your review has been added!");
+        window.location.reload();
       })
       .catch(err => {
         console.log(err)
