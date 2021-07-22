@@ -35,7 +35,17 @@ const BookInfo = (props) => {
       justifyContent: 'center'
     },
     imageContainer: {
-      paddingRight: '10%'
+      paddingRight: '10%',
+      marginRight: '10px',
+      '@media (max-width: 900px)': {
+        display: 'none',
+      },
+    },
+    imageContainer2: {
+      padding: '40px 40px 40px 40px',
+      '@media (min-width: 900px)': {
+        display: 'none',
+      },
     },
     titleContainer: {
       display: 'flex',
@@ -59,6 +69,15 @@ const BookInfo = (props) => {
       width: '165%',
       maxWidth: '300px',
     },
+    media2: {
+      margin: 'auto',
+      width: '50%',
+      textAlign: 'center',
+      height: 'auto',
+      minHeight: '500px',
+      width: 'auto%',
+      maxWidth: '300px',
+    },
     paper: {
       padding: '3%',
       backgroundColor: '#eae9e9'
@@ -67,7 +86,8 @@ const BookInfo = (props) => {
       padding: '3%',
       marginTop: '50px',
       marginBottom: '50px',
-      backgroundColor: '#eae9e9'
+      backgroundColor: '#eae9e9',
+      paddingBottom: '50px',
     }
   }));
   const classes = useStyles();
@@ -77,8 +97,6 @@ const BookInfo = (props) => {
     <>
       {book !== undefined
         ? <Grid container item className={classes.mainContainer} >
-
-
           <Grid container item className={classes.parentContainer}>
             <Grid container item direction='column' xs={3} className={classes.imageContainer}>
               <img
@@ -87,9 +105,14 @@ const BookInfo = (props) => {
                 alt={book.title}
               />
             </Grid>
-
-
             <Grid container item direction='column' xs={8} >
+            <Grid container item direction='column' xs={12} className={classes.imageContainer2}>
+              <img
+                className={classes.media2}
+                src={image}
+                alt={book.title}
+              />
+            </Grid>
               <Paper className={classes.paper} elevation={5}>
                 <Grid >
                   <Grid container item direction='row' className={classes.titleRow}>
