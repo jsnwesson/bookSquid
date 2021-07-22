@@ -21,66 +21,71 @@ const UseStyles = makeStyles(() => ({
     font: 'roboto, sans-serif',
     fontWeight: 500,
     fontSize: '20pt',
-    margin: '3vh 0 2vh 0',
-    padding: '0vh 1vh 1vh 6vh',
+    margin: '5vh 5vh 2vh 5vh',
+    padding: '0vh 1vh 1vh 5vh',
     textAlign: 'left',
     borderBottom: '1px solid gray',
     color: '#004D86'
 
   },
   booksContainer: {
-    // border: '2px solid red',
     borderRadius: '4px',
     boxShadow: 'inset 0 0 18px -8px black',
     backgroundColor: '#faf5f6', //'#e8e8e8',
-    // margin: '1vh',
     padding: '2vh'
+    // border: '2px solid red',
 
   },
   slider: {
     // border: '2px solid green',
     // backgroundColor: '#f0edee',
     // boxShadow: 'inset 0 0 15px -7px gray'
+
   },
   cardContainer: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+    maxHeight: '40vh',
     // border: '2px solid red',
-    height: '40vh'
+    // height: '40vh'
 
   },
   card: {
-    // display: 'flex',
-    minHeight: '20vh',
-    maxWidth: '230px',
     height: '100%',
     margin: '15px',
     padding: '20px',
-    boxShadow: '0px 0px 15px 0px gray',
-    // border: '2px solid blue',
+    boxShadow: '1px 2px 15px -4px gray',
     alignItems: 'center',
-    borderRadius: '10px'
+    borderRadius: '10px',
+    maxWidth: '15vw',
+    maxHeight: '45vh',
+    overflow: 'auto',
+    minWidth: '10vh',
+    // overflow: 'auto'
+    // border: '2px solid blue',
   },
   content: {
     height: '100%',
     marginTop: '30px',
-    border: '5px solid red'
+    // border: '5px solid red'
   },
   media: {
-    height: 300,
+    minHeight: '50px',
+    height: '275px',
+    boxShadow: '0 0 15px -6px gray'
     // padding: '20px',
     // margin: '10px',
-    boxShadow: '0 0 15px -4px gray'
   },
   textContainer: {
     borderTop: '1px solid gray',
-    // border: '2px solid purple',
     marginTop: '20px'
+    // border: '2px solid purple',
 
   },
   bookTitle: {
+    fontSize: '14pt',
     // border: '2px solid orange'
   },
   author: {

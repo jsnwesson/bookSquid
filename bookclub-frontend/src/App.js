@@ -51,12 +51,13 @@ function App() {
 
     <div className="App" >
       <Snackbar
+
         open={snackbarStatus}
         originAnchor={{ vertical: 'bottom', horizontal: 'center' }}
         autoHideDuration={4000}
         onClose={snackbarClose}
       >
-        <Alert onClose={snackbarClose} severity='info'>
+        <Alert onClose={snackbarClose} severity='info' color={isLoggedIn ? 'success' : 'info'} >
           {isLoggedIn ? 'Login successful!' : 'You have been signed out!'}
         </Alert>
       </Snackbar>

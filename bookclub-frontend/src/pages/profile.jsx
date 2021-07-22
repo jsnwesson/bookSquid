@@ -5,7 +5,7 @@ import Header from '../components/bookclub/Header.jsx';
 import User from '../components/bookclub/UserInfo.jsx';
 import withSlide from '../components/bookclub/BookGallery.jsx';
 // import { favorites, previouslyRead, wantToRead } from '../dummyData/booklist.jsx';
-import {getUserData} from '../services/bookclubServices.js'
+import { getUserData } from '../services/bookclubServices.js'
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -84,7 +84,8 @@ const Profile = (props) => {
         removeEmailCookie={props.removeEmailCookie}
         setSearchResults={props.setSearchResults}
       />
-      <Container maxWidth='sm'>
+      <Container style={{
+      }}>
         <User
           user={user}
           joinedDate={joinedDate}
@@ -97,6 +98,7 @@ const Profile = (props) => {
         {withSlide(prevRead, prevList, props.setBook)}
         {withSlide(toRead, toReadList, props.setBook)}
       </Container>
+      <div style={{ height: '150px' }}></div>
     </div>
   )
 }
