@@ -97,7 +97,6 @@ In the frontend terminal run `$ npm start`
 In the backend terminal run `$ npm run dev`
 
 # Meet the Salty Startup! <a name="team"></a>
- - [Hayden Engeling - Program Manager](https://github.com/HaydenEngeling)
  - [Jason Wesson - Program Manager](https://github.com/jsnwesson)
 
  - [Andrew Chunis - UI Owner](https://github.com/chuniversity)
@@ -111,15 +110,6 @@ In the backend terminal run `$ npm run dev`
 - [Trello](https://trello.com/b/UWWa2Ysg/salty-startup)
 - [Stakeholder Meeting - First Meeting with Founder/Owner of Book Squid](https://docs.google.com/document/d/1XVfdVLdqtsF1fd_NCHRFCvf3jmnch034Duqoa-Q03HU/edit)
 - [API Documentation (For Google API and MongoDB)](./sources)
-
-## Engineering Journals <a name="journals"></a>
-- [Chunis]()
-- [Engeling]()
-- [Hernandez]()
-- [Sohn]()
-- [Ward]()
-- [Wesson](https://gist.github.com/jsnwesson/a7fabe9e8f0e665a92be9dc1a7321ba1)
-- [Williamson]()
 
 ## Technologies <a name="technology"></a>
 <table>
