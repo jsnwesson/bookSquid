@@ -15,8 +15,6 @@
    - [Documents](#documents)
    - [Engineering Journals](#journals)
 5. [Technologies](#technology)
-6. [Roadmap](#roadmap)
-7. [License](#license)
 
 # Overview <a name="overview"></a>
 Not only will you be able to look up any book that you have read or are interested in, but you can add those books to your personalized reading lists and share them with the world. You can also write reviews and leave ratings for others to read so that they have a more accurate idea of the book rather than judging a book by its cover. Our front page also shares our users' recommendations and reviews to the books they read, that way readers will always find something to read! 
@@ -138,9 +136,3 @@ In the backend terminal run `$ npm run dev`
     <td><img alt="Jest" src="https://img.shields.io/badge/-jest-%23C21325?&style=for-the-badge&logo=jest&logoColor=white"/></td>
   </tr>
 </table>
-
-# Roadmap <a name="roadmap"></a>
-_What future enhancements are planned? What is the current status of the project? Is it being actively maintained?_
-
-# License <a name="license"></a>
-_If open source, state how the project is licensed._
